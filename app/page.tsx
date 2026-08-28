@@ -1,101 +1,242 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { Hero } from "@/components/Hero";
+import { ValueProps } from "@/components/ValueProps";
+import { KeyStats } from "@/components/KeyStats";
+import { ProfileSegmentGrid } from "@/components/ProfileSegmentGrid";
+import { OperationsCatalog } from "@/components/OperationsCatalog";
+import { RulesBeforeQuoteSection } from "@/components/RulesBeforeQuoteSection";
+import { HowItWorks } from "@/components/HowItWorks";
+import { TrustSection } from "@/components/TrustSection";
+import { Faq, type FaqItem } from "@/components/Faq";
+import { QuickLeadForm } from "@/components/QuickLeadForm";
+import { site } from "@/data/site";
 
-export default function Home() {
+const NAV = [
+  { label: "Nos opérations CEE", href: "#operations" },
+  { label: "Notre méthode", href: "#methode" },
+  { label: "Profils accompagnés", href: "#profils" },
+  { label: "Références", href: "#references" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
+
+const STEPS = [
+  {
+    title: "Qualification du projet",
+    body: "Nous vérifions l'éligibilité de votre projet au regard d'une opération standardisée CEE en vigueur et de ses conditions techniques.",
+  },
+  {
+    title: "Cadrage avant devis",
+    body: "Nous formalisons l'engagement CEE et le rôle actif et incitatif, avant toute signature de devis avec l'installateur.",
+  },
+  {
+    title: "Accompagnement technique",
+    body: "Nous transmettons un cahier des charges précis à l'installateur de votre choix et suivons la réalisation.",
+  },
+  {
+    title: "Dossier de preuve",
+    body: "Nous constituons et conservons l'ensemble des pièces justificatives attendues en cas de contrôle.",
+  },
+];
+
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: "Qu'est-ce que les Certificats d'Économies d'Énergie (CEE) ?",
+    plainAnswer:
+      "Les CEE sont un dispositif public encadré par le Ministère de la Transition Écologique. Il impose aux fournisseurs d'énergie de financer des actions d'économies d'énergie chez les particuliers et les professionnels. Certaines de ces actions, dites opérations standardisées, ouvrent droit à une prime dont le montant dépend d'un volume officiel exprimé en kWh cumac.",
+    answer: (
+      <>
+        <p>
+          Les CEE sont un dispositif public encadré par le Ministère de la
+          Transition Écologique. Il impose aux fournisseurs d&apos;énergie
+          («&nbsp;les obligés&nbsp;») de financer des actions d&apos;économies
+          d&apos;énergie.
+        </p>
+        <p>
+          Les opérations «&nbsp;standardisées&nbsp;» ouvrent droit à une prime
+          dont le volume officiel est exprimé en kWh cumac. Sa traduction en
+          euros dépend de la valorisation du moment et de votre situation :
+          c&apos;est pourquoi nous ne communiquons pas de montant garanti.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: "Pourquoi qualifier son projet avant de signer un devis ?",
+    plainAnswer:
+      "Parce que le bénéfice de l'aide CEE suppose que l'engagement de l'acteur CEE et son rôle actif et incitatif soient établis avant tout engagement contractuel avec l'installateur. Un devis signé trop tôt peut faire perdre définitivement l'aide.",
+    answer: (
+      <p>
+        Le bénéfice de l&apos;aide CEE suppose que l&apos;engagement de
+        l&apos;acteur CEE soit établi <strong>avant</strong> tout engagement
+        contractuel avec l&apos;installateur. Un devis signé trop tôt peut faire
+        perdre le bénéfice de l&apos;aide, sans rattrapage. Nous cadrons ce
+        séquencement pour vous.
+      </p>
+    ),
+  },
+  {
+    question: "Solaire Energie est-il un organisme d'État ?",
+    plainAnswer:
+      "Non. Solaire Energie est une entreprise privée. Elle accompagne ses clients dans le cadre du dispositif public des CEE, encadré par le Ministère de la Transition Écologique, mais n'est ni un service de l'État ni un organisme public.",
+    answer: (
+      <p>
+        <strong>Non.</strong> Solaire Energie est une entreprise privée. Elle
+        accompagne ses clients dans le cadre du dispositif public des CEE, mais
+        n&apos;est ni un service de l&apos;État ni un organisme public, et
+        n&apos;utilise aucun symbole officiel de la République française.
+      </p>
+    ),
+  },
+  {
+    question: "Quelles opérations sont actuellement accompagnées ?",
+    plainAnswer:
+      "Aujourd'hui, Solaire Energie accompagne l'opération AGRI-EQ-110 : séchage solaire par insufflation d'air à l'aide de panneaux solaires hybrides, pour les exploitations agricoles et forestières. Le catalogue est conçu pour accueillir d'autres opérations.",
+    answer: (
+      <p>
+        Aujourd&apos;hui, l&apos;opération <strong>AGRI-EQ-110</strong> —
+        séchage solaire par insufflation d&apos;air avec panneaux hybrides. Le
+        catalogue de ce site est conçu pour accueillir d&apos;autres opérations
+        CEE au fur et à mesure.
+      </p>
+    ),
+  },
+  {
+    question: "Comment se déroule un accompagnement avec Solaire Energie ?",
+    plainAnswer:
+      "En quatre temps : qualification du projet, cadrage de l'engagement CEE avant devis, accompagnement technique avec transmission d'un cahier des charges à l'installateur, puis constitution du dossier de preuve.",
+    answer: (
+      <p>
+        En quatre temps : qualification du projet, cadrage de l&apos;engagement
+        CEE avant devis, accompagnement technique (cahier des charges transmis à
+        l&apos;installateur), puis constitution du dossier de preuve.
+      </p>
+    ),
+  },
+];
+
+export const metadata: Metadata = {
+  title:
+    "Certificats d'Économies d'Énergie pour les professionnels agricoles et forestiers",
+  description:
+    "Solaire Energie qualifie votre projet sur le catalogue officiel des opérations CEE, monte votre dossier avant la signature du devis et vous accompagne jusqu'à l'installation.",
+  alternates: { canonical: "/" },
+};
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Header
+        nav={NAV}
+        ctaLabel="Faire qualifier mon projet"
+        ctaHref="#contact"
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <main id="contenu">
+        <Hero
+          eyebrow="Conseil CEE — agriculture & forêt"
+          title="Certificats d'Économies d'Énergie pour les professionnels agricoles et forestiers"
+          subtitle="Solaire Energie qualifie votre projet sur le catalogue officiel des opérations CEE, monte votre dossier avant la signature du devis, et vous accompagne jusqu'à l'installation."
+          note="Le catalogue des opérations CEE évolue régulièrement — vérifiez l'éligibilité de votre projet avant de vous engager."
+          primaryCta={{ label: "Faire qualifier mon projet", href: "#contact" }}
+          secondaryCta={{
+            label: "Appeler un conseiller",
+            href: site.contact.phoneHref,
+          }}
+        />
+
+        <ValueProps />
+        <KeyStats />
+        <ProfileSegmentGrid />
+        <OperationsCatalog />
+        <RulesBeforeQuoteSection />
+
+        <HowItWorks
+          id="methode"
+          title="Notre méthode, en 4 étapes"
+          description="Un accompagnement structuré, du premier échange au dossier de preuve."
+          steps={STEPS}
+        />
+
+        <TrustSection
+          id="references"
+          eyebrow="Références"
+          title="Ils nous font confiance"
+          description="Les preuves ci-dessous seront complétées par Solaire Energie avec ses références réelles."
+          showCertifications
+        />
+
+        <Faq
+          title="Questions fréquentes sur les CEE"
+          description="Les réponses aux questions les plus courantes des exploitants."
+          items={FAQ_ITEMS}
+        />
+
+        {/* CTA final */}
+        <section id="contact" className="bg-primary/5 py-16 sm:py-20">
+          <div className="container grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-primary">
+                Contact
+              </p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                Parlons de votre projet avant que le devis ne soit signé
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Décrivez-nous votre projet en quelques lignes. Un conseiller vous
+                rappelle sous 24–48h ouvrées pour vérifier son éligibilité — sans
+                engagement.
+              </p>
+              <p className="mt-6 text-sm text-muted-foreground">
+                Vous préférez le téléphone ?{" "}
+                <a
+                  href={site.contact.phoneHref}
+                  className="font-semibold text-foreground hover:text-primary"
+                >
+                  {site.contact.phoneDisplay}
+                </a>{" "}
+                — {site.contact.hours}.
+              </p>
+              <p className="mt-6 max-w-md text-xs text-muted-foreground">
+                {site.privateActorShort}
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+              <QuickLeadForm source="homepage" />
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+      <Footer />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            serviceType:
+              "Accompagnement Certificats d'Économies d'Énergie (CEE) pour l'agriculture et la forêt",
+            provider: {
+              "@type": "Organization",
+              name: site.legal.companyName,
+              description: site.privateActorShort,
+            },
+            areaServed: {
+              "@type": "Country",
+              name: "France",
+            },
+            audience: {
+              "@type": "BusinessAudience",
+              name: "Exploitations agricoles et forestières, coopératives, CUMA, scieries",
+            },
+          }),
+        }}
+      />
+    </>
   );
 }
