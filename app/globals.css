@@ -2,26 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Neutres */
+    --background: 0 0% 100%;
+    --foreground: 155 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 155 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 155 25% 12%;
+
+    /* Vert agriculture / durabilite (primaire) */
+    --primary: 151 55% 23%;
+    --primary-foreground: 140 40% 97%;
+
+    /* Orange / ambre solaire (accent, CTA) */
+    --accent: 33 92% 50%;
+    --accent-foreground: 30 45% 12%;
+
+    /* Gris tres clair */
+    --secondary: 150 20% 96%;
+    --secondary-foreground: 155 25% 18%;
+
+    --muted: 150 16% 95%;
+    --muted-foreground: 155 12% 38%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 150 14% 88%;
+    --input: 150 14% 84%;
+    --ring: 151 55% 23%;
+
+    --radius: 0.625rem;
+  }
+
+  /* Le site est concu pour un rendu clair uniquement. La classe .dark reste
+     definie pour la compatibilite des composants shadcn/ui mais n'est jamais activee. */
+  .dark {
+    --background: 155 30% 8%;
+    --foreground: 140 20% 96%;
+    --card: 155 30% 10%;
+    --card-foreground: 140 20% 96%;
+    --popover: 155 30% 10%;
+    --popover-foreground: 140 20% 96%;
+    --primary: 146 45% 55%;
+    --primary-foreground: 155 40% 10%;
+    --accent: 33 92% 55%;
+    --accent-foreground: 30 45% 12%;
+    --secondary: 155 20% 16%;
+    --secondary-foreground: 140 20% 96%;
+    --muted: 155 20% 16%;
+    --muted-foreground: 150 12% 65%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 155 20% 20%;
+    --input: 155 20% 24%;
+    --ring: 146 45% 55%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
+  }
+  /* Ancre : compense le header sticky lors du scroll vers une section */
+  section[id],
+  div[id].scroll-anchor {
+    scroll-margin-top: 5.5rem;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .container-tight {
+    @apply mx-auto w-full max-w-3xl px-5;
+  }
+}
+
+/* Respecte la preference utilisateur de reduction des animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
