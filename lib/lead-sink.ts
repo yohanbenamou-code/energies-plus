@@ -196,8 +196,31 @@ export class LocalFileLeadSink implements LeadSink {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Console (fallback serverless : le lead est déjà journalisé par la route)   */
+/* -------------------------------------------------------------------------- */
+
+export class ConsoleLeadSink implements LeadSink {
+  readonly name = "console";
+
+  async save(lead: Lead): Promise<void> {
+    console.warn(
+      "[lead] aucun LeadSink persistant configuré (Supabase/Resend). " +
+        "Le lead n'est disponible que dans les logs.",
+      { id: lead.id },
+    );
+  }
+}
+
+/* -------------------------------------------------------------------------- */
 /* Sélection automatique                                                      */
 /* -------------------------------------------------------------------------- */
+
+/** Vrai sur Vercel / Lambda : système de fichiers non persistant. */
+function isServerless(): boolean {
+  return Boolean(
+    process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY,
+  );
+}
 
 let cached: LeadSink | null = null;
 
@@ -212,6 +235,9 @@ export function getLeadSink(): LeadSink {
     cached = new SupabaseLeadSink(supabaseUrl, supabaseKey);
   } else if (resendKey) {
     cached = new ResendLeadSink(resendKey);
+  } else if (isServerless()) {
+    // Pas d'écriture fichier possible : on se contente du log structuré.
+    cached = new ConsoleLeadSink();
   } else {
     cached = new LocalFileLeadSink();
   }

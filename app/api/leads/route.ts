@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { leadSchema, type Lead } from "@/types/lead";
-import { getLeadSink, LocalFileLeadSink } from "@/lib/lead-sink";
+import { ConsoleLeadSink, getLeadSink, LocalFileLeadSink } from "@/lib/lead-sink";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -59,22 +59,18 @@ export async function POST(req: Request) {
     }),
   );
 
+  // Chaîne de repli : sink configuré -> fichier local (dev) -> console.
+  // Le lead complet est déjà journalisé ci-dessus, donc on ne renvoie jamais
+  // d'erreur à un visiteur qui a rempli le formulaire correctement.
   const sink = getLeadSink();
   try {
     await sink.save(lead);
   } catch (error) {
-    console.error(
-      `[lead] échec du sink "${sink.name}", bascule sur le fichier local`,
-      error,
-    );
+    console.error(`[lead] échec du sink "${sink.name}"`, error);
     try {
       await new LocalFileLeadSink().save(lead);
-    } catch (fallbackError) {
-      console.error("[lead] échec du fallback fichier local", fallbackError);
-      return NextResponse.json(
-        { ok: false, error: "Impossible d'enregistrer la demande." },
-        { status: 500 },
-      );
+    } catch {
+      await new ConsoleLeadSink().save(lead);
     }
   }
 
