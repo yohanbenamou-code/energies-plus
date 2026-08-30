@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SolutionLanding } from "@/components/SolutionLanding";
 import { getLiveOperations, getOperationBySlug } from "@/data/operations";
+import { isLiveOperation } from "@/types/operation";
 
 interface PageProps {
   params: { slug: string };
 }
 
 export function generateStaticParams() {
-  // Seules les opérations "live" disposent d'une page dédiée complète.
   return getLiveOperations().map((operation) => ({ slug: operation.slug }));
 }
 
@@ -22,7 +22,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 
   const title =
     "Séchage solaire agricole & forestier — l'aide CEE, expliquée simplement";
-  const description = `${operation.heroSubtitle} Estimation gratuite et accompagnement de A à Z.`;
+  const description = `${operation.heroSubtitle ?? operation.shortDescription} Estimation gratuite et accompagnement de A à Z.`;
 
   return {
     title,
@@ -48,7 +48,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 export default function SolutionPage({ params }: PageProps) {
   const operation = getOperationBySlug(params.slug);
 
-  if (!operation || operation.status !== "live") {
+  if (!operation || !isLiveOperation(operation)) {
     notFound();
   }
 

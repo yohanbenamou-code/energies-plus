@@ -1,19 +1,21 @@
 import * as React from "react";
 
 const ITEMS = [
-  "Foin & luzerne",
-  "Céréales",
-  "Plantes aromatiques & médicinales",
-  "Fourrage",
-  "Bois de chauffage",
-  "Plaquettes forestières",
-  "Sciages",
-  "Co-produits agricoles",
-  "Semences",
-  "Houblon",
+  "Isolation des combles",
+  "Pompe à chaleur air/eau",
+  "Gestion technique du bâtiment",
+  "Éclairage LED",
+  "Séchage solaire agricole",
+  "Récupération de chaleur",
+  "Calorifugeage industriel",
+  "Réseau de chaleur",
+  "Variation de vitesse moteur",
+  "Système solaire combiné",
+  "Ventilation double flux",
+  "Écoconduite",
 ];
 
-/** Bandeau défilant : ce que l'on sèche. Décoratif, sobre. */
+/** Bandeau défilant : types de travaux financés par les CEE. Décoratif. */
 export function SectorMarquee() {
   const row = [...ITEMS, ...ITEMS];
   return (

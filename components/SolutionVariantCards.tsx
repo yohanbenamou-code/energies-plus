@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion";
 import { useSolutionForm } from "@/components/solution-form-context";
-import type { CeeOperation } from "@/types/operation";
+import type { LiveCeeOperation } from "@/types/operation";
 
 const FRIENDLY: Record<string, { title: string; subtitle: string }> = {
   "systeme-complet-neuf": {
@@ -20,7 +20,7 @@ const FRIENDLY: Record<string, { title: string; subtitle: string }> = {
   },
 };
 
-export function SolutionVariantCards({ operation }: { operation: CeeOperation }) {
+export function SolutionVariantCards({ operation }: { operation: LiveCeeOperation }) {
   const { applyPrefill, scrollToContact } = useSolutionForm();
 
   const choose = (variantKey: string) => {

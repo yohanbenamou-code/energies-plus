@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Manrope, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { UtmCapture } from "@/components/UtmCapture";
@@ -13,6 +13,14 @@ const manrope = Manrope({
   variable: "--font-sans",
 });
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+});
+
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.energies-plus.fr";
 
@@ -20,20 +28,22 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Énergies Plus — Aides CEE pour le séchage solaire agricole et forestier",
+      "Énergies Plus — Le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés",
     template: "%s | Énergies Plus",
   },
   description:
-    "Énergies Plus vérifie l'éligibilité de votre projet de séchage solaire, monte votre dossier d'aide CEE avant la signature du devis et vous accompagne jusqu'à l'installation.",
+    "Énergies Plus accompagne les particuliers et les professionnels sur les opérations CEE : vérification d'éligibilité, montage du dossier avant devis, suivi jusqu'aux travaux. Catalogue des fiches CEE les plus courantes.",
   applicationName: "Énergies Plus",
   keywords: [
-    "séchage solaire agricole",
-    "aide CEE agriculture",
-    "prime séchage solaire",
-    "panneaux solaires hybrides séchage",
-    "séchage foin fourrage solaire",
-    "séchage bois scierie",
-    "Certificats d'Économies d'Énergie agriculture",
+    "Certificats d'Économies d'Énergie",
+    "prime CEE",
+    "dispositif CEE",
+    "fiche CEE",
+    "opération standardisée CEE",
+    "prime énergie",
+    "CEE agriculture",
+    "CEE industrie",
+    "CEE tertiaire",
   ],
   authors: [{ name: "Énergies Plus" }],
   openGraph: {
@@ -42,16 +52,16 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Énergies Plus",
     title:
-      "Énergies Plus — Aides CEE pour le séchage solaire agricole et forestier",
+      "Énergies Plus — Les Certificats d'Économies d'Énergie, transformés en travaux financés",
     description:
-      "Vérification d'éligibilité, montage du dossier d'aide CEE avant devis, accompagnement jusqu'à l'installation.",
+      "Vérification d'éligibilité, montage du dossier d'aide CEE avant devis, suivi jusqu'aux travaux. Résidentiel, tertiaire, industrie, agriculture, réseaux, transport.",
     // TODO: placeholder à remplacer par Yohan/Énergies Plus — image Open Graph (1200x630)
   },
   twitter: {
     card: "summary_large_image",
-    title: "Énergies Plus — Aides CEE séchage solaire",
+    title: "Énergies Plus — Les aides CEE, en clair",
     description:
-      "Séchez vos récoltes au soleil, financé par le dispositif public des Certificats d'Économies d'Énergie.",
+      "Le dispositif public des Certificats d'Économies d'Énergie, transformé en travaux financés.",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: siteUrl },
@@ -63,7 +73,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={manrope.variable}>
+    <html
+      lang="fr"
+      className={`${manrope.variable} ${fraunces.variable}`}
+    >
       <body className="min-h-screen bg-background font-sans text-foreground">
         <a
           href="#contenu"

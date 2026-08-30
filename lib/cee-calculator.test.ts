@@ -3,12 +3,9 @@ import { calculateCumac, getCoefficient } from "@/lib/cee-calculator";
 import { operations } from "@/data/operations";
 
 const agriEq110 = operations.find((o) => o.code === "AGRI-EQ-110")!;
-const systemeComplet = agriEq110.variants.find(
-  (v) => v.key === "systeme-complet-neuf",
-)!;
-const toitureCouplee = agriEq110.variants.find(
-  (v) => v.key === "toiture-couplee",
-)!;
+const variants = agriEq110.variants ?? [];
+const systemeComplet = variants.find((v) => v.key === "systeme-complet-neuf")!;
+const toitureCouplee = variants.find((v) => v.key === "toiture-couplee")!;
 
 describe("calculateCumac (AGRI-EQ-110)", () => {
   it("H2 / agricole / système complet neuf = 48 500 kWh cumac par kW", () => {

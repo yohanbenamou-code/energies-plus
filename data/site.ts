@@ -1,8 +1,8 @@
 /**
  * Configuration éditoriale du site (coordonnées, chiffres, preuves, FAQ).
  *
- * Tout ce qui est marqué `TODO: placeholder à remplacer par Yohan/Solaire
- * Energie` est une donnée manquante à renseigner avant mise en production.
+ * Tout ce qui est marqué `TODO: ... Yohan/Énergies Plus` est une donnée
+ * manquante à renseigner avant mise en production.
  * Aucune statistique, aucun avis client, aucun logo n'est inventé : les
  * emplacements existent mais restent explicitement vides.
  */
@@ -10,11 +10,11 @@
 export const site = {
   name: "Énergies Plus",
   baseline:
-    "Accompagnement CEE des exploitations agricoles et forestières — du cadrage à l'installation.",
+    "Le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés — du cadrage du dossier à la réception du chantier.",
 
   // Mention de conformité à afficher partout (footer + sections dédiées).
   legalMention:
-    "Énergies Plus est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des Certificats d'Économies d'Énergie, encadré par le Ministère de la Transition Écologique. Opération standardisée CEE n° AGRI-EQ-110.",
+    "Énergies Plus est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des Certificats d'Économies d'Énergie, encadré par le Ministère de la Transition Écologique.",
   privateActorShort:
     "Énergies Plus est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des CEE.",
 

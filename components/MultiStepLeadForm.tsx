@@ -21,7 +21,7 @@ import {
 } from "@/data/form-options";
 import { submitLead } from "@/lib/submit-lead";
 import { formatNumberFr } from "@/lib/utils";
-import type { CeeOperation } from "@/types/operation";
+import type { LiveCeeOperation } from "@/types/operation";
 
 const phoneRegex = /^[0-9 +().-]{8,}$/;
 
@@ -72,7 +72,7 @@ const STEP_FIELDS: Array<Array<keyof FormValues>> = [
 
 const STEP_LABELS = ["Structure", "Projet", "Produits", "Coordonnées"];
 
-export function MultiStepLeadForm({ operation }: { operation: CeeOperation }) {
+export function MultiStepLeadForm({ operation }: { operation: LiveCeeOperation }) {
   const router = useRouter();
   const { prefill, nonce, scrollToContact } = useSolutionForm();
   const [step, setStep] = React.useState(0);

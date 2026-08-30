@@ -10,7 +10,7 @@ import { useSolutionForm } from "@/components/solution-form-context";
 import { calculateCumac } from "@/lib/cee-calculator";
 import { formatNumberFr, cn } from "@/lib/utils";
 import { REGIONS, zoneForRegion } from "@/data/regions";
-import type { CeeOperation, ProductType } from "@/types/operation";
+import type { LiveCeeOperation, ProductType } from "@/types/operation";
 
 const MIN_KW = 10;
 const MAX_KW = 300;
@@ -41,7 +41,7 @@ function Choice({
   );
 }
 
-export function CeeSimulator({ operation }: { operation: CeeOperation }) {
+export function CeeSimulator({ operation }: { operation: LiveCeeOperation }) {
   const { applyPrefill, scrollToContact } = useSolutionForm();
 
   const [product, setProduct] = React.useState<ProductType>("agricole");

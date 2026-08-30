@@ -17,7 +17,7 @@ import { Faq, type FaqItem } from "@/components/Faq";
 import { MultiStepLeadForm } from "@/components/MultiStepLeadForm";
 import { StickyMobileCta } from "@/components/StickyMobileCta";
 import { SolutionFormProvider } from "@/components/solution-form-context";
-import type { CeeOperation } from "@/types/operation";
+import type { LiveCeeOperation } from "@/types/operation";
 
 const NAV = [
   { label: "Le principe", href: "#dispositif" },
@@ -52,7 +52,7 @@ const STEPS = [
   },
 ];
 
-function buildFaq(operation: CeeOperation): FaqItem[] {
+function buildFaq(operation: LiveCeeOperation): FaqItem[] {
   const profiles = operation.applicableProfiles.join(", ");
   return [
     {
@@ -132,7 +132,7 @@ function buildFaq(operation: CeeOperation): FaqItem[] {
   ];
 }
 
-export function SolutionLanding({ operation }: { operation: CeeOperation }) {
+export function SolutionLanding({ operation }: { operation: LiveCeeOperation }) {
   const faqItems = React.useMemo(() => buildFaq(operation), [operation]);
 
   return (
@@ -146,14 +146,23 @@ export function SolutionLanding({ operation }: { operation: CeeOperation }) {
 
       <main id="contenu" className="pb-24 lg:pb-0">
         <Hero
-          eyebrow="Aide de l'État · Certificats d'Économies d'Énergie"
-          title={operation.heroTitle}
-          titleHighlight={["soleil,"]}
+          eyebrow={`Aide de l'État · Fiche CEE ${operation.code}`}
+          title="Séchez vos récoltes au soleil,"
+          titleAccent="avec une aide de l'État."
           subtitle={operation.heroSubtitle}
           note="Montants en euros indicatifs et non contractuels, sous réserve d'éligibilité."
           primaryCta={{ label: "Recevoir mon étude gratuite", href: "#contact" }}
           secondaryCta={{ label: "Comment ça marche", href: "#dispositif" }}
-          floatingBadge={{ value: "0 €", label: "Étude & simulation" }}
+          image={
+            operation.image ??
+            "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1900&q=80&auto=format&fit=crop"
+          }
+          imageAlt="Bottes de foin dans un champ au soleil couchant"
+          chips={[
+            { value: "0 €", label: "Étude & simulation" },
+            { value: "15 ans", label: "Durée de vie du matériel" },
+            { value: "France", label: "Toutes régions" },
+          ]}
         />
         <TrustBar />
         <DispositifSection operation={operation} />

@@ -118,6 +118,47 @@
   .hairline {
     @apply border border-border/70;
   }
+
+  /* Titres éditoriaux : serif Fraunces, avec quelques mots en italique via <em>. */
+  .display {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+  }
+  .display em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Traitement photo : voile dégradé bleu de marque pour l'homogénéité. */
+  .photo-treat::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      200deg,
+      hsl(219 64% 18% / 0.15) 0%,
+      hsl(219 64% 14% / 0.05) 40%,
+      hsl(98 40% 20% / 0.18) 100%
+    );
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  /* Grain léger, décoratif. */
+  .grain {
+    position: relative;
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
 }
 
 @layer utilities {

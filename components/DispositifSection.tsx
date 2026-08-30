@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion";
-import type { CeeOperation } from "@/types/operation";
+import type { LiveCeeOperation } from "@/types/operation";
 
 const POINTS = [
   {
@@ -30,7 +30,7 @@ const POINTS = [
   },
 ];
 
-export function DispositifSection({ operation }: { operation: CeeOperation }) {
+export function DispositifSection({ operation }: { operation: LiveCeeOperation }) {
   return (
     <section
       id="dispositif"
