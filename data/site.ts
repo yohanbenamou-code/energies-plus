@@ -18,20 +18,18 @@ export const site = {
   privateActorShort:
     "Solaire Energie est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des CEE.",
 
-  // TODO: placeholder à remplacer par Yohan/Solaire Energie
   contact: {
-    phoneDisplay: "0X XX XX XX XX", // TODO: numéro de téléphone
-    phoneHref: "tel:+330000000000", // TODO: numéro de téléphone (format E.164)
-    email: "contact@solaire-energie.fr", // TODO: email de contact
-    hours: "Du lundi au vendredi, 9h — 18h", // TODO: horaires réels
+    phoneDisplay: "07 68 96 15 73",
+    phoneHref: "tel:+33768961573",
+    email: "contact@energies-plus.fr",
+    hours: "Du lundi au vendredi, 9h — 18h", // TODO: horaires réels à confirmer
   },
 
-  // TODO: placeholder à remplacer par Yohan/Solaire Energie
   legal: {
-    companyName: "Solaire Energie", // TODO: raison sociale exacte
-    siret: "TODO — SIRET", // TODO: SIRET
-    address: "TODO — adresse complète du siège", // TODO: adresse
-    rcs: "TODO — RCS / immatriculation", // TODO
+    companyName: "Solaire Energie", // TODO: raison sociale exacte (SIREN 901 997 403)
+    siret: "901 997 403 00026",
+    address: "27 avenue de Paris, 94300 Vincennes",
+    rcs: "TODO — RCS / immatriculation (probablement RCS Créteil, à confirmer)", // TODO
     insurance: "TODO — assurance responsabilité civile / décennale", // TODO
   },
 

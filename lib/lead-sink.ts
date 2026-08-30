@@ -83,11 +83,11 @@ export class ResendLeadSink implements LeadSink {
 
   constructor(
     private readonly apiKey: string,
-    // TODO: placeholder à remplacer par Yohan/Solaire Energie
     private readonly to = process.env.LEAD_NOTIFICATION_EMAIL ||
-      "contact@solaire-energie.fr",
+      "contact@energies-plus.fr",
+    // Doit être une adresse d'un domaine vérifié dans Resend.
     private readonly from = process.env.LEAD_NOTIFICATION_FROM ||
-      "Solaire Energie <leads@solaire-energie.fr>",
+      "Solaire Energie <leads@energies-plus.fr>",
   ) {}
 
   async save(lead: Lead): Promise<void> {

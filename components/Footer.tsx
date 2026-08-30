@@ -17,7 +17,6 @@ export function Footer() {
               {site.baseline}
             </p>
             <div className="mt-4 space-y-1.5 text-sm text-muted-foreground">
-              {/* TODO: placeholder à remplacer par Yohan/Solaire Energie */}
               <a
                 href={site.contact.phoneHref}
                 className="flex items-center gap-2 hover:text-foreground"
