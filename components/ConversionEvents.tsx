@@ -6,7 +6,7 @@ import * as React from "react";
  * Déclenche les événements de conversion côté client, une seule fois, au
  * chargement de la page /merci.
  *
- * TODO: placeholder à remplacer par Yohan/Solaire Energie —
+ * TODO: placeholder à remplacer par Yohan/Énergies Plus —
  * renseigner NEXT_PUBLIC_GADS_CONVERSION_ID + NEXT_PUBLIC_GADS_CONVERSION_LABEL
  * pour activer la conversion Google Ads.
  */

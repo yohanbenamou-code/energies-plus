@@ -10,7 +10,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Merci — votre demande est bien enregistrée",
   description:
-    "Votre demande a bien été transmise à Solaire Energie. Un conseiller vous recontacte sous 24 à 48h ouvrées.",
+    "Votre demande a bien été transmise à Énergies Plus. Un conseiller vous recontacte sous 24 à 48h ouvrées.",
   robots: { index: false, follow: false },
 };
 
@@ -35,7 +35,7 @@ export default function MerciPage() {
             Merci, votre demande est bien enregistrée
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            Un conseiller Solaire Energie vous recontacte sous{" "}
+            Un conseiller Énergies Plus vous recontacte sous{" "}
             <strong className="text-foreground">24 à 48h ouvrées</strong> pour
             faire le point sur votre projet et vérifier son éligibilité au
             dispositif CEE.
@@ -57,7 +57,7 @@ export default function MerciPage() {
             </Button>
             <Button asChild variant="outline">
               <Link href="/solutions/agri-eq-110-sechage-solaire-agricole">
-                Revoir l&apos;opération AGRI-EQ-110
+                Revoir la solution séchage solaire
               </Link>
             </Button>
           </div>

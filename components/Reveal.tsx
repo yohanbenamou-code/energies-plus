@@ -1,43 +1,38 @@
-"use client";
-
 import * as React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+type RevealVariant = "up" | "fade" | "scale" | "left" | "right";
 
 interface RevealProps {
   children: React.ReactNode;
   className?: string;
-  /** Décalage d'apparition en secondes (pour les grilles). */
+  /** délai en secondes */
   delay?: number;
-  as?: "div" | "section" | "li" | "article";
+  variant?: RevealVariant;
 }
 
+const VARIANT_CLASS: Partial<Record<RevealVariant, string>> = {
+  left: "reveal--left",
+  right: "reveal--right",
+  scale: "reveal--scale",
+};
+
 /**
- * Apparition sobre au scroll : léger fade + slide-up, une seule fois.
- * Neutralisé si l'utilisateur a demandé la réduction des animations.
+ * Apparition au scroll, pilotée en CSS (voir globals.css + RevealInit).
+ * Baseline sans JS : contenu visible.
  */
 export function Reveal({
   children,
   className,
   delay = 0,
-  as = "div",
+  variant = "up",
 }: RevealProps) {
-  const reduce = useReducedMotion();
-  const MotionTag = motion[as];
-
-  if (reduce) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
-  }
-
   return (
-    <MotionTag
-      className={className}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, ease: "easeOut", delay }}
+    <div
+      className={cn("reveal", VARIANT_CLASS[variant], className)}
+      style={delay ? { "--reveal-delay": `${delay}s` } as React.CSSProperties : undefined}
     >
       {children}
-    </MotionTag>
+    </div>
   );
 }

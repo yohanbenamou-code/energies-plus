@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.solaire-energie.fr";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.energies-plus.fr";
 
 export default function robots(): MetadataRoute.Robots {
   return {

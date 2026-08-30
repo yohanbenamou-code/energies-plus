@@ -8,15 +8,15 @@
  */
 
 export const site = {
-  name: "Solaire Energie",
+  name: "Énergies Plus",
   baseline:
     "Accompagnement CEE des exploitations agricoles et forestières — du cadrage à l'installation.",
 
   // Mention de conformité à afficher partout (footer + sections dédiées).
   legalMention:
-    "Solaire Energie est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des Certificats d'Économies d'Énergie, encadré par le Ministère de la Transition Écologique. Opération standardisée CEE n° AGRI-EQ-110.",
+    "Énergies Plus est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des Certificats d'Économies d'Énergie, encadré par le Ministère de la Transition Écologique. Opération standardisée CEE n° AGRI-EQ-110.",
   privateActorShort:
-    "Solaire Energie est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des CEE.",
+    "Énergies Plus est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des CEE.",
 
   contact: {
     phoneDisplay: "07 68 96 15 73",
@@ -26,22 +26,22 @@ export const site = {
   },
 
   legal: {
-    companyName: "Solaire Energie", // TODO: raison sociale exacte (SIREN 901 997 403)
+    companyName: "Énergies Plus",
     siret: "901 997 403 00026",
+    siren: "901 997 403",
     address: "27 avenue de Paris, 94300 Vincennes",
-    rcs: "TODO — RCS / immatriculation (probablement RCS Créteil, à confirmer)", // TODO
+    rcs: "RCS Créteil 901 997 403",
     insurance: "TODO — assurance responsabilité civile / décennale", // TODO
   },
 
   socials: {
-    // TODO: placeholder à remplacer par Yohan/Solaire Energie
+    // TODO: placeholder à remplacer par Yohan/Énergies Plus
     linkedin: "", // TODO: URL LinkedIn
     facebook: "", // TODO: URL Facebook
     youtube: "", // TODO: URL YouTube
   },
 
-  serviceArea:
-    "France métropolitaine — zones climatiques H1, H2 et H3.",
+  serviceArea: "Toute la France métropolitaine.",
 
   /**
    * Chiffres clés de la homepage. `value: null` = donnée non communiquée :
@@ -51,7 +51,7 @@ export const site = {
   stats: [
     {
       key: "exploitations",
-      // TODO: placeholder à remplacer par Yohan/Solaire Energie
+      // TODO: placeholder à remplacer par Yohan/Énergies Plus
       value: null as number | null,
       prefix: "+",
       suffix: "",
@@ -59,7 +59,7 @@ export const site = {
     },
     {
       key: "cumac",
-      // TODO: placeholder à remplacer par Yohan/Solaire Energie
+      // TODO: placeholder à remplacer par Yohan/Énergies Plus
       value: null as number | null,
       prefix: "+",
       suffix: "",
@@ -67,7 +67,7 @@ export const site = {
     },
     {
       key: "experience",
-      // TODO: placeholder à remplacer par Yohan/Solaire Energie
+      // TODO: placeholder à remplacer par Yohan/Énergies Plus
       value: null as number | null,
       prefix: "",
       suffix: " ans",
@@ -76,24 +76,24 @@ export const site = {
   ],
 
   /**
-   * Logos clients / partenaires. Vide tant que Solaire Energie n'a pas
+   * Logos clients / partenaires. Vide tant que Énergies Plus n'a pas
    * fourni les visuels et les autorisations d'utilisation.
-   * TODO: placeholder à remplacer par Yohan/Solaire Energie
+   * TODO: placeholder à remplacer par Yohan/Énergies Plus
    */
   clientLogos: [] as Array<{ name: string; src: string }>,
 
   /**
    * Note d'avis agrégée. `null` tant qu'aucune source vérifiable
    * (Google, Trustpilot, Pages Jaunes…) n'est fournie.
-   * TODO: placeholder à remplacer par Yohan/Solaire Energie
+   * TODO: placeholder à remplacer par Yohan/Énergies Plus
    */
   rating: null as { score: number; count: number; source: string } | null,
 
   /**
    * Témoignages. EXEMPLES DE STRUCTURE UNIQUEMENT — ne pas publier en
    * l'état. À remplacer par de vrais témoignages clients recueillis et
-   * autorisés par Solaire Energie.
-   * TODO: placeholder à remplacer par Yohan/Solaire Energie
+   * autorisés par Énergies Plus.
+   * TODO: placeholder à remplacer par Yohan/Énergies Plus
    */
   testimonials: [] as Array<{
     quote: string;

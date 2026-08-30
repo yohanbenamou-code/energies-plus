@@ -11,7 +11,7 @@ export default function PolitiqueConfidentialitePage() {
   return (
     <LegalLayout title="Politique de confidentialité (RGPD)">
       <p className="rounded-lg border-l-4 border-accent bg-accent/10 px-4 py-3 text-sm text-foreground">
-        TODO : placeholder à remplacer par Yohan/Solaire Energie — à faire valider
+        TODO : placeholder à remplacer par Yohan/Énergies Plus — à faire valider
         juridiquement avant mise en ligne.
       </p>
 

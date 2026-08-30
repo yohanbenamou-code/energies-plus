@@ -1,44 +1,57 @@
 import * as React from "react";
-import { ClipboardCheck, FileCheck, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion";
 
 const ITEMS = [
   {
-    icon: ClipboardCheck,
-    title: "Qualification sur le catalogue officiel",
-    body: "Nous vérifions que votre projet correspond à une opération standardisée CEE en vigueur, et à ses conditions techniques exactes, avant toute démarche.",
+    k: "01",
+    title: "On vérifie que votre projet est bien finançable",
+    body: "Avant tout, nous confrontons votre projet au catalogue officiel des opérations CEE et à leurs conditions exactes. S'il n'est pas éligible, nous vous le disons — sans détour.",
   },
   {
-    icon: FileCheck,
-    title: "Dossier CEE sécurisé avant la signature du devis",
-    body: "Le cadrage et l'engagement CEE interviennent avant que vous ne signiez le devis de l'installateur — condition indispensable pour bénéficier de l'aide.",
+    k: "02",
+    title: "On sécurise l'aide avant que vous ne signiez",
+    body: "L'engagement CEE doit être posé avant le devis de l'installateur. Nous cadrons ce timing pour vous : c'est la condition n°1 pour toucher la prime.",
   },
   {
-    icon: ShieldCheck,
-    title: "Dossier de preuve complet en cas de contrôle",
-    body: "Nous constituons et conservons l'ensemble des pièces justificatives attendues, pour que votre dossier reste solide même en cas de contrôle a posteriori.",
+    k: "03",
+    title: "On garde un dossier solide, même en cas de contrôle",
+    body: "Nous constituons et conservons toutes les pièces justificatives attendues. Votre dossier reste défendable des années après les travaux.",
   },
-] as const;
+];
 
 export function ValueProps() {
   return (
-    <section className="border-b border-border bg-background py-16 sm:py-20">
-      <div className="container grid gap-8 md:grid-cols-3">
-        {ITEMS.map((item, i) => (
-          <Reveal key={item.title} delay={i * 0.08} as="article">
-            <div className="flex h-full flex-col rounded-xl border border-border bg-card p-6">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-primary-50 text-primary">
-                <item.icon className="h-6 w-6" />
-              </span>
-              <h3 className="mt-4 text-lg font-semibold text-foreground">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-                {item.body}
-              </p>
-            </div>
-          </Reveal>
-        ))}
+    <section className="relative border-b border-border bg-background py-20 sm:py-24">
+      <div className="container">
+        <Reveal className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
+            Notre rôle
+          </p>
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Un tiers de confiance entre vous et le dispositif CEE
+          </h2>
+        </Reveal>
+
+        <Stagger className="mt-12 divide-y divide-border border-y border-border">
+          {ITEMS.map((item) => (
+            <StaggerItem key={item.k}>
+              <div className="grid gap-4 py-8 md:grid-cols-[auto_1fr] md:gap-10">
+                <span className="bg-brand-gradient bg-clip-text font-mono text-3xl font-extrabold text-transparent md:text-5xl">
+                  {item.k}
+                </span>
+                <div className="max-w-2xl">
+                  <h3 className="text-xl font-semibold text-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </section>
   );

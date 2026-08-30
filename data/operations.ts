@@ -1,7 +1,7 @@
 import type { CeeOperation } from "@/types/operation";
 
 /**
- * Catalogue des opérations CEE accompagnées par Solaire Energie.
+ * Catalogue des opérations CEE accompagnées par Énergies Plus.
  *
  * EXTENSIBILITÉ : ajouter une future opération = ajouter un objet dans ce tableau.
  * La homepage (catalogue, segmentation par profil) et les pages
@@ -23,9 +23,9 @@ export const operations: CeeOperation[] = [
     shortDescription:
       "Mise en place d'un système de séchage par insufflation d'air utilisant des panneaux solaires hybrides, ou d'une toiture solaire hybride couplée à un système existant.",
     heroTitle:
-      "Séchez vos récoltes à l'énergie solaire, financé par les Certificats d'Économies d'Énergie",
+      "Séchez vos récoltes au soleil, avec une aide de l'État",
     heroSubtitle:
-      "Solaire Energie vous accompagne de A à Z dans l'installation d'un système de séchage solaire par insufflation d'air — panneaux solaires hybrides, financement CEE, installation par des professionnels certifiés.",
+      "Un séchoir solaire par insufflation d'air, financé en partie par le dispositif public des Certificats d'Économies d'Énergie. Énergies Plus s'occupe de tout : éligibilité, dossier, installation par des professionnels.",
     lifespanYears: 15,
     conditions: [
       "Mise en place réalisée par un professionnel",

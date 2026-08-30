@@ -12,7 +12,7 @@ const config: Config = {
       center: true,
       padding: "1.25rem",
       screens: {
-        "2xl": "1200px",
+        "2xl": "1240px",
       },
     },
     extend: {
@@ -28,15 +28,21 @@ const config: Config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          50: "hsl(146 44% 96%)",
-          100: "hsl(146 42% 90%)",
-          600: "hsl(151 55% 23%)",
-          700: "hsl(153 58% 18%)",
-          900: "hsl(155 60% 12%)",
+          50: "hsl(214 56% 96%)",
+          100: "hsl(214 52% 90%)",
+          200: "hsl(214 50% 82%)",
+          500: "hsl(219 58% 42%)",
+          600: "hsl(219 62% 34%)",
+          700: "hsl(219 66% 26%)",
+          900: "hsl(220 60% 16%)",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          50: "hsl(100 45% 95%)",
+          100: "hsl(100 44% 87%)",
+          600: "hsl(98 50% 37%)",
+          700: "hsl(100 52% 29%)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -63,6 +69,10 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        soft: "0 1px 2px hsl(219 40% 20% / 0.04), 0 8px 24px -12px hsl(219 40% 20% / 0.12)",
+        lift: "0 2px 6px hsl(219 40% 20% / 0.06), 0 24px 48px -20px hsl(219 45% 20% / 0.25)",
       },
       keyframes: {
         "accordion-down": {

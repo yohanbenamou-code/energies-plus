@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getLiveOperations } from "@/data/operations";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.solaire-energie.fr";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.energies-plus.fr";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

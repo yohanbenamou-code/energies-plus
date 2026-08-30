@@ -1,12 +1,12 @@
-# Solaire Energie — site de génération de leads
+# Énergies Plus — site de génération de leads
 
-Site B2B de génération de leads pour **Solaire Energie**, société privée
+Site B2B de génération de leads pour **Énergies Plus**, société privée
 accompagnant les exploitations agricoles et forestières dans l'installation de
 systèmes de **séchage solaire par insufflation d'air**, financés via le
 dispositif public des **Certificats d'Économies d'Énergie (CEE)** — opération
 standardisée **AGRI-EQ-110**.
 
-> Solaire Energie est un professionnel privé accompagnant ses clients dans le
+> Énergies Plus est un professionnel privé accompagnant ses clients dans le
 > cadre du dispositif public des CEE. Ce site n'est pas un site
 > gouvernemental et n'utilise aucun symbole officiel de la République française.
 > Les montants en euros affichés sont des estimations non contractuelles, sous
@@ -21,7 +21,7 @@ standardisée **AGRI-EQ-110**.
 | Formulaires | react-hook-form + zod |
 | Animations | framer-motion (sobres, respectent `prefers-reduced-motion`) |
 | Icônes | lucide-react |
-| Police | Inter via `next/font/google` |
+| Police | Manrope via `next/font/google` |
 | Tests | Vitest |
 | Déploiement cible | Vercel (aucune dépendance spécifique à Vercel) |
 
@@ -155,17 +155,27 @@ Voir **`.env.example`**. Toutes optionnelles. Résumé :
 
 ## Points à compléter avant mise en ligne (`TODO`)
 
-Recherchez `TODO: placeholder à remplacer par Yohan/Solaire Energie` dans le
+Recherchez `TODO: placeholder à remplacer par Yohan/Énergies Plus` dans le
 code. Principaux éléments :
 
-- Coordonnées : téléphone, email, adresse, SIRET, RCS, assurance
-  (`data/site.ts`, footer, mentions légales).
+Identité renseignée : raison sociale **Énergies Plus**, SIRET
+901 997 403 00026, RCS Créteil, siège 27 avenue de Paris 94300 Vincennes,
+téléphone 07 68 96 15 73, email contact@energies-plus.fr, domaine de
+production `www.energies-plus.fr`.
+
+Restent à compléter :
+
+- Assurance responsabilité civile / décennale, forme juridique, capital,
+  TVA intracommunautaire, hébergeur, directeur de la publication
+  (`data/site.ts` + `app/mentions-legales`).
+- Horaires d'ouverture réels (`data/site.ts` → `contact.hours`).
 - Chiffres clés de la homepage (`data/site.ts` → `stats`) — laissés `null`,
   aucun chiffre inventé.
 - Logos clients / partenaires, note d'avis vérifiable, témoignages réels
   (`data/site.ts`).
-- Logo officiel (placeholder SVG dans `components/Logo.tsx`).
+- Logo : `components/Logo.tsx` reconstitue l'emblème fourni en SVG ;
+  remplacer par le fichier vectoriel officiel si disponible.
 - Visuel du hero (illustration SVG dans `components/HeroIllustration.tsx`).
 - Contenu réel des pages Mentions légales et Politique de confidentialité.
-- Image Open Graph.
-- IDs de tracking (`.env`).
+- Image Open Graph 1200×630.
+- IDs de tracking (`.env` : GTM, Meta Pixel, Google Ads).

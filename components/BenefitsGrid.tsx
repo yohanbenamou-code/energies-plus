@@ -3,63 +3,68 @@ import {
   Clock,
   Leaf,
   PiggyBank,
+  ShieldCheck,
   Sun,
-  TrendingDown,
-  Zap,
+  TrendingUp,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { SectionHeading } from "@/components/SectionHeading";
+import { Stagger, StaggerItem } from "@/components/motion";
 
 const BENEFITS = [
   {
     icon: PiggyBank,
-    title: "Réduction du reste à charge",
-    body: "La prime CEE vient diminuer l'investissement initial dans votre système de séchage. Montant estimé, non contractuel, sous réserve d'éligibilité.",
+    title: "Moins à sortir de votre poche",
+    body: "L'aide CEE couvre une part importante de l'investissement. Montant estimé lors de l'étude, non contractuel.",
   },
   {
     icon: Sun,
-    title: "Double valorisation solaire",
-    body: "Les panneaux hybrides produisent à la fois de l'électricité et de la chaleur récupérée pour le séchage.",
+    title: "Le soleil fait le travail",
+    body: "Les panneaux hybrides produisent électricité et chaleur. La chaleur part directement dans votre séchoir.",
   },
   {
-    icon: TrendingDown,
-    title: "Moins de pertes post-récolte",
-    body: "Un séchage maîtrisé et homogène améliore la qualité de conservation et limite les pertes.",
+    icon: TrendingUp,
+    title: "Une meilleure récolte, mieux conservée",
+    body: "Un séchage régulier et maîtrisé, c'est moins de pertes et une qualité qui se vend mieux.",
   },
   {
-    icon: Zap,
-    title: "Autonomie énergétique",
-    body: "Vous réduisez votre dépendance aux énergies fossiles et aux variations de prix pour le poste séchage.",
+    icon: ShieldCheck,
+    title: "Moins dépendant du fioul et du gaz",
+    body: "Vous sécurisez votre poste séchage face aux hausses de prix de l'énergie.",
   },
   {
     icon: Leaf,
-    title: "Démarche écoresponsable",
-    body: "Une énergie renouvelable mobilisée au plus près du besoin, valorisable dans votre communication d'exploitation.",
+    title: "Une démarche qui se valorise",
+    body: "Une énergie renouvelable, produite sur votre exploitation, utile à votre image auprès de vos clients.",
   },
   {
     icon: Clock,
-    title: "Durée de vie 15 ans",
-    body: "La durée de vie conventionnelle retenue par la fiche d'opération AGRI-EQ-110 est de 15 ans.",
+    title: "Fait pour durer",
+    body: "Le matériel est prévu pour fonctionner une quinzaine d'années.",
   },
-] as const;
+];
 
 export function BenefitsGrid() {
   return (
     <section
       id="benefices"
-      className="border-b border-border bg-secondary/40 py-16 sm:py-20"
+      className="border-b border-border bg-secondary/40 py-20 sm:py-24"
     >
       <div className="container">
-        <SectionHeading
-          eyebrow="Bénéfices"
-          title="Ce que le séchage solaire change pour votre exploitation"
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {BENEFITS.map((benefit, i) => (
-            <Reveal key={benefit.title} delay={i * 0.05} as="article">
-              <div className="flex h-full flex-col rounded-xl border border-border bg-card p-6">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-primary-50 text-primary">
-                  <benefit.icon className="h-6 w-6" />
+        <Reveal className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
+            Ce que ça change
+          </p>
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Concrètement, pour votre exploitation
+          </h2>
+        </Reveal>
+
+        <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {BENEFITS.map((benefit) => (
+            <StaggerItem key={benefit.title} as="article">
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent-600">
+                  <benefit.icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-4 text-base font-semibold text-foreground">
                   {benefit.title}
@@ -68,9 +73,9 @@ export function BenefitsGrid() {
                   {benefit.body}
                 </p>
               </div>
-            </Reveal>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

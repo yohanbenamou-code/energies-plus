@@ -1,16 +1,15 @@
 import * as React from "react";
 import Link from "next/link";
 import {
+  ArrowUpRight,
   Building2,
   Factory,
-  Tractor,
-  Trees,
+  Sprout,
+  TreePine,
   Users,
-  ArrowRight,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { SectionHeading } from "@/components/SectionHeading";
-import { Badge } from "@/components/ui/badge";
+import { Stagger, StaggerItem } from "@/components/motion";
 import {
   countLiveOperationsForProfile,
   firstLiveOperationForProfile,
@@ -20,10 +19,10 @@ import {
 type IconComponent = React.ComponentType<{ className?: string }>;
 
 const ICONS: Record<string, IconComponent> = {
-  "Exploitation agricole": Tractor,
+  "Exploitation agricole": Sprout,
   "Coopérative agricole": Users,
   CUMA: Building2,
-  "Exploitation forestière": Trees,
+  "Exploitation forestière": TreePine,
   Scierie: Factory,
 };
 
@@ -31,16 +30,24 @@ export function ProfileSegmentGrid() {
   const profiles = getAllProfiles();
 
   return (
-    <section id="profils" className="border-b border-border bg-secondary/40 py-16 sm:py-20">
+    <section id="profils" className="border-b border-border bg-background py-20 sm:py-24">
       <div className="container">
-        <SectionHeading
-          eyebrow="Profils accompagnés"
-          title="Votre structure est-elle concernée ?"
-          description="Nous accompagnons les professionnels agricoles et forestiers qui sèchent des produits ou co-produits dans un bâtiment fermé."
-        />
+        <Reveal className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
+            Profils accompagnés
+          </p>
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Vous séchez des produits dans un bâtiment fermé ?
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Foin, luzerne, céréales, plantes aromatiques, bois, plaquettes,
+            sciages… si vous exploitez un séchoir, une aide CEE peut financer une
+            part importante de votre installation solaire.
+          </p>
+        </Reveal>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {profiles.map((profile, i) => {
+        <Stagger className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {profiles.map((profile) => {
             const count = countLiveOperationsForProfile(profile);
             const operation = firstLiveOperationForProfile(profile);
             const Icon = ICONS[profile] ?? Building2;
@@ -49,35 +56,30 @@ export function ProfileSegmentGrid() {
               : "#operations";
 
             return (
-              <Reveal key={profile} delay={i * 0.06} as="article">
+              <StaggerItem key={profile} as="div">
                 <Link
                   href={href}
-                  className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="group flex h-full flex-col justify-between gap-6 bg-card p-6 transition-colors hover:bg-secondary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
                 >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-primary-50 text-primary">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-4 text-lg font-semibold text-foreground">
-                    {profile}
-                  </h3>
-                  <div className="mt-3">
-                    <Badge variant={count > 0 ? "success" : "muted"}>
-                      {count > 0
-                        ? `${count} opération${count > 1 ? "s" : ""} disponible${
-                            count > 1 ? "s" : ""
-                          }`
-                        : "Bientôt"}
-                    </Badge>
+                  <div className="flex items-start justify-between">
+                    <Icon className="h-6 w-6 text-primary-700" />
+                    <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-600" />
                   </div>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                    Voir les solutions
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">
+                      {profile}
+                    </h3>
+                    <p className="mt-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      {count > 0
+                        ? `${count} opération${count > 1 ? "s" : ""} disponible${count > 1 ? "s" : ""}`
+                        : "Bientôt"}
+                    </p>
+                  </div>
                 </Link>
-              </Reveal>
+              </StaggerItem>
             );
           })}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

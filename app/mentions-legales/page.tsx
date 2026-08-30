@@ -11,7 +11,7 @@ export default function MentionsLegalesPage() {
   return (
     <LegalLayout title="Mentions légales">
       <p className="rounded-lg border-l-4 border-accent bg-accent/10 px-4 py-3 text-sm text-foreground">
-        TODO : placeholder à remplacer par Yohan/Solaire Energie — cette page doit
+        TODO : placeholder à remplacer par Yohan/Énergies Plus — cette page doit
         être complétée avec les informations légales réelles avant mise en ligne.
       </p>
 
@@ -39,7 +39,7 @@ export default function MentionsLegalesPage() {
       <h2>Propriété intellectuelle</h2>
       <p>
         L&apos;ensemble des contenus de ce site est protégé. Aucun symbole
-        officiel de la République française n&apos;est utilisé : Solaire Energie
+        officiel de la République française n&apos;est utilisé : Énergies Plus
         est une entreprise privée.
       </p>
     </LegalLayout>

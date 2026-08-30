@@ -1,59 +1,43 @@
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight, Sun } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { CeeOperation } from "@/types/operation";
 
-interface FicheOperationCardProps {
-  operation: CeeOperation;
-}
-
-export function FicheOperationCard({ operation }: FicheOperationCardProps) {
+export function FicheOperationCard({ operation }: { operation: CeeOperation }) {
   const isLive = operation.status === "live";
 
-  const inner = (
+  const body = (
     <>
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-center justify-between gap-3">
         <span
           className={cn(
-            "inline-flex h-11 w-11 items-center justify-center rounded-lg",
-            isLive ? "bg-accent/15 text-accent-foreground" : "bg-muted text-muted-foreground",
+            "rounded-md px-2 py-1 font-mono text-[11px] font-semibold",
+            isLive
+              ? "bg-primary-50 text-primary-700"
+              : "bg-muted text-muted-foreground",
           )}
         >
-          <Sun className="h-6 w-6" />
+          {isLive ? operation.code : "À venir"}
         </span>
         {isLive ? (
-          <Badge variant="outline" className="font-mono">
-            n° {operation.code}
-          </Badge>
-        ) : (
-          <Badge variant="muted">Bientôt disponible</Badge>
-        )}
+          <span className="text-xs font-medium text-muted-foreground">
+            Durée de vie {operation.lifespanYears} ans
+          </span>
+        ) : null}
       </div>
 
-      <h3 className="mt-4 text-lg font-semibold text-foreground">
+      <h3 className="mt-4 text-lg font-semibold leading-snug text-foreground">
         {operation.title}
       </h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
         {operation.shortDescription}
       </p>
 
-      <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted-foreground">
-        <div>
-          <dt className="inline font-medium text-foreground">Secteur : </dt>
-          <dd className="inline">{operation.sector}</dd>
-        </div>
-        {isLive ? (
-          <div>
-            <dt className="inline font-medium text-foreground">Durée de vie : </dt>
-            <dd className="inline">{operation.lifespanYears} ans</dd>
-          </div>
-        ) : null}
-      </dl>
+      <p className="mt-4 text-xs text-muted-foreground">{operation.sector}</p>
 
       {isLive ? (
-        <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600">
           Voir la solution
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </span>
@@ -67,8 +51,8 @@ export function FicheOperationCard({ operation }: FicheOperationCardProps) {
 
   if (!isLive) {
     return (
-      <div className="flex h-full flex-col rounded-xl border border-dashed border-border bg-muted/30 p-6 opacity-80">
-        {inner}
+      <div className="flex h-full flex-col rounded-2xl border border-dashed border-border bg-muted/30 p-6 opacity-80">
+        {body}
       </div>
     );
   }
@@ -76,9 +60,10 @@ export function FicheOperationCard({ operation }: FicheOperationCardProps) {
   return (
     <Link
       href={`/solutions/${operation.slug}`}
-      className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
-      {inner}
+      <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-brand-gradient transition-transform duration-300 group-hover:scale-x-100" />
+      {body}
     </Link>
   );
 }

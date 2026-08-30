@@ -10,18 +10,12 @@ export const STRUCTURE_TYPES = [
 ] as const;
 
 export const PROJECT_TYPES = [
-  { value: "systeme-complet-neuf", label: "Système complet neuf de séchage" },
-  { value: "toiture-couplee", label: "Toiture solaire couplée à un système existant" },
+  { value: "systeme-complet-neuf", label: "Une installation neuve complète" },
+  { value: "toiture-couplee", label: "Un ajout sur un séchoir existant" },
   { value: "je-ne-sais-pas", label: "Je ne sais pas encore" },
 ] as const;
 
 export const PRODUCT_TYPES = [
-  { value: "agricole", label: "Produits agricoles (fourrage, céréales, plantes…)" },
-  { value: "forestier", label: "Produits forestiers (bois, plaquettes, sciages…)" },
-] as const;
-
-export const CLIMATE_ZONES = [
-  { value: "H1", label: "H1 — Nord, Est, zones montagneuses (climat le plus froid)" },
-  { value: "H2", label: "H2 — Façade atlantique, centre, Sud-Ouest" },
-  { value: "H3", label: "H3 — Pourtour méditerranéen (climat le plus doux)" },
+  { value: "agricole", label: "Produits agricoles (foin, céréales, plantes…)" },
+  { value: "forestier", label: "Bois & produits forestiers (plaquettes, sciages…)" },
 ] as const;

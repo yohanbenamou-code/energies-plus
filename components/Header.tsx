@@ -57,7 +57,7 @@ export function Header({
     >
       <div className="container flex h-16 items-center justify-between gap-4">
         <div className="flex items-center gap-6">
-          <Link href="/" aria-label="Solaire Energie — accueil" className="shrink-0">
+          <Link href="/" aria-label="Énergies Plus — accueil" className="shrink-0">
             <Logo />
           </Link>
         </div>

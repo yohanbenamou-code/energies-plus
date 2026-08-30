@@ -27,7 +27,7 @@ export function RgpdConsent({
           aria-describedby={error ? `${id}-error` : undefined}
         />
         <label htmlFor={id} className="text-sm leading-relaxed text-muted-foreground">
-          J&apos;accepte que mes données soient utilisées par Solaire Energie pour
+          J&apos;accepte que mes données soient utilisées par Énergies Plus pour
           être recontacté(e) au sujet de mon projet. Elles ne sont ni revendues
           ni cédées à des tiers.{" "}
           <Link

@@ -1,18 +1,26 @@
 "use client";
 
 import * as React from "react";
-import { Check, Thermometer } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
-import { SectionHeading } from "@/components/SectionHeading";
+import { Stagger, StaggerItem } from "@/components/motion";
 import { useSolutionForm } from "@/components/solution-form-context";
 import type { CeeOperation } from "@/types/operation";
 
-export function SolutionVariantCards({
-  operation,
-}: {
-  operation: CeeOperation;
-}) {
+const FRIENDLY: Record<string, { title: string; subtitle: string }> = {
+  "systeme-complet-neuf": {
+    title: "Vous partez de zéro",
+    subtitle: "Une installation de séchage solaire complète, neuve, clé en main.",
+  },
+  "toiture-couplee": {
+    title: "Vous avez déjà un séchoir",
+    subtitle:
+      "On ajoute une toiture solaire à votre système existant pour le faire monter en température.",
+  },
+};
+
+export function SolutionVariantCards({ operation }: { operation: CeeOperation }) {
   const { applyPrefill, scrollToContact } = useSolutionForm();
 
   const choose = (variantKey: string) => {
@@ -23,57 +31,64 @@ export function SolutionVariantCards({
   return (
     <section
       id="solutions"
-      className="border-b border-border bg-background py-16 sm:py-20"
+      className="border-b border-border bg-background py-20 sm:py-24"
     >
       <div className="container">
-        <SectionHeading
-          eyebrow="Nos solutions"
-          title="Deux configurations possibles"
-          description="L'opération AGRI-EQ-110 couvre deux cas d'usage. Nos conseillers déterminent avec vous celui qui correspond à votre bâtiment."
-        />
+        <Reveal className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
+            Deux cas de figure
+          </p>
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Quel que soit votre point de départ
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Nos conseillers déterminent avec vous la configuration adaptée à
+            votre bâtiment.
+          </p>
+        </Reveal>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {operation.variants.map((variant, i) => (
-            <Reveal key={variant.key} delay={i * 0.08} as="article">
-              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-7">
-                <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                  <Thermometer className="h-4 w-4" />
-                  {variant.temperatureRange}
+        <Stagger className="mt-12 grid gap-6 md:grid-cols-2">
+          {operation.variants.map((variant) => {
+            const f = FRIENDLY[variant.key] ?? {
+              title: variant.label,
+              subtitle: variant.description,
+            };
+            return (
+              <StaggerItem key={variant.key} as="article">
+                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-soft">
+                  <h3 className="text-xl font-semibold text-foreground">
+                    {f.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {f.subtitle}
+                  </p>
+
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Ce qui est installé
+                  </p>
+                  <ul className="mt-2 flex-1 space-y-2">
+                    {variant.includes.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-600" />
+                        <span className="text-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="mt-6 w-full"
+                    onClick={() => choose(variant.key)}
+                  >
+                    C&apos;est mon cas
+                    <ArrowRight />
+                  </Button>
                 </div>
-                <h3 className="mt-2 text-xl font-semibold text-foreground">
-                  {variant.label}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {variant.description}
-                </p>
-
-                <ul className="mt-4 flex-1 space-y-2">
-                  {variant.includes.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span className="text-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="mt-6 w-full"
-                  onClick={() => choose(variant.key)}
-                >
-                  En savoir plus sur cette configuration
-                </Button>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <p className="mt-6 text-xs text-muted-foreground">
-          Les montants en euros éventuellement évoqués lors de l&apos;étude sont
-          des estimations non contractuelles, sous réserve d&apos;éligibilité.
-          Seuls les volumes en kWh cumac correspondent aux barèmes officiels.
-        </p>
+              </StaggerItem>
+            );
+          })}
+        </Stagger>
       </div>
     </section>
   );

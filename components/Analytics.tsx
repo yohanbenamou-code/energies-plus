@@ -9,7 +9,7 @@ import Script from "next/script";
  *   - NEXT_PUBLIC_META_PIXEL_ID    : Meta Pixel (événement "Lead" sur /merci)
  *   - NEXT_PUBLIC_GADS_CONVERSION_ID : Google Ads (gtag)
  *
- * TODO: placeholder à remplacer par Yohan/Solaire Energie — renseigner les IDs.
+ * TODO: placeholder à remplacer par Yohan/Énergies Plus — renseigner les IDs.
  */
 export function Analytics() {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;

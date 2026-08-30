@@ -31,11 +31,15 @@ export function Faq({
   withJsonLd = true,
 }: FaqProps) {
   return (
-    <section id={id} className="border-b border-border bg-background py-16 sm:py-20">
+    <section id={id} className="border-b border-border bg-background py-20 sm:py-24">
       <div className="container max-w-3xl">
         <SectionHeading eyebrow="FAQ" title={title} description={description} />
 
-        <Accordion type="single" collapsible className="mt-8">
+        <Accordion
+          type="single"
+          collapsible
+          className="mt-10 rounded-2xl border border-border bg-card px-6 shadow-soft [&>*:last-child]:border-b-0"
+        >
           {items.map((item, i) => (
             <AccordionItem key={item.question} value={`item-${i}`}>
               <AccordionTrigger>{item.question}</AccordionTrigger>

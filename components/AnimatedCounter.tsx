@@ -33,7 +33,11 @@ export function AnimatedCounter({
       { threshold: 0.4 },
     );
     observer.observe(node);
-    return () => observer.disconnect();
+    const safety = window.setTimeout(() => setStarted(true), 2500);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(safety);
+    };
   }, [value]);
 
   React.useEffect(() => {
@@ -45,6 +49,7 @@ export function AnimatedCounter({
       return;
     }
 
+    const final = `${prefix}${formatNumberFr(value)}${suffix}`;
     const controls = animate(0, value, {
       duration: 1.6,
       ease: "easeOut",
@@ -52,7 +57,14 @@ export function AnimatedCounter({
         node.textContent = `${prefix}${formatNumberFr(latest)}${suffix}`;
       },
     });
-    return () => controls.stop();
+    // filet de sécurité : impose la valeur finale même si le rAF ne tourne pas
+    const safety = window.setTimeout(() => {
+      node.textContent = final;
+    }, 2200);
+    return () => {
+      controls.stop();
+      window.clearTimeout(safety);
+    };
   }, [started, value, prefix, suffix, reduce]);
 
   if (value === null) {

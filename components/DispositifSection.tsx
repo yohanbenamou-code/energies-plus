@@ -1,72 +1,109 @@
+"use client";
+
 import * as React from "react";
-import { CircleCheck } from "lucide-react";
-import { SectionHeading } from "@/components/SectionHeading";
+import { Banknote, ClipboardCheck, Sun } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Reveal } from "@/components/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion";
 import type { CeeOperation } from "@/types/operation";
+
+const POINTS = [
+  {
+    icon: Banknote,
+    title: "Une aide qui réduit votre facture",
+    body: "Le dispositif public des CEE finance une partie de votre séchoir solaire. Vous investissez, mais votre reste à charge baisse nettement.",
+  },
+  {
+    icon: Sun,
+    title: "Un séchage plus régulier",
+    body: "L'air chaud produit par les panneaux hybrides sèche votre récolte en douceur : meilleure conservation, moins de pertes, moins de dépendance au gaz ou au fioul.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Un ordre à respecter",
+    body: "Le dossier d'aide se monte avant la signature du devis. C'est notre métier : on s'en charge pour que rien ne bloque le versement.",
+  },
+];
 
 export function DispositifSection({ operation }: { operation: CeeOperation }) {
   return (
     <section
       id="dispositif"
-      className="border-b border-border bg-secondary/40 py-16 sm:py-20"
+      className="border-b border-border bg-background py-20 sm:py-24"
     >
-      <div className="container grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-          <SectionHeading
-            eyebrow="Le dispositif"
-            title="Le dispositif CEE, expliqué simplement"
-          />
-          <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-muted-foreground">
-            <p>
-              Les <strong className="text-foreground">Certificats d&apos;Économies
-              d&apos;Énergie</strong> constituent un dispositif public, encadré
-              par le Ministère de la Transition Écologique. Il impose aux
-              fournisseurs d&apos;énergie de financer des actions d&apos;économies
-              d&apos;énergie&nbsp;: c&apos;est ce financement qui alimente la
-              prime CEE.
-            </p>
-            <p>
-              L&apos;opération standardisée{" "}
-              <strong className="text-foreground">n° {operation.code}</strong>{" "}
-              couvre le séchage de produits et co-produits agricoles et
-              forestiers par insufflation d&apos;air, à l&apos;aide de panneaux
-              solaires hybrides. Elle définit des conditions techniques précises
-              et un barème officiel exprimé en kWh cumac.
-            </p>
-            <p>
-              Pour l&apos;exploitant, cela se traduit par une aide qui réduit le
-              reste à charge de l&apos;investissement, à condition que le dossier
-              soit monté dans le bon ordre — avant la signature du devis.
-            </p>
-            <p className="rounded-lg border-l-4 border-accent bg-accent/10 px-4 py-3 text-sm text-foreground">
-              Les montants exprimés en euros sont indicatifs, non contractuels et
-              communiqués sous réserve d&apos;éligibilité. Seuls les volumes en
-              kWh cumac correspondent aux barèmes officiels de l&apos;opération.
-            </p>
-          </div>
-        </div>
+      <div className="container">
+        <Reveal className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
+            Le principe
+          </p>
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Une aide de l&apos;État, un séchoir qui travaille pour vous
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Les Certificats d&apos;Économies d&apos;Énergie sont un dispositif
+            public : l&apos;État oblige les fournisseurs d&apos;énergie à financer
+            des travaux d&apos;économies d&apos;énergie. Le séchage solaire
+            agricole en fait partie.
+          </p>
+        </Reveal>
 
-        <div>
-          <div className="rounded-2xl border border-border bg-card p-6">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Conditions techniques de l&apos;opération {operation.code}
-            </h3>
-            <ul className="mt-4 space-y-3">
-              {operation.conditions.map((condition, i) => (
-                <Reveal key={condition} delay={i * 0.04} as="li">
-                  <div className="flex items-start gap-2.5 text-sm">
-                    <CircleCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    <span className="text-foreground">{condition}</span>
-                  </div>
-                </Reveal>
-              ))}
-            </ul>
-            <p className="mt-4 text-xs text-muted-foreground">
-              Durée de vie conventionnelle retenue par la fiche&nbsp;:{" "}
-              {operation.lifespanYears} ans.
-            </p>
-          </div>
-        </div>
+        <Stagger className="mt-12 grid gap-6 md:grid-cols-3">
+          {POINTS.map((point) => (
+            <StaggerItem key={point.title} as="div">
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+                  <point.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 text-base font-semibold text-foreground">
+                  {point.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {point.body}
+                </p>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+
+        <p className="mt-8 max-w-3xl rounded-xl border-l-4 border-accent bg-accent/5 px-4 py-3 text-sm text-foreground">
+          Les montants en euros évoqués lors de l&apos;étude sont indicatifs, non
+          contractuels et communiqués sous réserve d&apos;éligibilité. Seul le
+          volume officiel de l&apos;aide (en kWh cumac) est défini par le barème.
+        </p>
+
+        {/* Détail technique : disponible mais volontairement en retrait. */}
+        <Accordion
+          type="single"
+          collapsible
+          className="mt-8 max-w-3xl rounded-xl border border-border bg-muted/20 px-5"
+        >
+          <AccordionItem value="tech" className="border-b-0">
+            <AccordionTrigger className="text-sm">
+              Le cadre technique de l&apos;aide (opération {operation.code})
+            </AccordionTrigger>
+            <AccordionContent>
+              <p className="mb-3">
+                Pour information, l&apos;aide s&apos;appuie sur une fiche
+                officielle qui fixe des conditions précises. Nos conseillers les
+                vérifient pour vous ; vous n&apos;avez pas à les maîtriser.
+              </p>
+              <ul className="list-disc space-y-1.5 pl-5">
+                {operation.conditions.map((condition) => (
+                  <li key={condition}>{condition}</li>
+                ))}
+              </ul>
+              <p className="mt-3">
+                Durée de vie conventionnelle retenue par la fiche :{" "}
+                {operation.lifespanYears} ans.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </section>
   );

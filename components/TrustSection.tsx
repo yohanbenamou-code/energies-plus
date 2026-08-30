@@ -1,7 +1,7 @@
 import * as React from "react";
-import { BadgeCheck, Handshake, ShieldCheck, Star } from "lucide-react";
+import { Check, Star } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { SectionHeading } from "@/components/SectionHeading";
+import { Stagger, StaggerItem } from "@/components/motion";
 import { site } from "@/data/site";
 
 interface TrustSectionProps {
@@ -9,132 +9,107 @@ interface TrustSectionProps {
   eyebrow?: string;
   title: string;
   description?: string;
-  /** Points de réassurance (utilisé sur la page solution). */
   points?: string[];
-  /** Afficher le bloc certifications techniques. */
   showCertifications?: boolean;
   className?: string;
 }
 
 export function TrustSection({
   id = "references",
-  eyebrow = "Ils nous font confiance",
+  eyebrow = "Références",
   title,
   description,
   points,
   showCertifications = true,
   className,
 }: TrustSectionProps) {
-  const hasLogos = site.clientLogos.length > 0;
-
   return (
     <section
       id={id}
-      className={
-        className ?? "border-b border-border bg-secondary/40 py-16 sm:py-20"
-      }
+      className={className ?? "border-b border-border bg-background py-20 sm:py-24"}
     >
       <div className="container">
-        <SectionHeading eyebrow={eyebrow} title={title} description={description} />
+        <Reveal className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
+            {eyebrow}
+          </p>
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            {title}
+          </h2>
+          {description ? (
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              {description}
+            </p>
+          ) : null}
+        </Reveal>
 
         {points && points.length > 0 ? (
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-            {points.map((point, i) => (
-              <Reveal key={point} delay={i * 0.05} as="li">
-                <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
-                  <Handshake className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+          <Stagger className="mt-10 grid gap-4 sm:grid-cols-2">
+            {points.map((point) => (
+              <StaggerItem key={point} as="div">
+                <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-soft">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent-600">
+                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                  </span>
                   <span className="text-[15px] leading-relaxed text-foreground">
                     {point}
                   </span>
                 </div>
-              </Reveal>
+              </StaggerItem>
             ))}
-          </ul>
+          </Stagger>
         ) : null}
 
-        {/* Logos clients / partenaires */}
-        <div className="mt-10">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            Clients &amp; partenaires
-          </p>
-          {hasLogos ? (
-            <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              {site.clientLogos.map((logo) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={logo.name}
-                  src={logo.src}
-                  alt={logo.name}
-                  className="h-12 w-full object-contain opacity-70 grayscale"
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {showCertifications ? (
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+            {site.certifications.map((cert) => (
+              <span
+                key={cert}
+                className="flex items-center gap-2 text-sm text-muted-foreground"
+              >
+                <Check className="h-4 w-4 text-accent-600" />
+                {cert}
+              </span>
+            ))}
+          </div>
+        ) : null}
+
+        {/* Logos clients / partenaires + note d'avis — emplacements neutres */}
+        <div className="mt-10 grid gap-6 rounded-2xl border border-dashed border-border bg-muted/20 p-6 lg:grid-cols-[1.4fr_1fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Clients &amp; partenaires
+            </p>
+            <div className="mt-4 grid grid-cols-3 gap-4 sm:grid-cols-5">
               {Array.from({ length: 5 }).map((_, i) => (
                 <div
                   key={i}
-                  className="flex h-14 items-center justify-center rounded-lg border border-dashed border-border bg-muted/30 text-[11px] text-muted-foreground"
+                  className="flex h-12 items-center justify-center rounded-lg border border-border bg-background text-[10px] text-muted-foreground"
                 >
-                  Logo client
+                  Logo
                 </div>
               ))}
-              <p className="col-span-full mt-1 text-xs text-muted-foreground">
-                {/* TODO: placeholder à remplacer par Yohan/Solaire Energie */}
-                Logos et autorisations d&apos;utilisation à fournir par Solaire
-                Energie.
-              </p>
             </div>
-          )}
-        </div>
-
-        {/* Note d'avis */}
-        <div className="mt-8 flex flex-wrap items-center gap-3 rounded-xl border border-border bg-card p-5">
-          <div className="flex items-center gap-1 text-accent">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="h-5 w-5 fill-current" />
-            ))}
-          </div>
-          {site.rating ? (
-            <p className="text-sm text-foreground">
-              <strong>{site.rating.score.toFixed(1)}/5</strong> — {site.rating.count}{" "}
-              avis ({site.rating.source})
+            <p className="mt-3 text-xs text-muted-foreground">
+              {/* TODO: placeholder à remplacer par Yohan/Énergies Plus */}
+              Logos et autorisations d&apos;utilisation à fournir par Énergies
+              Plus.
             </p>
-          ) : (
-            <p className="text-sm text-muted-foreground">
-              {/* TODO: placeholder à remplacer par Yohan/Solaire Energie */}
-              Note et nombre d&apos;avis à renseigner à partir d&apos;une source
-              vérifiable (Google, Trustpilot, Pages Jaunes…).
-            </p>
-          )}
-        </div>
-
-        {showCertifications ? (
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {site.certifications.map((cert, i) => (
-              <Reveal key={cert} delay={i * 0.05}>
-                <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
-                  {i === 0 ? (
-                    <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  ) : i === 1 ? (
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  ) : (
-                    <Handshake className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  )}
-                  <span className="text-sm leading-relaxed text-foreground">
-                    {cert}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
           </div>
-        ) : null}
-
-        <p className="mt-6 text-xs text-muted-foreground">
-          {/* TODO: placeholder à remplacer par Yohan/Solaire Energie */}
-          Attestation d&apos;assurance (responsabilité civile / décennale des
-          installateurs partenaires) et logos partenaires à ajouter ici.
-        </p>
+          <div className="flex flex-col justify-center border-t border-border pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+            <div className="flex items-center gap-1 text-accent">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-4 w-4 fill-current" />
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              {/* TODO: placeholder à remplacer par Yohan/Énergies Plus */}
+              Note et nombre d&apos;avis à renseigner depuis une source vérifiable
+              (Google, Trustpilot, Pages Jaunes…). Attestation d&apos;assurance
+              décennale des installateurs partenaires à ajouter.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

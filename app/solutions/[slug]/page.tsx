@@ -20,8 +20,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
     return { title: "Solution introuvable" };
   }
 
-  const title = `${operation.code} — Séchage solaire agricole & forestier | Financement CEE`;
-  const description = `${operation.heroSubtitle} Simulateur CEE, étude gratuite et accompagnement Solaire Energie.`;
+  const title =
+    "Séchage solaire agricole & forestier — l'aide CEE, expliquée simplement";
+  const description = `${operation.heroSubtitle} Estimation gratuite et accompagnement de A à Z.`;
 
   return {
     title,

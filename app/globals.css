@@ -4,63 +4,71 @@
 
 @layer base {
   :root {
-    /* Neutres */
-    --background: 0 0% 100%;
-    --foreground: 155 25% 12%;
+    /* Fond / encre */
+    --background: 210 40% 99%;
+    --foreground: 219 46% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 155 25% 12%;
+    --card-foreground: 219 46% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 155 25% 12%;
+    --popover-foreground: 219 46% 13%;
 
-    /* Vert agriculture / durabilite (primaire) */
-    --primary: 151 55% 23%;
-    --primary-foreground: 140 40% 97%;
+    /* Bleu de marque Énergies Plus (primaire) */
+    --primary: 219 64% 29%;
+    --primary-foreground: 210 40% 98%;
 
-    /* Orange / ambre solaire (accent, CTA) */
-    --accent: 33 92% 50%;
-    --accent-foreground: 30 45% 12%;
+    /* Vert de marque Énergies Plus (accent / CTA) */
+    --accent: 98 47% 43%;
+    --accent-foreground: 0 0% 100%;
 
-    /* Gris tres clair */
-    --secondary: 150 20% 96%;
-    --secondary-foreground: 155 25% 18%;
+    --secondary: 213 34% 95%;
+    --secondary-foreground: 219 42% 20%;
 
-    --muted: 150 16% 95%;
-    --muted-foreground: 155 12% 38%;
+    --muted: 213 30% 95%;
+    --muted-foreground: 216 15% 42%;
 
     --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 150 14% 88%;
-    --input: 150 14% 84%;
-    --ring: 151 55% 23%;
+    --border: 214 26% 89%;
+    --input: 214 22% 83%;
+    --ring: 219 64% 42%;
 
-    --radius: 0.625rem;
+    --radius: 0.75rem;
+
+    /* Dégradé de marque (bleu -> teal -> vert), réutilisé un peu partout */
+    --brand-gradient: linear-gradient(
+      120deg,
+      hsl(219 64% 27%) 0%,
+      hsl(200 52% 33%) 42%,
+      hsl(120 45% 38%) 74%,
+      hsl(98 52% 45%) 100%
+    );
   }
 
-  /* Le site est concu pour un rendu clair uniquement. La classe .dark reste
-     definie pour la compatibilite des composants shadcn/ui mais n'est jamais activee. */
+  /* Rendu clair uniquement. .dark reste défini pour la compat shadcn/ui,
+     jamais activé. */
   .dark {
-    --background: 155 30% 8%;
-    --foreground: 140 20% 96%;
-    --card: 155 30% 10%;
-    --card-foreground: 140 20% 96%;
-    --popover: 155 30% 10%;
-    --popover-foreground: 140 20% 96%;
-    --primary: 146 45% 55%;
-    --primary-foreground: 155 40% 10%;
-    --accent: 33 92% 55%;
-    --accent-foreground: 30 45% 12%;
-    --secondary: 155 20% 16%;
-    --secondary-foreground: 140 20% 96%;
-    --muted: 155 20% 16%;
-    --muted-foreground: 150 12% 65%;
+    --background: 219 45% 8%;
+    --foreground: 210 30% 96%;
+    --card: 219 42% 11%;
+    --card-foreground: 210 30% 96%;
+    --popover: 219 42% 11%;
+    --popover-foreground: 210 30% 96%;
+    --primary: 210 70% 62%;
+    --primary-foreground: 219 45% 10%;
+    --accent: 98 45% 52%;
+    --accent-foreground: 0 0% 100%;
+    --secondary: 219 30% 18%;
+    --secondary-foreground: 210 30% 96%;
+    --muted: 219 30% 18%;
+    --muted-foreground: 214 16% 66%;
     --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 155 20% 20%;
-    --input: 155 20% 24%;
-    --ring: 146 45% 55%;
+    --border: 219 26% 22%;
+    --input: 219 26% 26%;
+    --ring: 210 70% 62%;
   }
 }
 
@@ -76,11 +84,39 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv11", "ss01";
     text-rendering: optimizeLegibility;
+    /* garde-fou : empêche tout débordement horizontal (halos, reveals en x)
+       sans casser position: sticky */
+    overflow-x: clip;
   }
-  /* Ancre : compense le header sticky lors du scroll vers une section */
   section[id],
   div[id].scroll-anchor {
     scroll-margin-top: 5.5rem;
+  }
+  ::selection {
+    background: hsl(98 47% 43% / 0.25);
+  }
+}
+
+@layer components {
+  .text-brand-gradient {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-brand-gradient {
+    background: var(--brand-gradient);
+  }
+  .surface-grid {
+    background-image:
+      linear-gradient(hsl(219 64% 29% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(219 64% 29% / 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 78%);
+  }
+  .hairline {
+    @apply border border-border/70;
   }
 }
 
@@ -88,12 +124,107 @@
   .text-balance {
     text-wrap: balance;
   }
-  .container-tight {
-    @apply mx-auto w-full max-w-3xl px-5;
+  .text-pretty {
+    text-wrap: pretty;
   }
 }
 
-/* Respecte la preference utilisateur de reduction des animations */
+/* --- Système de révélation au scroll (CSS, sans dépendance JS d'animation) --
+   Baseline : tout est VISIBLE. Le masquage n'est activé que si le JS a posé
+   la classe `js` sur <html> ET que l'utilisateur n'a pas demandé la
+   réduction des animations. Un filet de sécurité JS révèle tout au bout de
+   quelques secondes si l'IntersectionObserver ne se déclenche pas. */
+.reveal {
+  opacity: 1;
+}
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+html.js .reveal.reveal--left {
+  transform: translateX(24px);
+}
+html.js .reveal.reveal--right {
+  transform: translateX(-24px);
+}
+html.js .reveal.reveal--scale {
+  transform: translateY(10px) scale(0.97);
+}
+html.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* cascade dans un conteneur .stagger */
+html.js .stagger > .reveal:nth-child(2) {
+  --reveal-delay: 0.06s;
+}
+html.js .stagger > .reveal:nth-child(3) {
+  --reveal-delay: 0.12s;
+}
+html.js .stagger > .reveal:nth-child(4) {
+  --reveal-delay: 0.18s;
+}
+html.js .stagger > .reveal:nth-child(5) {
+  --reveal-delay: 0.24s;
+}
+html.js .stagger > .reveal:nth-child(6) {
+  --reveal-delay: 0.3s;
+}
+html.js .stagger > .reveal:nth-child(n + 7) {
+  --reveal-delay: 0.36s;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* --- Animations de fond (sobres) --------------------------------------- */
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.08);
+  }
+}
+@keyframes aurora-drift-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-4%, 5%, 0) scale(1);
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-aurora {
+  animation: aurora-drift 18s ease-in-out infinite;
+}
+.animate-aurora-slow {
+  animation: aurora-drift-slow 24s ease-in-out infinite;
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

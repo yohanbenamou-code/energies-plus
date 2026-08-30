@@ -90,7 +90,7 @@ export function CallbackDialog({
         <DialogHeader>
           <DialogTitle>Être rappelé(e) par un conseiller</DialogTitle>
           <DialogDescription>
-            Laissez votre numéro : un conseiller Solaire Energie vous rappelle
+            Laissez votre numéro : un conseiller Énergies Plus vous rappelle
             sous 24–48h ouvrées. Vous pouvez aussi nous joindre au{" "}
             <a href={site.contact.phoneHref} className="font-medium text-foreground">
               {site.contact.phoneDisplay}
