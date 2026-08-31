@@ -81,24 +81,36 @@ export const SEGMENTS: AudienceSegment[] = [
   },
 ];
 
+export interface NamedClient {
+  name: string;
+  /** Sigle court affiché dans la tuile en attendant le vrai logo. */
+  short: string;
+  /**
+   * Chemin du logo (ex "/logos/orpea.svg"). Tant qu'il est absent, la tuile
+   * affiche le sigle. TODO: Yohan/Énergies Plus — déposer les fichiers SVG
+   * dans public/logos/ et renseigner ce champ (droits de citation à valider).
+   */
+  logo?: string;
+}
+
 /** Sélection de références citées dans le dossier chantier de l'équipe. */
-export const NAMED_CLIENTS: string[] = [
-  "CHU de Toulouse",
-  "Groupe Hospitalier de Seclin",
-  "GHT Littoral Atlantique",
-  "UGECAM",
-  "GROUPE SOS",
-  "Fondation Partage & Vie",
-  "ORPEA",
-  "Ville de Metz",
-  "Ville de Douai",
-  "Ville de Montrouge",
-  "Ville de Trappes",
-  "CCI de Bordeaux",
-  "FONCIA",
-  "CITYA Immobilier",
-  "ORPI",
-  "IMMO DE FRANCE (PROCIVIS)",
+export const NAMED_CLIENTS: NamedClient[] = [
+  { name: "CHU de Toulouse", short: "CHU Toulouse" },
+  { name: "Groupe Hospitalier de Seclin", short: "GH Seclin" },
+  { name: "GHT Littoral Atlantique", short: "GHT Littoral" },
+  { name: "UGECAM", short: "Ugecam" },
+  { name: "GROUPE SOS", short: "Groupe SOS" },
+  { name: "Fondation Partage & Vie", short: "Partage & Vie" },
+  { name: "ORPEA", short: "Orpea" },
+  { name: "Ville de Metz", short: "Metz" },
+  { name: "Ville de Douai", short: "Douai" },
+  { name: "Ville de Montrouge", short: "Montrouge" },
+  { name: "Ville de Trappes", short: "Trappes" },
+  { name: "CCI de Bordeaux", short: "CCI Bordeaux" },
+  { name: "FONCIA", short: "Foncia" },
+  { name: "CITYA Immobilier", short: "Citya" },
+  { name: "ORPI", short: "Orpi" },
+  { name: "IMMO DE FRANCE (PROCIVIS)", short: "Immo de France" },
 ];
 
 export interface ChantierHighlight {

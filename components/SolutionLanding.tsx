@@ -159,7 +159,7 @@ export function SolutionLanding({ operation }: { operation: LiveCeeOperation }) 
           }
           imageAlt="Bottes de foin dans un champ au soleil couchant"
           chips={[
-            { value: "0 €", label: "Étude & simulation" },
+            { value: "Gratuite", label: "Étude & simulation" },
             { value: "15 ans", label: "Durée de vie du matériel" },
             { value: "France", label: "Toutes régions" },
           ]}

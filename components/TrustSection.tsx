@@ -119,22 +119,34 @@ export function TrustSection({
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Ils ont fait appel à l&apos;équipe
           </p>
-          <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-2">
+          <ul className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 lg:grid-cols-4">
             {NAMED_CLIENTS.map((client) => (
               <li
-                key={client}
-                className="rounded-full border border-border bg-background px-3 py-1 text-sm font-medium text-foreground"
+                key={client.name}
+                title={client.name}
+                className="flex h-16 items-center justify-center bg-background px-3"
               >
-                {client}
+                {client.logo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="max-h-8 w-auto max-w-full opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  />
+                ) : (
+                  <span className="text-center text-[13px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    {client.short}
+                  </span>
+                )}
               </li>
             ))}
           </ul>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            {/* TODO: Yohan/Énergies Plus — valider les droits de citation et
-                remplacer par un mur de logos autorisés. */}
-            Sélection de références issues du dossier chantier de l&apos;équipe
-            (activité menée sous l&apos;enseigne « Bat Énergie »). Liste complète
-            sur demande.
+            {/* TODO: Yohan/Énergies Plus — déposer les logos autorisés dans
+                public/logos/ et renseigner NAMED_CLIENTS[].logo. */}
+            Sélection de références issues du dossier chantier de l&apos;équipe.
+            Logos affichés dès réception des visuels et des autorisations. Liste
+            complète sur demande.
           </p>
         </div>
       </div>
