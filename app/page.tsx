@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BellRing, PackageX, Sparkles } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
@@ -12,33 +13,53 @@ import { TrustSection } from "@/components/TrustSection";
 import { Faq, type FaqItem } from "@/components/Faq";
 import { QuickLeadForm } from "@/components/QuickLeadForm";
 import { Reveal } from "@/components/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion";
 import { site } from "@/data/site";
 
 const NAV = [
   { label: "Le dispositif", href: "#dispositif" },
   { label: "Catalogue", href: "#catalogue" },
-  { label: "Secteurs", href: "#secteurs" },
+  { label: "Qui nous accompagnons", href: "#secteurs" },
   { label: "Notre méthode", href: "#methode" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
+/** Méthode réelle de l'équipe (plaquette). */
 const STEPS = [
   {
-    title: "Qualification",
-    body: "On identifie la ou les fiches CEE qui correspondent à votre projet, et on vérifie que les conditions sont réunies.",
+    title: "Étude des besoins",
+    body: "Prise de contact, audit approfondi de vos bâtiments et identification des solutions les plus adaptées. Accord de principe pour lancer la demande de subvention.",
   },
   {
-    title: "Cadrage avant devis",
-    body: "On formalise l'engagement du financeur CEE — impérativement avant que vous ne signiez le devis de l'installateur.",
+    title: "Proposition personnalisée",
+    body: "Montage du dossier pour obtenir un numéro de subvention, et plan d'action sur mesure avec des solutions concrètes et optimisées.",
   },
   {
-    title: "Accompagnement des travaux",
-    body: "On transmet un cahier des charges précis à l'entreprise de votre choix et on suit la bonne exécution.",
+    title: "Mise en œuvre des travaux",
+    body: "Coordination des équipes techniques pour la réalisation des interventions, avec un suivi rigoureux du respect des délais.",
   },
   {
-    title: "Dossier de preuve & prime",
-    body: "On rassemble les pièces attendues, on dépose le dossier et la prime est valorisée selon les modalités convenues.",
+    title: "Contrôle COFRAC après travaux",
+    body: "À l'issue du chantier, un organisme COFRAC contrôle les ouvrages : conformité et qualité vérifiées de façon indépendante.",
+  },
+];
+
+const ENGAGEMENTS = [
+  {
+    icon: BellRing,
+    title: "Avis de passage",
+    body: "Les occupants sont informés avant le démarrage. Communication régulière avec le responsable du site.",
+  },
+  {
+    icon: PackageX,
+    title: "Pas de stockage",
+    body: "Aucun stockage de matériel pendant les travaux. Véhicules garés à l'écart, en accord avec le site.",
+  },
+  {
+    icon: Sparkles,
+    title: "Nettoyage journalier",
+    body: "Chaque soir, les chantiers sont nettoyés et les déchets évacués en déchetterie.",
   },
 ];
 
@@ -46,31 +67,33 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Qu'est-ce que les Certificats d'Économies d'Énergie ?",
     plainAnswer:
-      "Un dispositif public créé en 2005 et encadré par le Ministère de la Transition Écologique. Il oblige les fournisseurs d'énergie à financer des travaux d'économies d'énergie chez les particuliers et les professionnels. Ce financement se traduit par une prime sur des opérations précises, listées dans des « fiches » officielles.",
+      "Un dispositif public créé en 2005 et encadré par le Ministère de la Transition Écologique. Il oblige les fournisseurs d'énergie (EDF, TotalEnergies, enseignes de carburant…) à financer des travaux d'économies d'énergie. Ce financement se traduit par une prime sur des opérations précises, listées dans des fiches officielles.",
     answer: (
       <>
         <p>
           Un dispositif public créé en 2005, encadré par le Ministère de la
-          Transition Écologique. Il oblige les fournisseurs d&apos;énergie à
-          financer des travaux d&apos;économies d&apos;énergie.
+          Transition Écologique. Il oblige les fournisseurs d&apos;énergie (EDF,
+          TotalEnergies, enseignes de carburant…) à financer des travaux
+          d&apos;économies d&apos;énergie.
         </p>
         <p>
           Ce financement se traduit par une prime sur des opérations précises
-          (les « fiches » standardisées). Le volume officiel s&apos;exprime en
-          kWh cumac ; sa valeur en euros dépend du marché et de votre situation.
+          (les fiches standardisées). Le volume officiel s&apos;exprime en kWh
+          cumac ; sa valeur en euros dépend du marché et de votre situation.
         </p>
       </>
     ),
   },
   {
-    question: "Qui peut en bénéficier ?",
+    question: "Les travaux sont-ils vraiment financés à 100 % ?",
     plainAnswer:
-      "Les particuliers propriétaires ou locataires, les copropriétés, les entreprises, les exploitations agricoles, les collectivités : dès lors qu'un projet correspond à une fiche CEE et en respecte les conditions.",
+      "Souvent, oui. Selon l'opération et votre éligibilité, la prime CEE peut couvrir tout ou une large part du coût des travaux, sans avance de trésorerie. Cumulable avec MaPrimeRénov'. Le reste à charge éventuel vous est indiqué en toute transparence avant tout engagement.",
     answer: (
       <p>
-        Particuliers, copropriétés, entreprises, exploitations agricoles,
-        collectivités… Dès lors qu&apos;un projet correspond à une fiche CEE et
-        en respecte les conditions. Nous vérifions votre cas gratuitement.
+        Souvent, oui. Selon l&apos;opération et votre éligibilité, la prime CEE
+        couvre tout ou une large part du coût, sans avance de trésorerie, et se
+        cumule avec MaPrimeRénov&apos;. Le reste à charge éventuel vous est
+        indiqué avant tout engagement.
       </p>
     ),
   },
@@ -88,39 +111,40 @@ const FAQ_ITEMS: FaqItem[] = [
     ),
   },
   {
+    question: "Qui peut en bénéficier ?",
+    plainAnswer:
+      "Bailleurs sociaux, établissements de santé et médico-sociaux, collectivités, copropriétés, sites industriels et tertiaires, exploitations agricoles : dès qu'un projet correspond à une fiche CEE et en respecte les conditions.",
+    answer: (
+      <p>
+        Bailleurs sociaux, établissements de santé, collectivités, copropriétés,
+        sites industriels et tertiaires, exploitations agricoles… Dès qu&apos;un
+        projet correspond à une fiche CEE. Nous vérifions votre cas gratuitement.
+      </p>
+    ),
+  },
+  {
+    question: "Quelles opérations accompagnez-vous ?",
+    plainAnswer:
+      "Isolation des réseaux de chauffage (calorifugeage) et des points singuliers, isolation des planchers, combles et murs, robinets thermostatiques, GTB, éclairage LED, désembouage et équilibrage, récupération de chaleur sur groupes froids, Contrat de Performance Énergétique, et séchage solaire agricole (fiche AGRI-EQ-110, avec page dédiée).",
+    answer: (
+      <p>
+        Calorifugeage et points singuliers, isolation des planchers / combles /
+        murs, robinets thermostatiques, GTB, éclairage LED, désembouage et
+        équilibrage, récupération de chaleur sur groupes froids, Contrat de
+        Performance Énergétique, et séchage solaire agricole (fiche{" "}
+        <strong>AGRI-EQ-110</strong>). Voir le catalogue ci-dessus.
+      </p>
+    ),
+  },
+  {
     question: "Énergies Plus est-il un organisme d'État ?",
     plainAnswer:
-      "Non. Énergies Plus est une entreprise privée. Elle accompagne ses clients dans le cadre du dispositif public des CEE, mais n'est ni un service de l'État ni un organisme public, et n'utilise aucun symbole officiel de la République française.",
+      "Non. Énergies Plus est une entreprise privée, certifiée RGE. Elle accompagne ses clients dans le cadre du dispositif public des CEE, mais n'est ni un service de l'État ni un organisme public, et n'utilise aucun symbole officiel de la République française.",
     answer: (
       <p>
-        <strong>Non.</strong> Énergies Plus est une entreprise privée. Elle
-        accompagne ses clients dans le cadre du dispositif public des CEE, mais
-        n&apos;est ni un service de l&apos;État ni un organisme public.
-      </p>
-    ),
-  },
-  {
-    question: "Quelles opérations accompagnez-vous aujourd'hui ?",
-    plainAnswer:
-      "Le séchage solaire agricole et forestier (fiche AGRI-EQ-110) dispose d'un accompagnement complet. Les autres fiches du catalogue sont en cours d'ouverture : contactez-nous pour vérifier votre éligibilité.",
-    answer: (
-      <p>
-        Le séchage solaire agricole et forestier (fiche{" "}
-        <strong>AGRI-EQ-110</strong>) est pleinement accompagné. Les autres
-        fiches du catalogue s&apos;ouvrent progressivement — appelez-nous pour
-        votre projet.
-      </p>
-    ),
-  },
-  {
-    question: "Combien coûte votre accompagnement ?",
-    plainAnswer:
-      "Le premier échange et l'étude d'éligibilité sont gratuits et sans engagement. Les modalités de rémunération sont présentées en toute transparence avant tout engagement de votre part.",
-    answer: (
-      <p>
-        Le premier échange et l&apos;étude d&apos;éligibilité sont gratuits et
-        sans engagement. Les modalités sont présentées en toute transparence
-        avant tout engagement.
+        <strong>Non.</strong> Énergies Plus est une entreprise privée, certifiée
+        RGE. Elle accompagne ses clients dans le cadre du dispositif public des
+        CEE, mais n&apos;est ni un service de l&apos;État ni un organisme public.
       </p>
     ),
   },
@@ -129,7 +153,7 @@ const FAQ_ITEMS: FaqItem[] = [
 export const metadata: Metadata = {
   title: "Les aides CEE, transformées en travaux financés",
   description:
-    "Énergies Plus accompagne particuliers et professionnels sur les opérations CEE : vérification d'éligibilité, montage du dossier avant devis, suivi jusqu'aux travaux. Catalogue des fiches CEE les plus courantes.",
+    "Énergies Plus (anciennement Bat Énergie) accompagne bailleurs sociaux, établissements de santé, collectivités, copropriétés et industriels sur les opérations CEE : calorifugeage, GTB, isolation, éclairage LED, récupération de chaleur. Étude d'éligibilité gratuite.",
   alternates: { canonical: "/" },
 };
 
@@ -140,20 +164,20 @@ export default function HomePage() {
 
       <main id="contenu">
         <Hero
-          eyebrow="Conseil CEE — tous secteurs"
-          title="Les Certificats d'Économies d'Énergie,"
-          titleAccent="transformés en travaux financés."
-          subtitle="Énergies Plus identifie la bonne fiche, sécurise votre dossier avant la signature du devis, et vous suit jusqu'à la réception du chantier. Résidentiel, tertiaire, industrie, agriculture, réseaux, transport."
-          note="Le catalogue des fiches CEE évolue régulièrement — faites vérifier votre projet avant de vous engager."
+          eyebrow="Conseil & travaux CEE — depuis 2015"
+          title="Vos travaux d'économies d'énergie,"
+          titleAccent="souvent financés à 100 %."
+          subtitle="Énergies Plus (anciennement Bat Énergie) identifie la bonne fiche CEE, sécurise votre dossier avant la signature du devis et coordonne le chantier jusqu'au contrôle COFRAC. Bailleurs sociaux, santé, collectivités, copropriétés, industrie, agriculture."
+          note="Le dossier CEE doit être engagé avant la signature du devis — faites vérifier votre projet avant de vous engager."
           primaryCta={{ label: "Vérifier mon éligibilité", href: "#contact" }}
-          secondaryCta={{ label: "Voir le catalogue", href: "#catalogue" }}
-          image="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1900&q=80&auto=format&fit=crop"
-          imageAlt="Éoliennes et panneaux solaires dans un paysage de campagne"
+          secondaryCta={{ label: "Voir le catalogue des fiches", href: "#catalogue" }}
+          image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1900&q=80&auto=format&fit=crop"
+          imageAlt="Façade d'un immeuble collectif"
           chips={[
-            { value: "Gratuite", label: "Étude d'éligibilité" },
-            { value: "Avant devis", label: "Montage du dossier" },
-            { value: "6 secteurs", label: "Couverts par le dispositif" },
-            { value: "France", label: "Intervention nationale" },
+            { value: "Depuis 2015", label: "Activité de l'équipe" },
+            { value: "+4 000", label: "Bâtiments accompagnés" },
+            { value: "RGE", label: "Entreprise certifiée" },
+            { value: "COFRAC", label: "Contrôle après travaux" },
           ]}
         />
 
@@ -165,17 +189,48 @@ export default function HomePage() {
 
         <HowItWorks
           id="methode"
-          title="Notre méthode, en 4 temps"
-          description="Le même fil conducteur, quelle que soit la fiche : du premier échange au versement de la prime."
+          title="Notre méthode, en 4 étapes"
+          description="Le même fil conducteur pour chaque fiche : de l'audit au contrôle indépendant."
           steps={STEPS}
         />
+
+        {/* Engagements chantier */}
+        <section className="border-b border-border bg-background py-16 sm:py-20">
+          <div className="container">
+            <Reveal className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-600">
+                Sur site
+              </p>
+              <h2 className="display mt-3 text-2xl text-foreground sm:text-3xl">
+                Des travaux menés <em>sans perturber</em> l&apos;activité
+              </h2>
+            </Reveal>
+            <Stagger className="mt-8 grid gap-6 sm:grid-cols-3">
+              {ENGAGEMENTS.map((e) => (
+                <StaggerItem key={e.title} as="div">
+                  <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+                      <e.icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="mt-3 text-base font-semibold text-foreground">
+                      {e.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {e.body}
+                    </p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </section>
 
         <TrustSection
           id="references"
           eyebrow="Références"
           title="Une expertise du dispositif, pas un intermédiaire de plus"
-          description="Les preuves ci-dessous seront complétées par Énergies Plus avec ses références réelles."
-          showCertifications={false}
+          description="L'équipe accompagne des patrimoines complets depuis 2015, avec un contrôle COFRAC systématique."
+          showCredentials
         />
 
         <Faq

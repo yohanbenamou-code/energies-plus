@@ -72,12 +72,18 @@ export function CeeMechanism() {
           ))}
         </Stagger>
 
-        <Reveal className="mt-8 max-w-3xl">
+        <Reveal className="mt-8 max-w-3xl space-y-3">
           <p className="rounded-xl border-l-4 border-accent bg-accent/5 px-4 py-3 text-sm text-foreground">
+            La prime CEE est <strong>cumulable avec MaPrimeRénov&apos;</strong> :
+            selon l&apos;opération et votre éligibilité, l&apos;ensemble peut
+            couvrir tout ou une large part du coût des travaux, sans avance de
+            trésorerie.
+          </p>
+          <p className="rounded-xl border-l-4 border-border bg-muted/40 px-4 py-3 text-sm text-muted-foreground">
             Le volume officiel de chaque aide s&apos;exprime en{" "}
-            <strong>kWh cumac</strong>. Sa valeur en euros varie selon le marché
-            et votre situation : nous ne communiquons jamais de montant garanti
-            avant l&apos;étude.
+            <strong className="text-foreground">kWh cumac</strong>. Sa valeur en
+            euros varie selon le marché et votre situation : nous ne communiquons
+            jamais de montant garanti avant l&apos;étude.
           </p>
         </Reveal>
       </div>

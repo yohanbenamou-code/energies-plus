@@ -1,23 +1,23 @@
 import type { CeeOperation, CeeSectorKey } from "@/types/operation";
 
 /**
- * Catalogue des opérations standardisées CEE.
+ * Catalogue des opérations CEE accompagnées par Énergies Plus.
  *
- * - `status: "live"`  → dispose d'une page /solutions/[slug] complète et
- *   d'un barème vérifié (aujourd'hui : AGRI-EQ-110 uniquement).
- * - `status: "coming-soon"` → entrée de catalogue : code + intitulé officiels
- *   publiés par le Ministère de la Transition Écologique, description
- *   générique, AUCUN barème ni montant. Accompagnement à activer.
+ * Les codes et intitulés proviennent des opérations standardisées publiées
+ * par le Ministère de la Transition Écologique et du dossier de références
+ * chantier de l'équipe (activité menée sous l'enseigne « Bat Énergie »
+ * depuis 2015). Les descriptions sont celles de l'équipe.
  *
- * EXTENSIBILITÉ : pour publier une nouvelle fiche, passer son entrée en
- * "live" et renseigner heroTitle/heroSubtitle/variants/coefficients/…
+ * - `status: "live"`  → page /solutions/[slug] complète + barème vérifié
+ *   (aujourd'hui : AGRI-EQ-110).
+ * - `status: "coming-soon"` → entrée de catalogue : aucun barème ni montant.
  *
- * TODO: Yohan/Énergies Plus — confirmer et compléter la liste des fiches
- * réellement accompagnées ; certaines opérations évoluent ou sont abrogées.
+ * TODO: Yohan/Énergies Plus — arbitrer la mise en avant, ajouter/retirer des
+ * fiches selon l'actualité réglementaire (certaines évoluent ou sont abrogées).
  */
 export const operations: CeeOperation[] = [
   /* ------------------------------------------------------------------ */
-  /* AGRICULTURE                                                         */
+  /* AGRICULTURE — fiche pilote avec page dédiée                         */
   /* ------------------------------------------------------------------ */
   {
     slug: "agri-eq-110-sechage-solaire-agricole",
@@ -25,8 +25,7 @@ export const operations: CeeOperation[] = [
     status: "live",
     sectorKey: "AGRI",
     sector: "Agriculture — produits et co-produits agricoles et forestiers",
-    title:
-      "Séchage solaire par insufflation d'air (panneaux solaires hybrides)",
+    title: "Séchage solaire par insufflation d'air (panneaux solaires hybrides)",
     pitch:
       "Séchez foin, céréales, plantes aromatiques ou bois à l'air chaud solaire, avec une aide qui couvre une part importante de l'installation.",
     shortDescription:
@@ -86,83 +85,128 @@ export const operations: CeeOperation[] = [
     ],
   },
 
+  /* ------------------------------------------------------------------ */
+  /* ISOLATION DES RÉSEAUX — le cœur de métier de l'équipe              */
+  /* ------------------------------------------------------------------ */
   {
-    slug: "agri-th-102-recuperateur-chaleur-tank-a-lait",
-    code: "AGRI-TH-102",
+    slug: "bat-th-146-calorifugeage-reseaux-tertiaire",
+    code: "BAT-TH-146",
     status: "coming-soon",
-    sectorKey: "AGRI",
-    sector: "Agriculture — élevage laitier",
-    title: "Récupérateur de chaleur sur groupe froid de tank à lait",
+    sectorKey: "BAT",
+    sector: "Bâtiment tertiaire — réseaux",
+    title: "Isolation des réseaux de chauffage et d'eau chaude sanitaire",
     pitch:
-      "Récupérer la chaleur rejetée par le refroidissement du lait pour produire de l'eau chaude sanitaire à la ferme.",
+      "Le calorifugeage des tuyauteries en sous-sol, chaufferie et parkings : jusqu'à 15 % d'économies, souvent 100 % financé.",
     shortDescription:
-      "Installation d'un récupérateur de chaleur sur le groupe de production de froid d'un tank à lait, pour valoriser l'énergie fatale.",
+      "Pose de coquilles isolantes sur les canalisations d'eau chaude et de chauffage situées hors volume chauffé d'un bâtiment tertiaire (hôpitaux, EHPAD, collectivités).",
     image:
-      "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1000&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80&auto=format&fit=crop",
   },
   {
-    slug: "agri-eq-101-pre-refroidisseur-laitier",
-    code: "AGRI-EQ-101",
+    slug: "bar-th-160-calorifugeage-reseaux-residentiel",
+    code: "BAR-TH-160",
     status: "coming-soon",
-    sectorKey: "AGRI",
-    sector: "Agriculture — élevage laitier",
-    title: "Pré-refroidisseur pour le lait",
+    sectorKey: "BAR",
+    sector: "Bâtiment résidentiel — réseaux",
+    title: "Isolation d'un réseau hydraulique de chauffage",
     pitch:
-      "Abaisser la température du lait avant le tank pour réduire la consommation du groupe froid.",
+      "Le calorifugeage des immeubles collectifs et copropriétés : des dizaines de kilomètres de réseaux traités chaque année.",
     shortDescription:
-      "Mise en place d'un échangeur pré-refroidisseur sur l'installation de traite, en amont du tank à lait.",
+      "Isolation des canalisations de chauffage et d'eau chaude sanitaire circulant dans les parties communes non chauffées d'un immeuble d'habitation collectif.",
     image:
-      "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=1000&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80&auto=format&fit=crop",
+  },
+  {
+    slug: "bat-th-155-points-singuliers-tertiaire",
+    code: "BAT-TH-155",
+    status: "coming-soon",
+    sectorKey: "BAT",
+    sector: "Bâtiment tertiaire — réseaux",
+    title: "Isolation des points singuliers d'un réseau",
+    pitch:
+      "Vannes, brides, piquages : des housses isolantes démontables sur les points souvent oubliés du calorifugeage.",
+    shortDescription:
+      "Mise en place de matelas ou housses isolantes sur les points singuliers (vannes, clapets, brides) d'un réseau de chauffage ou d'ECS en bâtiment tertiaire.",
+    image:
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80&auto=format&fit=crop",
+  },
+  {
+    slug: "bar-th-161-points-singuliers-residentiel",
+    code: "BAR-TH-161",
+    status: "coming-soon",
+    sectorKey: "BAR",
+    sector: "Bâtiment résidentiel — réseaux",
+    title: "Isolation des points singuliers (résidentiel)",
+    pitch:
+      "Le complément indispensable du calorifugeage en copropriété, chiffré au point traité.",
+    shortDescription:
+      "Pose de housses isolantes sur les vannes, clapets et brides d'un réseau hydraulique de chauffage collectif d'habitation.",
+    image:
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&q=80&auto=format&fit=crop",
   },
 
   /* ------------------------------------------------------------------ */
-  /* BÂTIMENT RÉSIDENTIEL                                                */
+  /* ISOLATION DE L'ENVELOPPE                                            */
   /* ------------------------------------------------------------------ */
   {
-    slug: "bar-en-101-isolation-combles-toiture",
+    slug: "bat-en-103-plancher-bas-tertiaire",
+    code: "BAT-EN-103",
+    status: "coming-soon",
+    sectorKey: "BAT",
+    sector: "Bâtiment tertiaire — enveloppe",
+    title: "Isolation d'un plancher bas",
+    pitch:
+      "Sous-sols, parkings, vides sanitaires : 7 à 10 % de déperditions en moins par le sol.",
+    shortDescription:
+      "Isolation en sous-face des planchers bas d'un bâtiment tertiaire situés au-dessus de locaux non chauffés.",
+    image:
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80&auto=format&fit=crop",
+  },
+  {
+    slug: "bat-en-101-combles-toiture-tertiaire",
+    code: "BAT-EN-101",
+    status: "coming-soon",
+    sectorKey: "BAT",
+    sector: "Bâtiment tertiaire — enveloppe",
+    title: "Isolation de combles ou de toitures",
+    pitch:
+      "Jusqu'à 30 % des pertes de chaleur passent par le toit d'un bâtiment mal isolé.",
+    shortDescription:
+      "Mise en place d'un procédé d'isolation thermique en combles perdus ou en toiture d'un bâtiment tertiaire existant.",
+    image:
+      "https://images.unsplash.com/photo-1489514354504-1653aa90e34e?w=1200&q=80&auto=format&fit=crop",
+  },
+  {
+    slug: "bar-en-101-combles-toiture-residentiel",
     code: "BAR-EN-101",
     status: "coming-soon",
     sectorKey: "BAR",
     sector: "Bâtiment résidentiel — enveloppe",
-    title: "Isolation de combles ou de toitures",
+    title: "Isolation de combles ou de toitures (résidentiel)",
     pitch:
-      "Le poste de déperdition n°1 d'un logement. Une des opérations CEE les plus demandées.",
+      "Projection ou laine déroulée, rapide et non intrusive, avec des économies dès les premiers mois.",
     shortDescription:
-      "Mise en place d'un procédé d'isolation thermique en combles perdus ou en rampants de toiture d'un bâtiment résidentiel existant.",
+      "Isolation thermique des combles perdus ou des rampants de toiture d'un logement ou d'un immeuble d'habitation.",
     image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80&auto=format&fit=crop",
   },
   {
-    slug: "bar-th-171-pompe-a-chaleur-air-eau",
-    code: "BAR-TH-171",
+    slug: "bar-en-102-isolation-murs-residentiel",
+    code: "BAR-EN-102",
     status: "coming-soon",
     sectorKey: "BAR",
-    sector: "Bâtiment résidentiel — chauffage",
-    title: "Pompe à chaleur de type air/eau",
+    sector: "Bâtiment résidentiel — enveloppe",
+    title: "Isolation des murs",
     pitch:
-      "Remplacer une chaudière par une PAC air/eau performante pour le chauffage et l'eau chaude.",
+      "Par l'extérieur ou l'intérieur, l'un des postes les plus rentables en habitation collective.",
     shortDescription:
-      "Installation d'une pompe à chaleur air/eau assurant le chauffage central d'une maison individuelle ou d'un appartement.",
+      "Mise en place d'un procédé d'isolation thermique sur des murs donnant sur l'extérieur d'un bâtiment résidentiel existant.",
     image:
-      "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?w=1000&q=80&auto=format&fit=crop",
-  },
-  {
-    slug: "bar-th-143-systeme-solaire-combine",
-    code: "BAR-TH-143",
-    status: "coming-soon",
-    sectorKey: "BAR",
-    sector: "Bâtiment résidentiel — énergies renouvelables",
-    title: "Système solaire combiné",
-    pitch:
-      "Capteurs solaires thermiques pour couvrir une partie du chauffage et de l'eau chaude.",
-    shortDescription:
-      "Mise en place d'un système solaire combiné (chauffage + eau chaude sanitaire) dans un logement existant.",
-    image:
-      "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1000&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80&auto=format&fit=crop",
   },
 
   /* ------------------------------------------------------------------ */
-  /* BÂTIMENT TERTIAIRE                                                  */
+  /* CHAUFFAGE, RÉGULATION & PILOTAGE                                    */
   /* ------------------------------------------------------------------ */
   {
     slug: "bat-th-116-gestion-technique-du-batiment",
@@ -172,121 +216,89 @@ export const operations: CeeOperation[] = [
     sector: "Bâtiment tertiaire — pilotage",
     title: "Système de gestion technique du bâtiment (GTB)",
     pitch:
-      "Piloter chauffage, ventilation et éclairage depuis une supervision : un des plus gros gisements du tertiaire.",
+      "Piloter chauffage, ventilation et éclairage depuis une supervision unique. Attendu par le décret tertiaire.",
     shortDescription:
-      "Mise en place ou amélioration d'un système de gestion technique du bâtiment (GTB) de classe A ou B sur un bâtiment tertiaire.",
+      "Mise en place ou amélioration d'un système de gestion technique du bâtiment de classe A ou B sur un bâtiment tertiaire.",
     image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80&auto=format&fit=crop",
   },
   {
-    slug: "bat-eq-127-luminaire-led-tertiaire",
+    slug: "bar-th-117-robinet-thermostatique",
+    code: "BAR-TH-117",
+    status: "coming-soon",
+    sectorKey: "BAR",
+    sector: "Bâtiment résidentiel — régulation",
+    title: "Robinet thermostatique",
+    pitch:
+      "Réguler la chaleur pièce par pièce, sans gros travaux, sur les radiateurs à eau chaude existants.",
+    shortDescription:
+      "Pose de robinets thermostatiques sur les émetteurs d'un réseau de chauffage à eau chaude d'un logement ou d'un immeuble collectif.",
+    image:
+      "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=80&auto=format&fit=crop",
+  },
+  {
+    slug: "desembouage-equilibrage-reseaux",
+    code: "Chaufferie",
+    status: "coming-soon",
+    sectorKey: "BAT",
+    sector: "Chaufferie collective — performance",
+    title: "Désembouage & équilibrage des organes",
+    pitch:
+      "Nettoyer les circuits, régler vannes et pompes : jusqu'à 15 à 25 % d'économies sans changer d'équipement.",
+    shortDescription:
+      "Nettoyage hydraulique des réseaux de chauffage et réglage des organes de régulation (vannes, pompes, thermostats) d'une chaufferie collective. Éligible aux CEE.",
+    image:
+      "https://images.unsplash.com/photo-1558442074-3c19857bc1dc?w=1200&q=80&auto=format&fit=crop",
+  },
+
+  /* ------------------------------------------------------------------ */
+  /* FROID, RÉCUPÉRATION DE CHALEUR & ÉCLAIRAGE                          */
+  /* ------------------------------------------------------------------ */
+  {
+    slug: "recuperation-chaleur-groupes-froids",
+    code: "Groupe froid",
+    status: "coming-soon",
+    sectorKey: "IND",
+    sector: "Industrie & tertiaire — froid",
+    title: "Récupération de chaleur sur les groupes froids",
+    pitch:
+      "Valoriser l'énergie rejetée par le refroidissement pour chauffer ou produire de l'eau chaude. Aussi : haute pression flottante.",
+    shortDescription:
+      "Installation d'un échangeur de récupération de chaleur (et/ou d'une régulation haute pression flottante) sur un groupe de production de froid existant.",
+    image:
+      "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80&auto=format&fit=crop",
+  },
+  {
+    slug: "bat-eq-127-eclairage-led",
     code: "BAT-EQ-127",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Bâtiment tertiaire — éclairage",
-    title: "Luminaire à modules LED",
+    sector: "Bâtiment tertiaire & extérieur — éclairage",
+    title: "Éclairage à modules LED (intérieur & extérieur)",
     pitch:
-      "Rénover l'éclairage d'un local d'activité par des luminaires LED performants avec détection.",
+      "Jusqu'à 80 % de consommation en moins, et jusqu'à 50 % de plus avec détection de présence.",
     shortDescription:
-      "Remplacement de luminaires existants par des luminaires à modules LED dans un bâtiment tertiaire.",
+      "Remplacement des luminaires existants par des luminaires à modules LED performants, avec détection ou gradation, en bâtiment tertiaire ou éclairage extérieur.",
     image:
-      "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80&auto=format&fit=crop",
   },
 
   /* ------------------------------------------------------------------ */
-  /* INDUSTRIE                                                           */
+  /* CADRE CONTRACTUEL                                                   */
   /* ------------------------------------------------------------------ */
   {
-    slug: "ind-ut-121-moto-variateur-electrique",
-    code: "IND-UT-121",
+    slug: "contrat-performance-energetique-cpe",
+    code: "CPE",
     status: "coming-soon",
-    sectorKey: "IND",
-    sector: "Industrie — utilités",
-    title: "Moto-variateur / variation électronique de vitesse",
+    sectorKey: "BAT",
+    sector: "Tous bâtiments — engagement de résultat",
+    title: "Contrat de Performance Énergétique (Pack CPE)",
     pitch:
-      "Adapter la vitesse d'un moteur à son besoin réel (pompes, ventilateurs) au lieu de le brider.",
+      "Un bouquet de travaux avec économies garanties sur 5 ans : si l'objectif n'est pas atteint, le surplus est remboursé.",
     shortDescription:
-      "Mise en place d'un variateur électronique de vitesse sur un moteur asynchrone d'une installation industrielle.",
+      "Montage d'un bouquet de travaux (récupération de chaleur, HP flottante, équilibrage, isolation, LED) assorti d'un Contrat de Performance Énergétique bonifiant la prime CEE. Objectif ≥ 20 % d'économies garanti ≥ 5 ans.",
     image:
-      "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&q=80&auto=format&fit=crop",
-  },
-  {
-    slug: "ind-ba-112-calorifugeage-points-singuliers",
-    code: "IND-BA-112",
-    status: "coming-soon",
-    sectorKey: "IND",
-    sector: "Industrie — réseaux",
-    title: "Calorifugeage des points singuliers (matelas isolants)",
-    pitch:
-      "Isoler vannes, brides et piquages d'un réseau chaud ou froid avec des matelas démontables.",
-    shortDescription:
-      "Mise en place de housses ou matelas isolants sur les points singuliers d'un réseau d'une installation industrielle.",
-    image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1000&q=80&auto=format&fit=crop",
-  },
-  {
-    slug: "ind-ut-134-recuperation-chaleur-sur-froid",
-    code: "IND-UT-134",
-    status: "coming-soon",
-    sectorKey: "IND",
-    sector: "Industrie — récupération de chaleur",
-    title: "Récupération de chaleur sur un groupe de production de froid",
-    pitch:
-      "Valoriser la chaleur rejetée par la production de froid pour de l'eau chaude ou du préchauffage.",
-    shortDescription:
-      "Installation d'un système de récupération de chaleur sur le condenseur d'un groupe de production de froid industriel.",
-    image:
-      "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&q=80&auto=format&fit=crop",
-  },
-
-  /* ------------------------------------------------------------------ */
-  /* RÉSEAUX                                                             */
-  /* ------------------------------------------------------------------ */
-  {
-    slug: "res-ch-108-raccordement-reseau-de-chaleur",
-    code: "RES-CH-108",
-    status: "coming-soon",
-    sectorKey: "RES",
-    sector: "Réseaux — chaleur",
-    title: "Raccordement d'un bâtiment à un réseau de chaleur",
-    pitch:
-      "Se raccorder à un réseau de chaleur alimenté majoritairement par des énergies renouvelables et de récupération.",
-    shortDescription:
-      "Raccordement d'un bâtiment résidentiel ou tertiaire à un réseau de chaleur classé, incluant la sous-station.",
-    image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1000&q=80&auto=format&fit=crop",
-  },
-  {
-    slug: "res-ec-104-renovation-eclairage-public",
-    code: "RES-EC-104",
-    status: "coming-soon",
-    sectorKey: "RES",
-    sector: "Réseaux — éclairage public",
-    title: "Rénovation de l'éclairage extérieur",
-    pitch:
-      "Remplacer les points lumineux vétustes d'une commune par des luminaires LED pilotés.",
-    shortDescription:
-      "Rénovation d'installations d'éclairage extérieur (voirie, parkings) par des luminaires performants avec régulation.",
-    image:
-      "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=1000&q=80&auto=format&fit=crop",
-  },
-
-  /* ------------------------------------------------------------------ */
-  /* TRANSPORT                                                           */
-  /* ------------------------------------------------------------------ */
-  {
-    slug: "tra-se-114-formation-ecoconduite",
-    code: "TRA-SE-114",
-    status: "coming-soon",
-    sectorKey: "TRA",
-    sector: "Transport — exploitation",
-    title: "Formation à l'écoconduite des conducteurs",
-    pitch:
-      "Former les conducteurs d'une flotte à la conduite économe : des litres en moins, tout de suite.",
-    shortDescription:
-      "Programme de formation à l'écoconduite pour les conducteurs de véhicules d'une flotte professionnelle.",
-    image:
-      "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=1000&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80&auto=format&fit=crop",
   },
 ];
 

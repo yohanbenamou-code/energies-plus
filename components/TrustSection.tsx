@@ -1,18 +1,26 @@
 import * as React from "react";
-import { Check, Star } from "lucide-react";
+import { Check } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion";
-import { site } from "@/data/site";
+import {
+  CHANTIER_HIGHLIGHTS,
+  CREDENTIALS,
+  NAMED_CLIENTS,
+  TRACK_RECORD,
+} from "@/data/references";
 
 interface TrustSectionProps {
   id?: string;
   eyebrow?: string;
   title: string;
   description?: string;
+  /** Points de réassurance additionnels (page solution). */
   points?: string[];
-  showCertifications?: boolean;
+  showCredentials?: boolean;
   className?: string;
 }
+
+const currentYear = new Date().getFullYear();
 
 export function TrustSection({
   id = "references",
@@ -20,20 +28,20 @@ export function TrustSection({
   title,
   description,
   points,
-  showCertifications = true,
+  showCredentials = true,
   className,
 }: TrustSectionProps) {
   return (
     <section
       id={id}
-      className={className ?? "border-b border-border bg-background py-20 sm:py-24"}
+      className={className ?? "border-b border-border bg-background py-20 sm:py-28"}
     >
       <div className="container">
         <Reveal className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-600">
             {eyebrow}
           </p>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="display mt-3 text-3xl text-foreground sm:text-4xl">
             {title}
           </h2>
           {description ? (
@@ -43,8 +51,40 @@ export function TrustSection({
           ) : null}
         </Reveal>
 
+        {/* Repères chiffrés issus du dossier de l'équipe */}
+        <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerItem as="div">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <p className="display text-4xl text-primary-700">
+                {currentYear - TRACK_RECORD.sinceYear} ans
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                d&apos;expérience du dispositif CEE (depuis {TRACK_RECORD.sinceYear})
+              </p>
+            </div>
+          </StaggerItem>
+          <StaggerItem as="div">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <p className="display text-4xl text-primary-700">
+                +{TRACK_RECORD.buildings.toLocaleString("fr-FR")}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                bâtiments accompagnés
+              </p>
+            </div>
+          </StaggerItem>
+          {CHANTIER_HIGHLIGHTS.slice(0, 2).map((h) => (
+            <StaggerItem key={h.label} as="div">
+              <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+                <p className="display text-4xl text-primary-700">{h.metric}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{h.label}</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+
         {points && points.length > 0 ? (
-          <Stagger className="mt-10 grid gap-4 sm:grid-cols-2">
+          <Stagger className="mt-8 grid gap-4 sm:grid-cols-2">
             {points.map((point) => (
               <StaggerItem key={point} as="div">
                 <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-soft">
@@ -60,9 +100,9 @@ export function TrustSection({
           </Stagger>
         ) : null}
 
-        {showCertifications ? (
+        {showCredentials ? (
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
-            {site.certifications.map((cert) => (
+            {CREDENTIALS.map((cert) => (
               <span
                 key={cert}
                 className="flex items-center gap-2 text-sm text-muted-foreground"
@@ -74,41 +114,28 @@ export function TrustSection({
           </div>
         ) : null}
 
-        {/* Logos clients / partenaires + note d'avis — emplacements neutres */}
-        <div className="mt-10 grid gap-6 rounded-2xl border border-dashed border-border bg-muted/20 p-6 lg:grid-cols-[1.4fr_1fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Clients &amp; partenaires
-            </p>
-            <div className="mt-4 grid grid-cols-3 gap-4 sm:grid-cols-5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="flex h-12 items-center justify-center rounded-lg border border-border bg-background text-[10px] text-muted-foreground"
-                >
-                  Logo
-                </div>
-              ))}
-            </div>
-            <p className="mt-3 text-xs text-muted-foreground">
-              {/* TODO: placeholder à remplacer par Yohan/Énergies Plus */}
-              Logos et autorisations d&apos;utilisation à fournir par Énergies
-              Plus.
-            </p>
-          </div>
-          <div className="flex flex-col justify-center border-t border-border pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
-            <div className="flex items-center gap-1 text-accent">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-current" />
-              ))}
-            </div>
-            <p className="mt-2 text-xs text-muted-foreground">
-              {/* TODO: placeholder à remplacer par Yohan/Énergies Plus */}
-              Note et nombre d&apos;avis à renseigner depuis une source vérifiable
-              (Google, Trustpilot, Pages Jaunes…). Attestation d&apos;assurance
-              décennale des installateurs partenaires à ajouter.
-            </p>
-          </div>
+        {/* Clients cités dans le dossier de références de l'équipe */}
+        <div className="mt-10 rounded-2xl border border-border bg-secondary/40 p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            Ils ont fait appel à l&apos;équipe
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-2">
+            {NAMED_CLIENTS.map((client) => (
+              <li
+                key={client}
+                className="rounded-full border border-border bg-background px-3 py-1 text-sm font-medium text-foreground"
+              >
+                {client}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+            {/* TODO: Yohan/Énergies Plus — valider les droits de citation et
+                remplacer par un mur de logos autorisés. */}
+            Sélection de références issues du dossier chantier de l&apos;équipe
+            (activité menée sous l&apos;enseigne « Bat Énergie »). Liste complète
+            sur demande.
+          </p>
         </div>
       </div>
     </section>

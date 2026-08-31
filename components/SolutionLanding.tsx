@@ -185,7 +185,7 @@ export function SolutionLanding({ operation }: { operation: LiveCeeOperation }) 
             "Le dossier d'aide est monté avant la signature du devis.",
             "Vous choisissez votre installateur ; on lui transmet un cahier des charges précis.",
           ]}
-          showCertifications
+          showCredentials
         />
         <Testimonials />
         <ServiceAreaSection />

@@ -12,8 +12,11 @@ import type { CeeOperation, CeeSectorKey } from "@/types/operation";
 
 type Filter = "ALL" | CeeSectorKey;
 
+const FICHE_CODE = /^[A-Z]{3,4}-[A-Z]{2}-\d+/;
+
 function OperationCard({ operation }: { operation: CeeOperation }) {
   const isLive = operation.status === "live";
+  const isFiche = FICHE_CODE.test(operation.code);
 
   const inner = (
     <>
@@ -30,8 +33,13 @@ function OperationCard({ operation }: { operation: CeeOperation }) {
             )}
           />
         ) : null}
-        <div className="absolute left-3 top-3 rounded-md bg-white/95 px-2 py-1 font-mono text-[11px] font-semibold text-primary-700 shadow-sm">
-          {operation.code}
+        <div
+          className={cn(
+            "absolute left-3 top-3 rounded-md bg-white/95 px-2 py-1 text-[11px] font-semibold text-primary-700 shadow-sm",
+            isFiche ? "font-mono" : "uppercase tracking-wide",
+          )}
+        >
+          {isFiche ? operation.code : "Opération CEE"}
         </div>
         {!isLive ? (
           <div className="absolute inset-0 bg-primary-900/45" />

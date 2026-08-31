@@ -70,6 +70,7 @@ export function Footer() {
             <p className="text-sm font-semibold">Identité</p>
             <ul className="mt-4 space-y-2.5 text-sm text-white/70">
               <li>{site.legal.companyName}</li>
+              <li>Activité anciennement menée sous l&apos;enseigne « Bat Énergie »</li>
               <li>SIRET {site.legal.siret}</li>
               <li>{site.legal.rcs}</li>
               <li>{site.serviceArea}</li>
