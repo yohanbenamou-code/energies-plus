@@ -153,7 +153,7 @@ const FAQ_ITEMS: FaqItem[] = [
 export const metadata: Metadata = {
   title: "Les aides CEE, transformées en travaux financés",
   description:
-    "Énergies Plus (anciennement Bat Énergie) accompagne bailleurs sociaux, établissements de santé, collectivités, copropriétés et industriels sur les opérations CEE : calorifugeage, GTB, isolation, éclairage LED, récupération de chaleur. Étude d'éligibilité gratuite.",
+    "Énergies Plus accompagne bailleurs sociaux, établissements de santé, collectivités, copropriétés et industriels sur les opérations CEE : calorifugeage, GTB, isolation, éclairage LED, récupération de chaleur. Étude d'éligibilité gratuite.",
   alternates: { canonical: "/" },
 };
 
@@ -167,7 +167,7 @@ export default function HomePage() {
           eyebrow="Conseil & travaux CEE — depuis 2015"
           title="Vos travaux d'économies d'énergie,"
           titleAccent="souvent financés à 100 %."
-          subtitle="Énergies Plus (anciennement Bat Énergie) identifie la bonne fiche CEE, sécurise votre dossier avant la signature du devis et coordonne le chantier jusqu'au contrôle COFRAC. Bailleurs sociaux, santé, collectivités, copropriétés, industrie, agriculture."
+          subtitle="Énergies Plus identifie la bonne fiche CEE, sécurise votre dossier avant la signature du devis et coordonne le chantier jusqu'au contrôle COFRAC. Bailleurs sociaux, santé, collectivités, copropriétés, industrie, agriculture."
           note="Le dossier CEE doit être engagé avant la signature du devis — faites vérifier votre projet avant de vous engager."
           primaryCta={{ label: "Vérifier mon éligibilité", href: "#contact" }}
           secondaryCta={{ label: "Voir le catalogue des fiches", href: "#catalogue" }}
