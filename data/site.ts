@@ -22,7 +22,8 @@ export const site = {
     phoneDisplay: "07 68 96 15 73",
     phoneHref: "tel:+33768961573",
     email: "contact@energies-plus.fr",
-    hours: "Du lundi au vendredi, 9h — 18h", // TODO: horaires réels à confirmer
+    // Valeur par défaut plausible — à confirmer par Énergies Plus.
+    hours: "Du lundi au vendredi, 9h — 18h",
   },
 
   legal: {
@@ -31,14 +32,40 @@ export const site = {
     siren: "901 997 403",
     address: "27 avenue de Paris, 94300 Vincennes",
     rcs: "RCS Créteil 901 997 403",
-    insurance: "TODO — assurance responsabilité civile / décennale", // TODO
+    // N° TVA intracommunautaire calculé depuis le SIREN (clé = (12 + 3×(SIREN mod 97)) mod 97).
+    // À confirmer par Énergies Plus (valable sous réserve d'assujettissement à la TVA).
+    vat: "FR 02 901 997 403",
+    // Renseignés par Énergies Plus (extrait Kbis) : forme juridique + capital.
+    legalForm: "" as string, // ex. "SAS" / "SARL"
+    capital: "" as string, // ex. "10 000 €"
+    // Personne physique responsable de la publication (souvent le dirigeant).
+    publicationDirector: "" as string,
+    // Assurance responsabilité civile professionnelle / décennale.
+    insurer: "" as string, // nom de l'assureur
+    insurancePolicy: "" as string, // n° de police
+    insuranceArea: "France métropolitaine",
   },
 
+  /**
+   * Hébergeur du site (obligatoire dans les mentions légales). Le site est
+   * déployé sur Vercel : entité et adresse ci-dessous vérifiables publiquement.
+   */
+  host: {
+    name: "Vercel Inc.",
+    address: "340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis",
+    url: "https://vercel.com",
+    contact: "privacy@vercel.com",
+  },
+
+  /**
+   * Réseaux sociaux. Vides tant qu'Énergies Plus n'a pas communiqué les URL.
+   * Dès qu'une valeur est renseignée, elle s'affiche dans le footer et est
+   * ajoutée au `sameAs` du JSON-LD Organization.
+   */
   socials: {
-    // TODO: placeholder à remplacer par Yohan/Énergies Plus
-    linkedin: "", // TODO: URL LinkedIn
-    facebook: "", // TODO: URL Facebook
-    youtube: "", // TODO: URL YouTube
+    linkedin: "",
+    facebook: "",
+    youtube: "",
   },
 
   serviceArea: "Toute la France métropolitaine.",

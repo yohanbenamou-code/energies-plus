@@ -5,13 +5,15 @@ import { Stagger, StaggerItem } from "@/components/motion";
 import { site } from "@/data/site";
 
 /**
- * Témoignages. `site.testimonials` est volontairement vide : aucun faux
- * témoignage n'est publié. Emplacements neutres tant qu'Énergies Plus n'a pas
- * fourni de verbatims réels (recueillis et autorisés).
- * TODO: placeholder à remplacer par Yohan/Énergies Plus.
+ * Témoignages. Tant qu'`site.testimonials` est vide, la section n'est pas
+ * rendue : aucun faux témoignage, aucun encart « à remplir » visible en
+ * production. Dès qu'Énergies Plus ajoute des verbatims réels (recueillis et
+ * autorisés) dans `data/site.ts`, la section apparaît automatiquement.
  */
 export function Testimonials() {
   const hasTestimonials = site.testimonials.length > 0;
+
+  if (!hasTestimonials) return null;
 
   return (
     <section id="avis" className="border-b border-border bg-secondary/40 py-20 sm:py-24">

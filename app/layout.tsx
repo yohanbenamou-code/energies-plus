@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       "Énergies Plus — Les Certificats d'Économies d'Énergie, transformés en travaux financés",
     description:
       "Vérification d'éligibilité, montage du dossier d'aide CEE avant devis, suivi jusqu'aux travaux. Résidentiel, tertiaire, industrie, agriculture, réseaux, transport.",
-    // TODO: placeholder à remplacer par Yohan/Énergies Plus — image Open Graph (1200x630)
+    // Image Open Graph générée par app/opengraph-image.tsx (bloc-marque Énergies Plus).
   },
   twitter: {
     card: "summary_large_image",
@@ -109,7 +109,11 @@ export default function RootLayout({
                 addressCountry: "FR",
               },
               areaServed: "FR",
-              // TODO: placeholder à remplacer par Yohan/Énergies Plus (logo, sameAs réseaux sociaux)
+              sameAs: [
+                site.socials.linkedin,
+                site.socials.facebook,
+                site.socials.youtube,
+              ].filter(Boolean),
             }),
           }}
         />

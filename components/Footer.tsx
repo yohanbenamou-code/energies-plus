@@ -4,6 +4,12 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { site } from "@/data/site";
 
+const SOCIAL_LINKS = [
+  { key: "linkedin", href: site.socials.linkedin, label: "LinkedIn" },
+  { key: "facebook", href: site.socials.facebook, label: "Facebook" },
+  { key: "youtube", href: site.socials.youtube, label: "YouTube" },
+].filter((s) => s.href);
+
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -63,7 +69,21 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-            {/* TODO: placeholder à remplacer par Yohan/Énergies Plus — réseaux sociaux */}
+            {SOCIAL_LINKS.length > 0 ? (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {SOCIAL_LINKS.map(({ key, href, label }) => (
+                  <a
+                    key={key}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-white/15 px-3 py-1 text-xs text-white/70 transition-colors hover:border-accent hover:text-white"
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <div>

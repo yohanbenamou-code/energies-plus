@@ -141,7 +141,8 @@ Voir **`.env.example`**. Toutes optionnelles. Résumé :
 - `generateMetadata()` par page, JSON-LD `Organization` (layout), `Service`
   (homepage) et `FAQPage` (sections FAQ).
 - `app/sitemap.ts` et `app/robots.ts` générés dynamiquement.
-- **TODO** : ajouter une image Open Graph 1200×630 (`app/opengraph-image.*`).
+- Image Open Graph 1200×630 générée par `app/opengraph-image.tsx` (bloc-marque).
+  Pour un visuel fourni : déposer `app/opengraph-image.png` et supprimer le `.tsx`.
 
 ## Déploiement Vercel
 
@@ -163,19 +164,32 @@ Identité renseignée : raison sociale **Énergies Plus**, SIRET
 téléphone 07 68 96 15 73, email contact@energies-plus.fr, domaine de
 production `www.energies-plus.fr`.
 
-Restent à compléter :
+Déjà renseigné / rédigé (rien d'inventé) : identité complète, n° TVA
+intracommunautaire (calculé depuis le SIREN), hébergeur (Vercel Inc.),
+pages Mentions légales et Politique de confidentialité rédigées d'après le
+fonctionnement réel du site, image Open Graph générée, mécanique réseaux
+sociaux + `sameAs` JSON-LD (s'activent dès qu'une URL est saisie),
+section témoignages masquée tant qu'aucun verbatim réel n'est fourni.
 
-- Assurance responsabilité civile / décennale, forme juridique, capital,
-  TVA intracommunautaire, hébergeur, directeur de la publication
-  (`data/site.ts` + `app/mentions-legales`).
-- Horaires d'ouverture réels (`data/site.ts` → `contact.hours`).
-- Chiffres clés de la homepage (`data/site.ts` → `stats`) — laissés `null`,
-  aucun chiffre inventé.
-- Logos clients / partenaires, note d'avis vérifiable, témoignages réels
-  (`data/site.ts`).
-- Logo : `components/Logo.tsx` reconstitue l'emblème fourni en SVG ;
-  remplacer par le fichier vectoriel officiel si disponible.
-- Visuel du hero (illustration SVG dans `components/HeroIllustration.tsx`).
-- Contenu réel des pages Mentions légales et Politique de confidentialité.
-- Image Open Graph 1200×630.
-- IDs de tracking (`.env` : GTM, Meta Pixel, Google Ads).
+Restent à fournir par Énergies Plus (données qui ne peuvent pas être
+déduites — voir `data/site.ts`) :
+
+- **Mentions légales** : forme juridique + capital social (`legal.legalForm`,
+  `legal.capital`), directeur de la publication (`legal.publicationDirector`),
+  assureur RC pro + n° de police (`legal.insurer`, `legal.insurancePolicy`),
+  confirmation du n° de TVA.
+- **RGPD** : durée de conservation si ≠ 3 ans, liste finale des sous-traitants
+  selon l'outil de leads branché (Resend / Supabase / CRM), décision cookies.
+- Horaires d'ouverture réels (`contact.hours` — valeur par défaut posée).
+- Chiffres clés homepage (`stats`) — laissés `null`, masqués tant que vides.
+- Réseaux sociaux (`socials.linkedin` / `facebook` / `youtube`).
+- Témoignages réels (`testimonials`) + note d'avis vérifiable (`rating`).
+- Logos clients autorisés → `public/logos/` + `NAMED_CLIENTS[].logo`
+  (`data/references.ts`).
+- Photos de chantier réelles (remplacent les placeholders Unsplash).
+- Logo vectoriel officiel (SVG) si disponible → `components/Logo.tsx`.
+- Confirmation de la liste des fiches CEE du catalogue (`data/operations.ts`).
+- Variables Vercel : `NEXT_PUBLIC_SITE_URL=https://energies-plus.fr`,
+  Resend **ou** Supabase pour la collecte des leads, et le cas échéant
+  `NEXT_PUBLIC_GTM_ID` / `NEXT_PUBLIC_META_PIXEL_ID` /
+  `NEXT_PUBLIC_GADS_CONVERSION_ID` + `NEXT_PUBLIC_GADS_CONVERSION_LABEL`.
