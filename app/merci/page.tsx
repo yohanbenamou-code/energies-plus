@@ -51,13 +51,18 @@ export default function MerciPage() {
             ({site.contact.hours}).
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
             <Button asChild variant="default">
               <Link href="/">Retour à l&apos;accueil</Link>
             </Button>
             <Button asChild variant="outline">
               <Link href="/solutions/agri-eq-110-sechage-solaire-agricole">
                 Revoir la solution séchage solaire
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/solutions/bat-th-163-pompe-a-chaleur-air-eau-tertiaire">
+                Revoir la solution pompe à chaleur
               </Link>
             </Button>
           </div>

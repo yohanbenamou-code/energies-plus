@@ -125,11 +125,12 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Quelles opérations accompagnez-vous ?",
     plainAnswer:
-      "Isolation des réseaux de chauffage (calorifugeage) et des points singuliers, isolation des planchers, combles et murs, robinets thermostatiques, GTB, éclairage LED, désembouage et équilibrage, récupération de chaleur sur groupes froids, Contrat de Performance Énergétique, et séchage solaire agricole (fiche AGRI-EQ-110, avec page dédiée).",
+      "Pompe à chaleur tertiaire (fiche BAT-TH-163, avec page dédiée), isolation des réseaux de chauffage (calorifugeage) et des points singuliers, isolation des planchers, combles et murs, robinets thermostatiques, GTB, éclairage LED, désembouage et équilibrage, récupération de chaleur sur groupes froids, Contrat de Performance Énergétique, et séchage solaire agricole (fiche AGRI-EQ-110, avec page dédiée).",
     answer: (
       <p>
-        Calorifugeage et points singuliers, isolation des planchers / combles /
-        murs, robinets thermostatiques, GTB, éclairage LED, désembouage et
+        Pompe à chaleur tertiaire (fiche <strong>BAT-TH-163</strong>),
+        calorifugeage et points singuliers, isolation des planchers / combles
+        / murs, robinets thermostatiques, GTB, éclairage LED, désembouage et
         équilibrage, récupération de chaleur sur groupes froids, Contrat de
         Performance Énergétique, et séchage solaire agricole (fiche{" "}
         <strong>AGRI-EQ-110</strong>). Voir le catalogue ci-dessus.

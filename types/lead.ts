@@ -1,7 +1,11 @@
 import { z } from "zod";
 
 /** Origine du lead (quelle page a généré la conversion). */
-export const leadSourceSchema = z.enum(["homepage", "agri-eq-110"]);
+export const leadSourceSchema = z.enum([
+  "homepage",
+  "agri-eq-110",
+  "bat-th-163",
+]);
 export type LeadSource = z.infer<typeof leadSourceSchema>;
 
 /** Quel formulaire a été soumis. */

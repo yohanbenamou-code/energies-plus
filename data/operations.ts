@@ -9,7 +9,9 @@ import type { CeeOperation, CeeSectorKey } from "@/types/operation";
  * depuis 2015). Les descriptions sont celles de l'équipe.
  *
  * - `status: "live"`  → page /solutions/[slug] complète + barème vérifié
- *   (aujourd'hui : AGRI-EQ-110).
+ *   (aujourd'hui : AGRI-EQ-110, BAT-TH-163). Chaque fiche "live" a sa propre
+ *   page de destination dédiée dans components/ (SolutionLanding, PacLanding),
+ *   choisie par slug dans app/solutions/[slug]/page.tsx.
  * - `status: "coming-soon"` → entrée de catalogue : aucun barème ni montant.
  *
  * TODO: Yohan/Énergies Plus — arbitrer la mise en avant, ajouter/retirer des
@@ -82,6 +84,46 @@ export const operations: CeeOperation[] = [
           { zone: "H3", agricole: 17400, forestier: 24100 },
         ],
       },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  /* POMPE À CHALEUR TERTIAIRE — deuxième fiche pilote avec page dédiée  */
+  /* ------------------------------------------------------------------ */
+  {
+    slug: "bat-th-163-pompe-a-chaleur-air-eau-tertiaire",
+    code: "BAT-TH-163",
+    status: "live",
+    sectorKey: "BAT",
+    sector: "Bâtiment tertiaire — chauffage",
+    title: "Pompe à chaleur air/eau pour le chauffage des bâtiments tertiaires",
+    pitch:
+      "Remplacez une chaudière fioul, gaz ou charbon par une pompe à chaleur air/eau : bonus « Coup de pouce Chauffage » pouvant tripler l'aide.",
+    shortDescription:
+      "Mise en place d'une ou plusieurs pompes à chaleur air/eau pour couvrir tout ou partie des besoins de chauffage (et éventuellement d'eau chaude sanitaire) d'un bâtiment tertiaire existant : bureaux, écoles, établissements de santé, commerces, hôtellerie-restauration.",
+    image:
+      "https://images.unsplash.com/photo-1776860150305-108ed577d7d4?w=1400&q=80&auto=format&fit=crop",
+    heroTitle:
+      "Remplacez votre chaudière par une pompe à chaleur, avec une aide de l'État",
+    heroSubtitle:
+      "Une pompe à chaleur air/eau pour chauffer votre bâtiment tertiaire, financée en partie par le dispositif public des Certificats d'Économies d'Énergie — avec un bonus « Coup de pouce Chauffage » qui peut tripler l'aide lorsqu'elle remplace une chaudière fioul, gaz ou charbon. Énergies Plus s'occupe de tout : éligibilité, dossier, installation par des professionnels.",
+    lifespanYears: 22,
+    conditions: [
+      "Bâtiment tertiaire existant depuis plus de 2 ans à la date d'engagement de l'opération",
+      "PAC dimensionnée pour couvrir, en totalité ou en partie, les besoins de chauffage (seul, ou chauffage et eau chaude sanitaire) — une PAC destinée uniquement à l'eau chaude sanitaire n'est pas éligible",
+      "Efficacité énergétique saisonnière (Etas) ≥ 111 % (application basse température) ou ≥ 126 % (moyenne/haute température), pour une puissance ≤ 400 kW",
+      "Coefficient de performance (COP) ≥ 3,4 mesuré selon la norme EN 14511-2, pour une puissance > 400 kW",
+      "Remise obligatoire d'une note de dimensionnement au bénéficiaire",
+      "Installation réalisée par un professionnel",
+      "Bonus « Coup de pouce Chauffage » (x3) lorsque la PAC remplace une chaudière fioul, gaz ou charbon et que le raccordement à un réseau de chaleur est techniquement ou économiquement impossible — conditions et durée fixées par arrêté, vérifiées par nos conseillers au moment du dossier",
+    ],
+    applicableProfiles: [
+      "Bureaux",
+      "Enseignement",
+      "Hôtellerie / Restauration",
+      "Santé",
+      "Commerces",
+      "Autres secteurs tertiaires",
     ],
   },
 
