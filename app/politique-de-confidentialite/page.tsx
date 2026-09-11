@@ -12,12 +12,6 @@ export default function PolitiqueConfidentialitePage() {
 
   return (
     <LegalLayout title="Politique de confidentialité (RGPD)">
-      <p className="rounded-lg border-l-4 border-accent bg-accent/10 px-4 py-3 text-sm text-foreground">
-        Document rédigé sur la base du fonctionnement réel du site. À faire
-        valider par un conseil juridique et à ajuster si les outils utilisés
-        (CRM, emailing, mesure d&apos;audience) évoluent.
-      </p>
-
       <h2>Responsable de traitement</h2>
       <p>
         {legal.companyName} — {legal.address}. Contact : {contact.email},{" "}
