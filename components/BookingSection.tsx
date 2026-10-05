@@ -3,29 +3,50 @@
 import * as React from "react";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { SectionHead } from "@/components/SectionHead";
 import { site } from "@/data/site";
 
+const IFRAME_TITLE = "Agenda de prise de rendez-vous Energie+";
+
 /**
- * Prise de rendez-vous : agenda Google (planning de rendez-vous) intégré.
- * L'iframe n'est chargée qu'au premier affichage de la section (ou au clic),
- * pour ne pas alourdir le chargement de la page.
+ * Prise de rendez-vous : planning Google Agenda.
+ *  - Ordinateur : l'agenda est intégré dans la page (chargé à l'approche de la
+ *    section, pour ne pas alourdir le chargement).
+ *  - Mobile : bloc compact avec un bouton qui ouvre l'agenda en plein écran,
+ *    où il se manipule confortablement (une iframe de 700 px en bas de page
+ *    est inutilisable au doigt).
  */
 export function BookingSection({ index = "09" }: { index?: string }) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const [load, setLoad] = React.useState(false);
+  const [desktop, setDesktop] = React.useState(false);
+  const [near, setNear] = React.useState(false);
+
+  React.useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   React.useEffect(() => {
     const el = ref.current;
-    if (!el || load) return;
+    if (!el || near) return;
     if (typeof IntersectionObserver === "undefined") {
-      setLoad(true);
+      setNear(true);
       return;
     }
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          setLoad(true);
+          setNear(true);
           io.disconnect();
         }
       },
@@ -33,25 +54,25 @@ export function BookingSection({ index = "09" }: { index?: string }) {
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [load]);
+  }, [near]);
 
   return (
     <section
       id="rendez-vous"
-      className="bg-primary-900 py-20 text-white sm:py-28"
+      className="bg-primary-900 py-14 text-white sm:py-28"
     >
       <div className="container">
         <SectionHead
           tone="dark"
           index={index}
           label="Rendez-vous"
-          title="Réservez directement un créneau avec un conseiller"
-          description="Choisissez le jour et l'heure qui vous conviennent dans l'agenda de l'équipe. Vous recevez une confirmation par email."
+          title="Réservez un créneau avec un conseiller"
+          description="Un rendez-vous téléphonique de 15 minutes : choisissez le jour et l'heure dans l'agenda de l'équipe. Vous recevez une confirmation par email."
         />
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-12">
+        <div className="mt-8 grid gap-8 sm:mt-12 lg:grid-cols-12 lg:gap-12">
           <div className="reveal lg:col-span-4">
-            <ul className="list-plus list-plus--light space-y-4 text-[15px] leading-relaxed text-white/80">
+            <ul className="list-plus list-plus--light space-y-3 text-[15px] leading-relaxed text-white/80 sm:space-y-4">
               <li>Étude d&apos;éligibilité gratuite et sans engagement.</li>
               <li>
                 Un conseiller fait le point sur votre projet avant toute
@@ -77,23 +98,60 @@ export function BookingSection({ index = "09" }: { index?: string }) {
                 .
               </li>
             </ul>
-            <Button asChild variant="accent" size="lg" className="mt-8">
-              <a href={site.booking.url} target="_blank" rel="noopener noreferrer">
-                <CalendarDays />
-                Ouvrir l&apos;agenda
-                <ArrowUpRight />
-              </a>
-            </Button>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">
+              {/* Mobile : agenda en plein écran */}
+              <div className="lg:hidden">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="accent" size="lg" className="w-full sm:w-auto">
+                      <CalendarDays />
+                      Choisir un créneau
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="left-0 top-0 grid h-[100dvh] max-w-none translate-x-0 translate-y-0 grid-rows-[3.5rem_1fr] gap-0 rounded-none border-0 p-0 sm:rounded-none">
+                    <div className="flex items-center border-b border-border bg-background px-4">
+                      <DialogTitle className="display text-lg">
+                        Choisir un créneau
+                      </DialogTitle>
+                      <DialogDescription className="sr-only">
+                        Agenda de prise de rendez-vous avec un conseiller
+                        Energie+.
+                      </DialogDescription>
+                    </div>
+                    <iframe
+                      src={site.booking.embedUrl}
+                      title={IFRAME_TITLE}
+                      className="block h-full w-full border-0 bg-white"
+                    />
+                  </DialogContent>
+                </Dialog>
+              </div>
+
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:border-white hover:bg-white hover:text-primary-900 lg:border-0 lg:bg-accent lg:text-accent-foreground lg:hover:brightness-95"
+              >
+                <a href={site.booking.url} target="_blank" rel="noopener noreferrer">
+                  <span className="lg:hidden">Ouvrir dans Google Agenda</span>
+                  <span className="hidden lg:inline">Ouvrir l&apos;agenda</span>
+                  <ArrowUpRight />
+                </a>
+              </Button>
+            </div>
           </div>
 
+          {/* Ordinateur : agenda intégré */}
           <div
             ref={ref}
-            className="reveal reveal--left overflow-hidden rounded-sm bg-white lg:col-span-8"
+            className="reveal reveal--left hidden overflow-hidden rounded-sm bg-white lg:col-span-8 lg:block"
           >
-            {load ? (
+            {desktop && near ? (
               <iframe
                 src={site.booking.embedUrl}
-                title="Agenda de prise de rendez-vous Energie+"
+                title={IFRAME_TITLE}
                 loading="lazy"
                 className="block h-[720px] w-full border-0"
               />
@@ -101,7 +159,7 @@ export function BookingSection({ index = "09" }: { index?: string }) {
               <div className="flex h-[720px] items-center justify-center bg-primary-50 text-sm text-muted-foreground">
                 <button
                   type="button"
-                  onClick={() => setLoad(true)}
+                  onClick={() => setNear(true)}
                   className="font-semibold text-foreground underline underline-offset-4"
                 >
                   Afficher l&apos;agenda

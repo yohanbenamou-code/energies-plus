@@ -77,7 +77,7 @@ export const site = {
   booking: {
     url: "https://calendar.app.google/SkgYCusBa99DQZMT8",
     embedUrl:
-      "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3fdzfmtfND4OIsMs7og2kp6dtO7jtRSFiGOYLVSUV_omI_o55emmYMrcnooH57KSG_QvR384R4?gv=true",
+      "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3fdzfmtfND4OIsMs7og2kp6dtO7jtRSFiGOYLVSUV_omI_o55emmYMrcnooH57KSG_QvR384R4?gv=true&hl=fr",
   },
 
   serviceArea: "Toute la France métropolitaine.",
