@@ -65,6 +65,15 @@ export function BookingSection({ index = "09" }: { index?: string }) {
                 >
                   {site.contact.phoneDisplay}
                 </a>
+                , ou écrivez-nous sur{" "}
+                <a
+                  href={site.contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-white underline underline-offset-4 hover:text-accent"
+                >
+                  WhatsApp
+                </a>
                 .
               </li>
             </ul>

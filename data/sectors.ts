@@ -9,7 +9,7 @@ export interface CeeSector {
 }
 
 /**
- * Secteurs du dispositif CEE sur lesquels Énergies Plus accompagne
+ * Secteurs du dispositif CEE sur lesquels Energie+ accompagne
  * effectivement des projets. Utilisé pour filtrer le catalogue des fiches.
  */
 export const SECTORS: CeeSector[] = [

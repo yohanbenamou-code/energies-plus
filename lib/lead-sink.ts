@@ -87,7 +87,7 @@ export class ResendLeadSink implements LeadSink {
       "contact@energies-plus.fr",
     // Doit être une adresse d'un domaine vérifié dans Resend.
     private readonly from = process.env.LEAD_NOTIFICATION_FROM ||
-      "Énergies Plus <leads@energies-plus.fr>",
+      "Energie+ <leads@energies-plus.fr>",
   ) {}
 
   async save(lead: Lead): Promise<void> {

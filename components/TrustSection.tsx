@@ -137,7 +137,7 @@ export function TrustSection({
             ))}
           </ul>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            {/* TODO: Yohan/Énergies Plus : déposer les logos autorisés dans
+            {/* TODO: Yohan/Energie+ : déposer les logos autorisés dans
                 public/logos/ et renseigner NAMED_CLIENTS[].logo. */}
             Sélection de références issues du dossier chantier de l&apos;équipe.
             Logos affichés dès réception des visuels et des autorisations. Liste

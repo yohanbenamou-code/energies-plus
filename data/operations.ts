@@ -1,7 +1,7 @@
 import type { CeeOperation, CeeSectorKey } from "@/types/operation";
 
 /**
- * Catalogue des opérations CEE accompagnées par Énergies Plus.
+ * Catalogue des opérations CEE accompagnées par Energie+.
  *
  * Les codes et intitulés proviennent des opérations standardisées publiées
  * par le Ministère de la Transition Écologique et du dossier de références
@@ -14,7 +14,7 @@ import type { CeeOperation, CeeSectorKey } from "@/types/operation";
  *   choisie par slug dans app/solutions/[slug]/page.tsx.
  * - `status: "coming-soon"` → entrée de catalogue : aucun barème ni montant.
  *
- * TODO: Yohan/Énergies Plus — arbitrer la mise en avant, ajouter/retirer des
+ * TODO: Yohan/Energie+ — arbitrer la mise en avant, ajouter/retirer des
  * fiches selon l'actualité réglementaire (certaines évoluent ou sont abrogées).
  */
 export const operations: CeeOperation[] = [
@@ -37,7 +37,7 @@ export const operations: CeeOperation[] = [
       "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1400&q=80&auto=format&fit=crop",
     heroTitle: "Séchez vos récoltes au soleil, avec une aide de l'État",
     heroSubtitle:
-      "Un séchoir solaire par insufflation d'air, financé en partie par le dispositif public des Certificats d'Économies d'Énergie. Énergies Plus s'occupe de tout : éligibilité, dossier, installation par des professionnels.",
+      "Un séchoir solaire par insufflation d'air, financé en partie par le dispositif public des Certificats d'Économies d'Énergie. Energie+ s'occupe de tout : éligibilité, dossier, installation par des professionnels.",
     lifespanYears: 15,
     conditions: [
       "Mise en place réalisée par un professionnel",
@@ -108,7 +108,7 @@ export const operations: CeeOperation[] = [
     heroTitle:
       "Remplacez votre chaudière par une pompe à chaleur, avec une aide de l'État",
     heroSubtitle:
-      "Une pompe à chaleur air/eau pour chauffer votre bâtiment tertiaire, financée en partie par le dispositif public des Certificats d'Économies d'Énergie, avec un bonus « Coup de pouce Chauffage » qui peut tripler l'aide lorsqu'elle remplace une chaudière fioul, gaz ou charbon. Énergies Plus s'occupe de tout : éligibilité, dossier, installation par des professionnels.",
+      "Une pompe à chaleur air/eau pour chauffer votre bâtiment tertiaire, financée en partie par le dispositif public des Certificats d'Économies d'Énergie, avec un bonus « Coup de pouce Chauffage » qui peut tripler l'aide lorsqu'elle remplace une chaudière fioul, gaz ou charbon. Energie+ s'occupe de tout : éligibilité, dossier, installation par des professionnels.",
     lifespanYears: 22,
     conditions: [
       "Bâtiment tertiaire existant depuis plus de 2 ans à la date d'engagement de l'opération",

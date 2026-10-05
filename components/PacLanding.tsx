@@ -179,7 +179,7 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Vous vous occupez des démarches administratives ?",
     plainAnswer:
-      "Oui. Énergies Plus s'occupe de tout : vérification d'éligibilité, montage et dépôt du dossier CEE, note de dimensionnement, puis dossier de preuve. Pour les questions hors périmètre (cumul avec d'autres aides, fiscalité…), nos conseillers vous répondent selon votre situation.",
+      "Oui. Energie+ s'occupe de tout : vérification d'éligibilité, montage et dépôt du dossier CEE, note de dimensionnement, puis dossier de preuve. Pour les questions hors périmètre (cumul avec d'autres aides, fiscalité…), nos conseillers vous répondent selon votre situation.",
     answer: (
       <p>
         Oui, de A à Z&nbsp;: éligibilité, montage et dépôt du dossier, note
@@ -190,12 +190,12 @@ const FAQ_ITEMS: FaqItem[] = [
     ),
   },
   {
-    question: "Énergies Plus, c'est l'État ?",
+    question: "Energie+, c'est l'État ?",
     plainAnswer:
-      "Non. Énergies Plus est une entreprise privée qui accompagne ses clients dans le cadre du dispositif public des CEE. Ce n'est ni un service de l'État ni un organisme public.",
+      "Non. Energie+ est une entreprise privée qui accompagne ses clients dans le cadre du dispositif public des CEE. Ce n'est ni un service de l'État ni un organisme public.",
     answer: (
       <p>
-        <strong>Non.</strong> Énergies Plus est une entreprise privée qui
+        <strong>Non.</strong> Energie+ est une entreprise privée qui
         vous accompagne dans le cadre du dispositif public des CEE. Ni
         service de l&apos;État, ni organisme public.
       </p>
@@ -264,7 +264,7 @@ export function PacLanding() {
         <TrustSection
           id="references"
           index="06"
-          eyebrow="Pourquoi Énergies Plus"
+          eyebrow="Pourquoi Energie+"
           title="On s'occupe de tout, dans le bon ordre"
           description="Un interlocuteur unique, du premier appel au versement de la prime."
           points={[

@@ -1,42 +1,44 @@
 /**
  * Configuration éditoriale du site (coordonnées, chiffres, preuves, FAQ).
  *
- * Tout ce qui est marqué `TODO: ... Yohan/Énergies Plus` est une donnée
+ * Tout ce qui est marqué `TODO: ... Yohan/Energie+` est une donnée
  * manquante à renseigner avant mise en production.
  * Aucune statistique, aucun avis client, aucun logo n'est inventé : les
  * emplacements existent mais restent explicitement vides.
  */
 
 export const site = {
-  name: "Énergies Plus",
+  name: "Energie+",
   baseline:
     "Le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés, du cadrage du dossier à la réception du chantier.",
 
   // Mention de conformité à afficher partout (footer + sections dédiées).
   legalMention:
-    "Énergies Plus est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des Certificats d'Économies d'Énergie, encadré par le Ministère de la Transition Écologique.",
+    "Energie+ est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des Certificats d'Économies d'Énergie, encadré par le Ministère de la Transition Écologique.",
   privateActorShort:
-    "Énergies Plus est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des CEE.",
+    "Energie+ est un professionnel privé accompagnant ses clients dans le cadre du dispositif public des CEE.",
 
   contact: {
     phoneDisplay: "07 68 96 15 73",
     phoneHref: "tel:+33768961573",
+    /** WhatsApp (même numéro) : lien wa.me, message pré-rempli ajouté côté composant. */
+    whatsappUrl: "https://wa.me/33768961573",
     email: "contact@energies-plus.fr",
-    // Valeur par défaut plausible — à confirmer par Énergies Plus.
+    // Valeur par défaut plausible — à confirmer par Energie+.
     hours: "Du lundi au vendredi, de 9h à 18h",
   },
 
   legal: {
-    companyName: "Énergies Plus",
+    companyName: "Energie+",
     siret: "901 997 403 00026",
     siren: "901 997 403",
-    address: "27 avenue de Paris, 94300 Vincennes",
+    address: "187 rue de Courcelles, 75017 Paris",
     rcs: "RCS Créteil 901 997 403",
     // N° TVA intracommunautaire calculé depuis le SIREN (clé = (12 + 3×(SIREN mod 97)) mod 97).
-    // À confirmer par Énergies Plus (valable sous réserve d'assujettissement à la TVA).
+    // À confirmer par Energie+ (valable sous réserve d'assujettissement à la TVA).
     vat: "FR 02 901 997 403",
-    // Renseignés par Énergies Plus (extrait Kbis) : forme juridique + capital.
-    legalForm: "" as string, // ex. "SAS" / "SARL"
+    // Renseignés par Energie+ (extrait Kbis) : forme juridique + capital.
+    legalForm: "SAS" as string,
     capital: "" as string, // ex. "10 000 €"
     // Personne physique responsable de la publication (souvent le dirigeant).
     publicationDirector: "" as string,
@@ -58,7 +60,7 @@ export const site = {
   },
 
   /**
-   * Réseaux sociaux. Vides tant qu'Énergies Plus n'a pas communiqué les URL.
+   * Réseaux sociaux. Vides tant qu'Energie+ n'a pas communiqué les URL.
    * Dès qu'une valeur est renseignée, elle s'affiche dans le footer et est
    * ajoutée au `sameAs` du JSON-LD Organization.
    */
@@ -88,7 +90,7 @@ export const site = {
   stats: [
     {
       key: "exploitations",
-      // TODO: placeholder à remplacer par Yohan/Énergies Plus
+      // TODO: placeholder à remplacer par Yohan/Energie+
       value: null as number | null,
       prefix: "+",
       suffix: "",
@@ -96,7 +98,7 @@ export const site = {
     },
     {
       key: "cumac",
-      // TODO: placeholder à remplacer par Yohan/Énergies Plus
+      // TODO: placeholder à remplacer par Yohan/Energie+
       value: null as number | null,
       prefix: "+",
       suffix: "",
@@ -104,7 +106,7 @@ export const site = {
     },
     {
       key: "experience",
-      // TODO: placeholder à remplacer par Yohan/Énergies Plus
+      // TODO: placeholder à remplacer par Yohan/Energie+
       value: null as number | null,
       prefix: "",
       suffix: " ans",
@@ -113,24 +115,24 @@ export const site = {
   ],
 
   /**
-   * Logos clients / partenaires. Vide tant que Énergies Plus n'a pas
+   * Logos clients / partenaires. Vide tant que Energie+ n'a pas
    * fourni les visuels et les autorisations d'utilisation.
-   * TODO: placeholder à remplacer par Yohan/Énergies Plus
+   * TODO: placeholder à remplacer par Yohan/Energie+
    */
   clientLogos: [] as Array<{ name: string; src: string }>,
 
   /**
    * Note d'avis agrégée. `null` tant qu'aucune source vérifiable
    * (Google, Trustpilot, Pages Jaunes…) n'est fournie.
-   * TODO: placeholder à remplacer par Yohan/Énergies Plus
+   * TODO: placeholder à remplacer par Yohan/Energie+
    */
   rating: null as { score: number; count: number; source: string } | null,
 
   /**
    * Témoignages. EXEMPLES DE STRUCTURE UNIQUEMENT — ne pas publier en
    * l'état. À remplacer par de vrais témoignages clients recueillis et
-   * autorisés par Énergies Plus.
-   * TODO: placeholder à remplacer par Yohan/Énergies Plus
+   * autorisés par Energie+.
+   * TODO: placeholder à remplacer par Yohan/Energie+
    */
   testimonials: [] as Array<{
     quote: string;

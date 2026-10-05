@@ -219,12 +219,12 @@ const FAQ_ITEMS: FaqItem[] = [
     ),
   },
   {
-    question: "Énergies Plus, c'est l'État ?",
+    question: "Energie+, c'est l'État ?",
     plainAnswer:
-      "Non. Énergies Plus est une entreprise privée qui accompagne ses clients dans le cadre des dispositifs publics MaPrimeRénov' et CEE. Ce n'est ni un service de l'État ni un organisme public.",
+      "Non. Energie+ est une entreprise privée qui accompagne ses clients dans le cadre des dispositifs publics MaPrimeRénov' et CEE. Ce n'est ni un service de l'État ni un organisme public.",
     answer: (
       <p>
-        <strong>Non.</strong> Énergies Plus est une entreprise privée qui vous
+        <strong>Non.</strong> Energie+ est une entreprise privée qui vous
         accompagne dans le cadre des dispositifs publics MaPrimeRénov&apos; et
         CEE. Ni service de l&apos;État, ni organisme public.
       </p>
@@ -247,7 +247,7 @@ export function SolarLanding() {
           eyebrow="Maison individuelle, fiche CEE BAR-TH-168"
           title="Remplacez votre chaudière par une pompe à chaleur"
           titleAccent="couplée au solaire."
-          subtitle="Un projet clé en main pour les maisons chauffées au gaz, au fioul ou au charbon, financé grâce à MaPrimeRénov' et aux Certificats d'Économies d'Énergie. Énergies Plus monte le dossier et coordonne l'installation par des professionnels."
+          subtitle="Un projet clé en main pour les maisons chauffées au gaz, au fioul ou au charbon, financé grâce à MaPrimeRénov' et aux Certificats d'Économies d'Énergie. Energie+ monte le dossier et coordonne l'installation par des professionnels."
           note="Financement selon votre éligibilité et votre catégorie de revenus. Montants en euros indicatifs et non contractuels."
           primaryCta={{ label: "Recevoir mon étude gratuite", href: "#contact" }}
           secondaryCta={{ label: "Vérifier mon éligibilité", href: "#solutions" }}
@@ -297,7 +297,7 @@ export function SolarLanding() {
         <TrustSection
           id="references"
           index="08"
-          eyebrow="Pourquoi Énergies Plus"
+          eyebrow="Pourquoi Energie+"
           title="On s'occupe de tout, dans le bon ordre"
           description="Un interlocuteur unique, du premier appel à la fin des travaux."
           points={[

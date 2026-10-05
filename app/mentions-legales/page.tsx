@@ -19,7 +19,7 @@ export default function MentionsLegalesPage() {
     <LegalLayout title="Mentions légales">
       {missing.length > 0 ? (
         <p className="rounded-lg border-l-4 border-accent bg-accent/10 px-4 py-3 text-sm text-foreground">
-          À compléter par Énergies Plus avant communication large :{" "}
+          À compléter par Energie+ avant communication large :{" "}
           {missing.join(", ")}. Le reste des informations ci-dessous est à jour.
         </p>
       ) : null}

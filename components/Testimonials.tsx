@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 /**
  * Témoignages. Tant qu'`site.testimonials` est vide, la section n'est pas
  * rendue : aucun faux témoignage, aucun encart « à remplir » visible en
- * production. Dès qu'Énergies Plus ajoute des verbatims réels (recueillis et
+ * production. Dès qu'Energie+ ajoute des verbatims réels (recueillis et
  * autorisés) dans `data/site.ts`, la section apparaît automatiquement.
  */
 export function Testimonials({ index = "" }: { index?: string }) {

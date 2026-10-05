@@ -141,12 +141,12 @@ const FAQ_ITEMS: FaqItem[] = [
     ),
   },
   {
-    question: "Énergies Plus est-il un organisme d'État ?",
+    question: "Energie+ est-il un organisme d'État ?",
     plainAnswer:
-      "Non. Énergies Plus est une entreprise privée, certifiée RGE. Elle accompagne ses clients dans le cadre du dispositif public des CEE, mais n'est ni un service de l'État ni un organisme public, et n'utilise aucun symbole officiel de la République française.",
+      "Non. Energie+ est une entreprise privée, certifiée RGE. Elle accompagne ses clients dans le cadre du dispositif public des CEE, mais n'est ni un service de l'État ni un organisme public, et n'utilise aucun symbole officiel de la République française.",
     answer: (
       <p>
-        <strong>Non.</strong> Énergies Plus est une entreprise privée, certifiée
+        <strong>Non.</strong> Energie+ est une entreprise privée, certifiée
         RGE. Elle accompagne ses clients dans le cadre du dispositif public des
         CEE, mais n&apos;est ni un service de l&apos;État ni un organisme public.
       </p>
@@ -157,7 +157,7 @@ const FAQ_ITEMS: FaqItem[] = [
 export const metadata: Metadata = {
   title: "Les aides CEE, transformées en travaux financés",
   description:
-    "Énergies Plus accompagne bailleurs sociaux, établissements de santé, collectivités, copropriétés et industriels sur les opérations CEE : calorifugeage, GTB, isolation, éclairage LED, récupération de chaleur. Étude d'éligibilité gratuite.",
+    "Energie+ accompagne bailleurs sociaux, établissements de santé, collectivités, copropriétés et industriels sur les opérations CEE : calorifugeage, GTB, isolation, éclairage LED, récupération de chaleur. Étude d'éligibilité gratuite.",
   alternates: { canonical: "/" },
 };
 
@@ -171,7 +171,7 @@ export default function HomePage() {
           eyebrow="Conseil et travaux CEE depuis 2015"
           title="Vos travaux d'économies d'énergie,"
           titleAccent="souvent financés à 100 %."
-          subtitle="Énergies Plus identifie la bonne fiche CEE, sécurise votre dossier avant la signature du devis et coordonne le chantier jusqu'au contrôle COFRAC. Bailleurs sociaux, santé, collectivités, copropriétés, industrie, agriculture, particuliers."
+          subtitle="Energie+ identifie la bonne fiche CEE, sécurise votre dossier avant la signature du devis et coordonne le chantier jusqu'au contrôle COFRAC. Bailleurs sociaux, santé, collectivités, copropriétés, industrie, agriculture, particuliers."
           note="Le dossier CEE doit être engagé avant la signature du devis : faites vérifier votre projet avant de vous engager."
           primaryCta={{ label: "Vérifier mon éligibilité", href: "#contact" }}
           secondaryCta={{ label: "Voir le catalogue des fiches", href: "#catalogue" }}

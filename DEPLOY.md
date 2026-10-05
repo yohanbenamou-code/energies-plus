@@ -33,7 +33,7 @@ Framework détecté : Next.js. Aucune config supplémentaire.
 **Capture des leads** — indispensable en prod, choisir **UNE** option :
 
 - **Resend** (email) : `RESEND_API_KEY`, `LEAD_NOTIFICATION_EMAIL=contact@energies-plus.fr`,
-  `LEAD_NOTIFICATION_FROM=Énergies Plus <leads@energies-plus.fr>`
+  `LEAD_NOTIFICATION_FROM=Energie+ <leads@energies-plus.fr>`
   (le domaine d'envoi doit être vérifié dans Resend).
 - **Supabase** (base) : `SUPABASE_URL`, `SUPABASE_ANON_KEY`
   (+ créer la table `leads` — SQL dans `README.md`).

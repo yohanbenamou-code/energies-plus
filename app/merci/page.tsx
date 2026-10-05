@@ -12,7 +12,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Merci, votre demande est bien enregistrée",
   description:
-    "Votre demande a bien été transmise à Énergies Plus. Un conseiller vous recontacte sous 24 à 48h ouvrées.",
+    "Votre demande a bien été transmise à Energie+. Un conseiller vous recontacte sous 24 à 48h ouvrées.",
   robots: { index: false, follow: false },
 };
 
@@ -43,7 +43,7 @@ export default function MerciPage() {
               Merci, votre demande est bien enregistrée
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-              Un conseiller Énergies Plus vous recontacte sous{" "}
+              Un conseiller Energie+ vous recontacte sous{" "}
               <strong className="text-white">24 à 48h ouvrées</strong> pour faire
               le point sur votre projet et vérifier son éligibilité aux
               dispositifs d&apos;aide.
@@ -56,7 +56,16 @@ export default function MerciPage() {
               >
                 {site.contact.phoneDisplay}
               </a>{" "}
-              ({site.contact.hours}).
+              ({site.contact.hours}) ou écrivez-nous sur{" "}
+              <a
+                href={site.contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-white underline underline-offset-4 hover:text-accent"
+              >
+                WhatsApp
+              </a>
+              .
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

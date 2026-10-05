@@ -1,10 +1,10 @@
 /**
- * Références réelles de l'équipe Énergies Plus (activité menée sous
+ * Références réelles de l'équipe Energie+ (activité menée sous
  * l'enseigne « Bat Énergie » depuis 2015).
  *
  * Source : dossier de références chantier 2025 et plaquette de l'équipe.
  *
- * TODO: Yohan/Énergies Plus — valider l'affichage public des noms de
+ * TODO: Yohan/Energie+ — valider l'affichage public des noms de
  * clients ci-dessous (droit à citation / logos). Retirer ceux qui ne
  * peuvent pas être cités et ajouter les logos autorisés.
  */
@@ -104,7 +104,7 @@ export interface NamedClient {
   short: string;
   /**
    * Chemin du logo (ex "/logos/orpea.svg"). Tant qu'il est absent, la tuile
-   * affiche le sigle. TODO: Yohan/Énergies Plus — déposer les fichiers SVG
+   * affiche le sigle. TODO: Yohan/Energie+ — déposer les fichiers SVG
    * dans public/logos/ et renseigner ce champ (droits de citation à valider).
    */
   logo?: string;

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { UtmCapture } from "@/components/UtmCapture";
 import { RevealInit } from "@/components/RevealInit";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { site } from "@/data/site";
 
 const manrope = Manrope({
@@ -25,12 +26,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Énergies Plus : le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés",
-    template: "%s | Énergies Plus",
+      "Energie+ : le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés",
+    template: "%s | Energie+",
   },
   description:
-    "Énergies Plus accompagne les particuliers et les professionnels sur les opérations CEE : vérification d'éligibilité, montage du dossier avant devis, suivi jusqu'aux travaux. Catalogue des fiches CEE les plus courantes.",
-  applicationName: "Énergies Plus",
+    "Energie+ accompagne les particuliers et les professionnels sur les opérations CEE : vérification d'éligibilité, montage du dossier avant devis, suivi jusqu'aux travaux. Catalogue des fiches CEE les plus courantes.",
+  applicationName: "Energie+",
   keywords: [
     "Certificats d'Économies d'Énergie",
     "prime CEE",
@@ -42,21 +43,21 @@ export const metadata: Metadata = {
     "CEE industrie",
     "CEE tertiaire",
   ],
-  authors: [{ name: "Énergies Plus" }],
+  authors: [{ name: "Energie+" }],
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: siteUrl,
-    siteName: "Énergies Plus",
+    siteName: "Energie+",
     title:
-      "Énergies Plus : les Certificats d'Économies d'Énergie, transformés en travaux financés",
+      "Energie+ : les Certificats d'Économies d'Énergie, transformés en travaux financés",
     description:
       "Vérification d'éligibilité, montage du dossier d'aide CEE avant devis, suivi jusqu'aux travaux. Résidentiel, tertiaire, industrie, agriculture, réseaux, transport.",
-    // Image Open Graph générée par app/opengraph-image.tsx (bloc-marque Énergies Plus).
+    // Image Open Graph générée par app/opengraph-image.tsx (bloc-marque Energie+).
   },
   twitter: {
     card: "summary_large_image",
-    title: "Énergies Plus : les aides CEE, en clair",
+    title: "Energie+ : les aides CEE, en clair",
     description:
       "Le dispositif public des Certificats d'Économies d'Énergie, transformé en travaux financés.",
   },
@@ -83,6 +84,7 @@ export default function RootLayout({
         </a>
         <RevealInit />
         {children}
+        <WhatsAppButton />
         <UtmCapture />
         <Analytics />
         <script
@@ -99,9 +101,9 @@ export default function RootLayout({
               email: site.contact.email,
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "27 avenue de Paris",
-                postalCode: "94300",
-                addressLocality: "Vincennes",
+                streetAddress: "187 rue de Courcelles",
+                postalCode: "75017",
+                addressLocality: "Paris",
                 addressCountry: "FR",
               },
               areaServed: "FR",

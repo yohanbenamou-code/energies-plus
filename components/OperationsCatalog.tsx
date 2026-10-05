@@ -114,7 +114,7 @@ export function OperationsCatalog() {
           index="02"
           label="Catalogue des fiches"
           title="Les opérations CEE les plus demandées"
-          description="Chaque fiche est une opération standardisée publiée par le Ministère de la Transition Écologique. Celles qui portent une flèche disposent déjà d'un accompagnement complet chez Énergies Plus."
+          description="Chaque fiche est une opération standardisée publiée par le Ministère de la Transition Écologique. Celles qui portent une flèche disposent déjà d'un accompagnement complet chez Energie+."
         />
 
         <div
@@ -148,7 +148,7 @@ export function OperationsCatalog() {
         </div>
 
         <p className="mt-8 max-w-3xl text-xs leading-relaxed text-muted-foreground">
-          {/* TODO: Yohan/Énergies Plus : confirmer la liste des fiches accompagnées */}
+          {/* TODO: Yohan/Energie+ : confirmer la liste des fiches accompagnées */}
           Catalogue non exhaustif et donné à titre indicatif. Le dispositif CEE
           évolue régulièrement : certaines fiches sont modifiées ou abrogées.
           Avant tout engagement, faites vérifier l&apos;éligibilité de votre

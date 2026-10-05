@@ -1,12 +1,12 @@
-# Énergies Plus — site de génération de leads
+# Energie+ — site de génération de leads
 
-Site B2B de génération de leads pour **Énergies Plus**, société privée
+Site B2B de génération de leads pour **Energie+**, société privée
 accompagnant les exploitations agricoles et forestières dans l'installation de
 systèmes de **séchage solaire par insufflation d'air**, financés via le
 dispositif public des **Certificats d'Économies d'Énergie (CEE)** — opération
 standardisée **AGRI-EQ-110**.
 
-> Énergies Plus est un professionnel privé accompagnant ses clients dans le
+> Energie+ est un professionnel privé accompagnant ses clients dans le
 > cadre du dispositif public des CEE. Ce site n'est pas un site
 > gouvernemental et n'utilise aucun symbole officiel de la République française.
 > Les montants en euros affichés sont des estimations non contractuelles, sous
@@ -156,11 +156,11 @@ Voir **`.env.example`**. Toutes optionnelles. Résumé :
 
 ## Points à compléter avant mise en ligne (`TODO`)
 
-Recherchez `TODO: placeholder à remplacer par Yohan/Énergies Plus` dans le
+Recherchez `TODO: placeholder à remplacer par Yohan/Energie+` dans le
 code. Principaux éléments :
 
-Identité renseignée : raison sociale **Énergies Plus**, SIRET
-901 997 403 00026, RCS Créteil, siège 27 avenue de Paris 94300 Vincennes,
+Identité renseignée : raison sociale **Energie+**, SIRET
+901 997 403 00026, RCS Créteil, siège 187 rue de Courcelles 75017 Paris,
 téléphone 07 68 96 15 73, email contact@energies-plus.fr, domaine de
 production `www.energies-plus.fr`.
 
@@ -171,7 +171,7 @@ fonctionnement réel du site, image Open Graph générée, mécanique réseaux
 sociaux + `sameAs` JSON-LD (s'activent dès qu'une URL est saisie),
 section témoignages masquée tant qu'aucun verbatim réel n'est fourni.
 
-Restent à fournir par Énergies Plus (données qui ne peuvent pas être
+Restent à fournir par Energie+ (données qui ne peuvent pas être
 déduites — voir `data/site.ts`) :
 
 - **Mentions légales** : forme juridique + capital social (`legal.legalForm`,

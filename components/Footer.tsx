@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { getLiveOperations } from "@/data/operations";
 import { site } from "@/data/site";
 
@@ -31,6 +32,15 @@ export function Footer() {
               >
                 <Phone className="h-4 w-4 text-accent" />
                 {site.contact.phoneDisplay}
+              </a>
+              <a
+                href={site.contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 hover:text-accent"
+              >
+                <WhatsAppIcon className="h-4 w-4 text-accent" />
+                WhatsApp : {site.contact.phoneDisplay}
               </a>
               <a
                 href={`mailto:${site.contact.email}`}
