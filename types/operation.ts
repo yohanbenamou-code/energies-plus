@@ -31,6 +31,8 @@ export interface CeeOperation {
   sectorKey: CeeSectorKey;
   sector: string;
   title: string;
+  /** Libellé court (menus, pied de page). */
+  shortTitle?: string;
   /** Accroche courte pour les cartes du catalogue. */
   pitch: string;
   /** Utilisé pour les cartes du catalogue (description un peu plus longue). */

@@ -4,71 +4,62 @@
 
 @layer base {
   :root {
-    /* Fond / encre */
-    --background: 210 40% 99%;
-    --foreground: 219 46% 13%;
+    /* Papier chaud + encre : la base neutre du logo (noir) */
+    --background: 40 25% 97%;
+    --foreground: 210 22% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 219 46% 13%;
+    --card-foreground: 210 22% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 219 46% 13%;
+    --popover-foreground: 210 22% 8%;
 
-    /* Bleu de marque Énergies Plus (primaire) */
-    --primary: 219 64% 29%;
-    --primary-foreground: 210 40% 98%;
+    /* Encre (noir du logo) */
+    --primary: 210 22% 8%;
+    --primary-foreground: 40 25% 97%;
 
-    /* Vert de marque Énergies Plus (accent / CTA) */
-    --accent: 98 47% 43%;
-    --accent-foreground: 0 0% 100%;
+    /* Orange du logo : CTA et repères. Texte encre dessus (contraste 7:1). */
+    --accent: 28 96% 53%;
+    --accent-foreground: 210 22% 8%;
 
-    --secondary: 213 34% 95%;
-    --secondary-foreground: 219 42% 20%;
+    --secondary: 38 22% 94%;
+    --secondary-foreground: 210 22% 12%;
 
-    --muted: 213 30% 95%;
-    --muted-foreground: 216 15% 42%;
+    --muted: 38 18% 93%;
+    --muted-foreground: 210 8% 36%;
 
     --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 26% 89%;
-    --input: 214 22% 83%;
-    --ring: 219 64% 42%;
+    --border: 36 14% 87%;
+    --input: 36 12% 78%;
+    --ring: 28 96% 53%;
 
-    --radius: 0.75rem;
-
-    /* Dégradé de marque (bleu -> teal -> vert), réutilisé un peu partout */
-    --brand-gradient: linear-gradient(
-      120deg,
-      hsl(219 64% 27%) 0%,
-      hsl(200 52% 33%) 42%,
-      hsl(120 45% 38%) 74%,
-      hsl(98 52% 45%) 100%
-    );
+    --radius: 0.5rem;
   }
 
   /* Rendu clair uniquement. .dark reste défini pour la compat shadcn/ui,
      jamais activé. */
   .dark {
-    --background: 219 45% 8%;
-    --foreground: 210 30% 96%;
-    --card: 219 42% 11%;
-    --card-foreground: 210 30% 96%;
-    --popover: 219 42% 11%;
-    --popover-foreground: 210 30% 96%;
-    --primary: 210 70% 62%;
-    --primary-foreground: 219 45% 10%;
-    --accent: 98 45% 52%;
-    --accent-foreground: 0 0% 100%;
-    --secondary: 219 30% 18%;
-    --secondary-foreground: 210 30% 96%;
-    --muted: 219 30% 18%;
-    --muted-foreground: 214 16% 66%;
+    --background: 210 22% 7%;
+    --foreground: 40 25% 96%;
+    --card: 210 20% 10%;
+    --card-foreground: 40 25% 96%;
+    --popover: 210 20% 10%;
+    --popover-foreground: 40 25% 96%;
+    --primary: 40 25% 96%;
+    --primary-foreground: 210 22% 8%;
+    --accent: 28 96% 55%;
+    --accent-foreground: 210 22% 8%;
+    --secondary: 210 16% 16%;
+    --secondary-foreground: 40 25% 96%;
+    --muted: 210 16% 16%;
+    --muted-foreground: 210 8% 64%;
     --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 219 26% 22%;
-    --input: 219 26% 26%;
-    --ring: 210 70% 62%;
+    --border: 210 14% 20%;
+    --input: 210 14% 24%;
+    --ring: 28 96% 55%;
   }
 }
 
@@ -84,80 +75,67 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv11", "ss01";
     text-rendering: optimizeLegibility;
-    /* garde-fou : empêche tout débordement horizontal (halos, reveals en x)
-       sans casser position: sticky */
+    /* garde-fou : empêche tout débordement horizontal sans casser sticky */
     overflow-x: clip;
   }
   section[id],
   div[id].scroll-anchor {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: 4.5rem;
   }
   ::selection {
-    background: hsl(98 47% 43% / 0.25);
+    background: hsl(28 96% 53% / 0.3);
   }
 }
 
 @layer components {
-  .text-brand-gradient {
-    background: var(--brand-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+  /* Aplat encre, utilisé en fond derrière les photos pendant leur chargement. */
   .bg-brand-gradient {
-    background: var(--brand-gradient);
-  }
-  .surface-grid {
-    background-image:
-      linear-gradient(hsl(219 64% 29% / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(219 64% 29% / 0.05) 1px, transparent 1px);
-    background-size: 44px 44px;
-    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 78%);
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 78%);
-  }
-  .hairline {
-    @apply border border-border/70;
+    background: hsl(var(--primary));
   }
 
-  /* Titres éditoriaux : serif Fraunces, avec quelques mots en italique via <em>. */
+  /* Titres : grotesque à caractère (Bricolage), serrée, sans italique. */
   .display {
-    font-family: var(--font-display), Georgia, serif;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.05;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
   }
   .display em {
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
   }
 
-  /* Traitement photo : voile dégradé bleu de marque pour l'homogénéité. */
-  .photo-treat::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      200deg,
-      hsl(219 64% 18% / 0.15) 0%,
-      hsl(219 64% 14% / 0.05) 40%,
-      hsl(98 40% 20% / 0.18) 100%
-    );
-    mix-blend-mode: multiply;
-    pointer-events: none;
+  /* Puces « + » : reprend le plus du logo. */
+  .list-plus {
+    list-style: none;
+    padding: 0;
   }
-
-  /* Grain léger, décoratif. */
-  .grain {
+  .list-plus > li {
     position: relative;
+    padding-left: 1.5rem;
   }
-  .grain::before {
-    content: "";
+  .list-plus > li::before {
+    content: "+";
     position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
-    opacity: 0.04;
+    left: 0;
+    top: -0.06em;
+    font-weight: 700;
+    font-size: 1.2em;
+    line-height: inherit;
+    color: hsl(24 94% 44%);
+  }
+  .list-plus--light > li::before {
+    color: hsl(var(--accent));
+  }
+
+  /* Grand « + » décoratif (motif du logo), tracé fin. */
+  .plus-mark {
+    position: absolute;
+    aspect-ratio: 1;
     pointer-events: none;
-    mix-blend-mode: overlay;
+    --t: 1px;
+    background:
+      linear-gradient(currentColor, currentColor) center / var(--t) 100% no-repeat,
+      linear-gradient(currentColor, currentColor) center / 100% var(--t) no-repeat;
   }
 }
 
@@ -180,21 +158,21 @@
 }
 html.js .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(14px);
   transition:
-    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0s);
   will-change: opacity, transform;
 }
 html.js .reveal.reveal--left {
-  transform: translateX(24px);
+  transform: translateX(18px);
 }
 html.js .reveal.reveal--right {
-  transform: translateX(-24px);
+  transform: translateX(-18px);
 }
 html.js .reveal.reveal--scale {
-  transform: translateY(10px) scale(0.97);
+  transform: translateY(8px) scale(0.985);
 }
 html.js .reveal.is-visible {
   opacity: 1;
@@ -226,44 +204,6 @@ html.js .stagger > .reveal:nth-child(n + 7) {
     transform: none !important;
     transition: none !important;
   }
-}
-
-/* --- Animations de fond (sobres) --------------------------------------- */
-@keyframes aurora-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(3%, -4%, 0) scale(1.08);
-  }
-}
-@keyframes aurora-drift-slow {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1.05);
-  }
-  50% {
-    transform: translate3d(-4%, 5%, 0) scale(1);
-  }
-}
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-aurora {
-  animation: aurora-drift 18s ease-in-out infinite;
-}
-.animate-aurora-slow {
-  animation: aurora-drift-slow 24s ease-in-out infinite;
-}
-.animate-marquee {
-  animation: marquee 32s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

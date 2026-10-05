@@ -10,7 +10,7 @@
 export const site = {
   name: "Énergies Plus",
   baseline:
-    "Le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés — du cadrage du dossier à la réception du chantier.",
+    "Le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés, du cadrage du dossier à la réception du chantier.",
 
   // Mention de conformité à afficher partout (footer + sections dédiées).
   legalMention:
@@ -23,7 +23,7 @@ export const site = {
     phoneHref: "tel:+33768961573",
     email: "contact@energies-plus.fr",
     // Valeur par défaut plausible — à confirmer par Énergies Plus.
-    hours: "Du lundi au vendredi, 9h — 18h",
+    hours: "Du lundi au vendredi, de 9h à 18h",
   },
 
   legal: {
@@ -66,6 +66,16 @@ export const site = {
     linkedin: "",
     facebook: "",
     youtube: "",
+  },
+
+  /**
+   * Planning de rendez-vous Google Agenda. `url` = lien public (nouvel onglet),
+   * `embedUrl` = même planning en version intégrable (gv=true).
+   */
+  booking: {
+    url: "https://calendar.app.google/SkgYCusBa99DQZMT8",
+    embedUrl:
+      "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3fdzfmtfND4OIsMs7og2kp6dtO7jtRSFiGOYLVSUV_omI_o55emmYMrcnooH57KSG_QvR384R4?gv=true",
   },
 
   serviceArea: "Toute la France métropolitaine.",

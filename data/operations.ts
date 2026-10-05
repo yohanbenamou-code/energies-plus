@@ -9,8 +9,8 @@ import type { CeeOperation, CeeSectorKey } from "@/types/operation";
  * depuis 2015). Les descriptions sont celles de l'équipe.
  *
  * - `status: "live"`  → page /solutions/[slug] complète + barème vérifié
- *   (aujourd'hui : AGRI-EQ-110, BAT-TH-163). Chaque fiche "live" a sa propre
- *   page de destination dédiée dans components/ (SolutionLanding, PacLanding),
+ *   (aujourd'hui : AGRI-EQ-110, BAT-TH-163, BAR-TH-168). Chaque fiche "live" a sa propre
+ *   page de destination dédiée dans components/ (SolutionLanding, PacLanding, SolarLanding),
  *   choisie par slug dans app/solutions/[slug]/page.tsx.
  * - `status: "coming-soon"` → entrée de catalogue : aucun barème ni montant.
  *
@@ -26,8 +26,9 @@ export const operations: CeeOperation[] = [
     code: "AGRI-EQ-110",
     status: "live",
     sectorKey: "AGRI",
-    sector: "Agriculture — produits et co-produits agricoles et forestiers",
+    sector: "Agriculture, produits et co-produits agricoles et forestiers",
     title: "Séchage solaire par insufflation d'air (panneaux solaires hybrides)",
+    shortTitle: "Séchage solaire agricole",
     pitch:
       "Séchez foin, céréales, plantes aromatiques ou bois à l'air chaud solaire, avec une aide qui couvre une part importante de l'installation.",
     shortDescription:
@@ -95,8 +96,9 @@ export const operations: CeeOperation[] = [
     code: "BAT-TH-163",
     status: "live",
     sectorKey: "BAT",
-    sector: "Bâtiment tertiaire — chauffage",
+    sector: "Bâtiment tertiaire, chauffage",
     title: "Pompe à chaleur air/eau pour le chauffage des bâtiments tertiaires",
+    shortTitle: "Pompe à chaleur tertiaire",
     pitch:
       "Remplacez une chaudière fioul, gaz ou charbon par une pompe à chaleur air/eau : bonus « Coup de pouce Chauffage » pouvant tripler l'aide.",
     shortDescription:
@@ -106,16 +108,16 @@ export const operations: CeeOperation[] = [
     heroTitle:
       "Remplacez votre chaudière par une pompe à chaleur, avec une aide de l'État",
     heroSubtitle:
-      "Une pompe à chaleur air/eau pour chauffer votre bâtiment tertiaire, financée en partie par le dispositif public des Certificats d'Économies d'Énergie — avec un bonus « Coup de pouce Chauffage » qui peut tripler l'aide lorsqu'elle remplace une chaudière fioul, gaz ou charbon. Énergies Plus s'occupe de tout : éligibilité, dossier, installation par des professionnels.",
+      "Une pompe à chaleur air/eau pour chauffer votre bâtiment tertiaire, financée en partie par le dispositif public des Certificats d'Économies d'Énergie, avec un bonus « Coup de pouce Chauffage » qui peut tripler l'aide lorsqu'elle remplace une chaudière fioul, gaz ou charbon. Énergies Plus s'occupe de tout : éligibilité, dossier, installation par des professionnels.",
     lifespanYears: 22,
     conditions: [
       "Bâtiment tertiaire existant depuis plus de 2 ans à la date d'engagement de l'opération",
-      "PAC dimensionnée pour couvrir, en totalité ou en partie, les besoins de chauffage (seul, ou chauffage et eau chaude sanitaire) — une PAC destinée uniquement à l'eau chaude sanitaire n'est pas éligible",
+      "PAC dimensionnée pour couvrir, en totalité ou en partie, les besoins de chauffage (seul, ou chauffage et eau chaude sanitaire) : une PAC destinée uniquement à l'eau chaude sanitaire n'est pas éligible",
       "Efficacité énergétique saisonnière (Etas) ≥ 111 % (application basse température) ou ≥ 126 % (moyenne/haute température), pour une puissance ≤ 400 kW",
       "Coefficient de performance (COP) ≥ 3,4 mesuré selon la norme EN 14511-2, pour une puissance > 400 kW",
       "Remise obligatoire d'une note de dimensionnement au bénéficiaire",
       "Installation réalisée par un professionnel",
-      "Bonus « Coup de pouce Chauffage » (x3) lorsque la PAC remplace une chaudière fioul, gaz ou charbon et que le raccordement à un réseau de chaleur est techniquement ou économiquement impossible — conditions et durée fixées par arrêté, vérifiées par nos conseillers au moment du dossier",
+      "Bonus « Coup de pouce Chauffage » (x3) lorsque la PAC remplace une chaudière fioul, gaz ou charbon et que le raccordement à un réseau de chaleur est techniquement ou économiquement impossible. Conditions et durée fixées par arrêté, vérifiées par nos conseillers au moment du dossier",
     ],
     applicableProfiles: [
       "Bureaux",
@@ -128,6 +130,43 @@ export const operations: CeeOperation[] = [
   },
 
   /* ------------------------------------------------------------------ */
+  /* POMPE À CHALEUR + SOLAIRE (MAISON INDIVIDUELLE) — page dédiée       */
+  /* ------------------------------------------------------------------ */
+  {
+    slug: "bar-th-168-pompe-a-chaleur-solaire-maison-individuelle",
+    code: "BAR-TH-168",
+    status: "live",
+    sectorKey: "BAR",
+    sector: "Bâtiment résidentiel, chauffage",
+    title: "Pompe à chaleur et solaire pour maison individuelle",
+    shortTitle: "Pompe à chaleur et solaire (maisons)",
+    pitch:
+      "Remplacez votre chaudière gaz, fioul ou charbon par une pompe à chaleur couplée à des capteurs solaires, avec MaPrimeRénov' et les CEE.",
+    shortDescription:
+      "Remplacement d'une chaudière gaz, fioul ou charbon par une pompe à chaleur associée à un dispositif solaire thermique (fiche BAR-TH-168), pour les maisons individuelles existantes en France métropolitaine. Financement MaPrimeRénov' et CEE.",
+    image:
+      "https://images.unsplash.com/photo-1730807908064-c087959dd52c?w=1400&q=80&auto=format&fit=crop",
+    heroTitle:
+      "Remplacez votre chaudière par une pompe à chaleur couplée au solaire",
+    heroSubtitle:
+      "Un projet clé en main pour les maisons chauffées au gaz, au fioul ou au charbon, financé grâce à MaPrimeRénov' et aux Certificats d'Économies d'Énergie.",
+    lifespanYears: 25,
+    conditions: [
+      "Maison individuelle existante en France métropolitaine",
+      "Dispositif solaire thermique à capteurs vitrés, livré sans appoint, avec ballon de stockage et régulateur",
+      "Surface de capteurs d'au moins 8 m² pour le chauffage et l'eau chaude sanitaire",
+      "Ballon de stockage de plus de 400 litres",
+      "Chauffage central de type basse température",
+      "Pose par un professionnel titulaire d'un signe de qualité",
+    ],
+    applicableProfiles: [
+      "Propriétaire occupant",
+      "Propriétaire bailleur",
+      "Locataire (dossier CEE)",
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
   /* ISOLATION DES RÉSEAUX — le cœur de métier de l'équipe              */
   /* ------------------------------------------------------------------ */
   {
@@ -135,7 +174,7 @@ export const operations: CeeOperation[] = [
     code: "BAT-TH-146",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Bâtiment tertiaire — réseaux",
+    sector: "Bâtiment tertiaire, réseaux",
     title: "Isolation des réseaux de chauffage et d'eau chaude sanitaire",
     pitch:
       "Le calorifugeage des tuyauteries en sous-sol, chaufferie et parkings : jusqu'à 15 % d'économies, souvent 100 % financé.",
@@ -149,7 +188,7 @@ export const operations: CeeOperation[] = [
     code: "BAR-TH-160",
     status: "coming-soon",
     sectorKey: "BAR",
-    sector: "Bâtiment résidentiel — réseaux",
+    sector: "Bâtiment résidentiel, réseaux",
     title: "Isolation d'un réseau hydraulique de chauffage",
     pitch:
       "Le calorifugeage des immeubles collectifs et copropriétés : des dizaines de kilomètres de réseaux traités chaque année.",
@@ -163,7 +202,7 @@ export const operations: CeeOperation[] = [
     code: "BAT-TH-155",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Bâtiment tertiaire — réseaux",
+    sector: "Bâtiment tertiaire, réseaux",
     title: "Isolation des points singuliers d'un réseau",
     pitch:
       "Vannes, brides, piquages : des housses isolantes démontables sur les points souvent oubliés du calorifugeage.",
@@ -177,7 +216,7 @@ export const operations: CeeOperation[] = [
     code: "BAR-TH-161",
     status: "coming-soon",
     sectorKey: "BAR",
-    sector: "Bâtiment résidentiel — réseaux",
+    sector: "Bâtiment résidentiel, réseaux",
     title: "Isolation des points singuliers (résidentiel)",
     pitch:
       "Le complément indispensable du calorifugeage en copropriété, chiffré au point traité.",
@@ -195,7 +234,7 @@ export const operations: CeeOperation[] = [
     code: "BAT-EN-103",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Bâtiment tertiaire — enveloppe",
+    sector: "Bâtiment tertiaire, enveloppe",
     title: "Isolation d'un plancher bas",
     pitch:
       "Sous-sols, parkings, vides sanitaires : 7 à 10 % de déperditions en moins par le sol.",
@@ -209,7 +248,7 @@ export const operations: CeeOperation[] = [
     code: "BAT-EN-101",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Bâtiment tertiaire — enveloppe",
+    sector: "Bâtiment tertiaire, enveloppe",
     title: "Isolation de combles ou de toitures",
     pitch:
       "Jusqu'à 30 % des pertes de chaleur passent par le toit d'un bâtiment mal isolé.",
@@ -223,7 +262,7 @@ export const operations: CeeOperation[] = [
     code: "BAR-EN-101",
     status: "coming-soon",
     sectorKey: "BAR",
-    sector: "Bâtiment résidentiel — enveloppe",
+    sector: "Bâtiment résidentiel, enveloppe",
     title: "Isolation de combles ou de toitures (résidentiel)",
     pitch:
       "Projection ou laine déroulée, rapide et non intrusive, avec des économies dès les premiers mois.",
@@ -237,7 +276,7 @@ export const operations: CeeOperation[] = [
     code: "BAR-EN-102",
     status: "coming-soon",
     sectorKey: "BAR",
-    sector: "Bâtiment résidentiel — enveloppe",
+    sector: "Bâtiment résidentiel, enveloppe",
     title: "Isolation des murs",
     pitch:
       "Par l'extérieur ou l'intérieur, l'un des postes les plus rentables en habitation collective.",
@@ -255,7 +294,7 @@ export const operations: CeeOperation[] = [
     code: "BAT-TH-116",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Bâtiment tertiaire — pilotage",
+    sector: "Bâtiment tertiaire, pilotage",
     title: "Système de gestion technique du bâtiment (GTB)",
     pitch:
       "Piloter chauffage, ventilation et éclairage depuis une supervision unique. Attendu par le décret tertiaire.",
@@ -269,7 +308,7 @@ export const operations: CeeOperation[] = [
     code: "BAR-TH-117",
     status: "coming-soon",
     sectorKey: "BAR",
-    sector: "Bâtiment résidentiel — régulation",
+    sector: "Bâtiment résidentiel, régulation",
     title: "Robinet thermostatique",
     pitch:
       "Réguler la chaleur pièce par pièce, sans gros travaux, sur les radiateurs à eau chaude existants.",
@@ -283,7 +322,7 @@ export const operations: CeeOperation[] = [
     code: "Chaufferie",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Chaufferie collective — performance",
+    sector: "Chaufferie collective, performance",
     title: "Désembouage & équilibrage des organes",
     pitch:
       "Nettoyer les circuits, régler vannes et pompes : jusqu'à 15 à 25 % d'économies sans changer d'équipement.",
@@ -301,7 +340,7 @@ export const operations: CeeOperation[] = [
     code: "Groupe froid",
     status: "coming-soon",
     sectorKey: "IND",
-    sector: "Industrie & tertiaire — froid",
+    sector: "Industrie & tertiaire, froid",
     title: "Récupération de chaleur sur les groupes froids",
     pitch:
       "Valoriser l'énergie rejetée par le refroidissement pour chauffer ou produire de l'eau chaude. Aussi : haute pression flottante.",
@@ -315,7 +354,7 @@ export const operations: CeeOperation[] = [
     code: "BAT-EQ-127",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Bâtiment tertiaire & extérieur — éclairage",
+    sector: "Bâtiment tertiaire & extérieur, éclairage",
     title: "Éclairage à modules LED (intérieur & extérieur)",
     pitch:
       "Jusqu'à 80 % de consommation en moins, et jusqu'à 50 % de plus avec détection de présence.",
@@ -333,7 +372,7 @@ export const operations: CeeOperation[] = [
     code: "CPE",
     status: "coming-soon",
     sectorKey: "BAT",
-    sector: "Tous bâtiments — engagement de résultat",
+    sector: "Tous bâtiments, engagement de résultat",
     title: "Contrat de Performance Énergétique (Pack CPE)",
     pitch:
       "Un bouquet de travaux avec économies garanties sur 5 ans : si l'objectif n'est pas atteint, le surplus est remboursé.",

@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 import { useSolutionForm } from "@/components/solution-form-context";
 import { calculateCumac } from "@/lib/cee-calculator";
 import { formatNumberFr, cn } from "@/lib/utils";
@@ -41,7 +41,13 @@ function Choice({
   );
 }
 
-export function CeeSimulator({ operation }: { operation: LiveCeeOperation }) {
+export function CeeSimulator({
+  operation,
+  index = "04",
+}: {
+  operation: LiveCeeOperation;
+  index?: string;
+}) {
   const { applyPrefill, scrollToContact } = useSolutionForm();
 
   const [product, setProduct] = React.useState<ProductType>("agricole");
@@ -70,23 +76,18 @@ export function CeeSimulator({ operation }: { operation: LiveCeeOperation }) {
   return (
     <section
       id="simulateur"
-      className="border-b border-border bg-secondary/40 py-20 sm:py-24"
+      className="border-b border-border bg-background py-20 sm:py-28"
     >
-      <div className="container max-w-3xl">
-        <Reveal className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
-            Estimation
-          </p>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            En 30 secondes, une idée de votre aide
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Trois questions simples. Le calcul s&apos;appuie sur le barème
-            officiel de l&apos;aide.
-          </p>
-        </Reveal>
+      <div className="container">
+        <SectionHead
+          index={index}
+          label="Estimation"
+          title="En 30 secondes, une idée de votre aide"
+          description="Trois questions simples. Le calcul s'appuie sur le barème officiel de l'aide."
+        />
 
-        <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-lift sm:p-8">
+        <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="overflow-hidden rounded-md border border-foreground/20 bg-card p-6 sm:p-8 lg:col-span-8 lg:col-start-4">
           <div className="grid gap-8 [&>*]:min-w-0">
             {/* Produits */}
             <div>
@@ -142,7 +143,7 @@ export function CeeSimulator({ operation }: { operation: LiveCeeOperation }) {
             <div>
               <div className="mb-2 flex items-baseline justify-between gap-3">
                 <Label htmlFor="sim-size">Taille de votre projet de séchage</Label>
-                <span className="text-sm font-semibold text-primary-700">
+                <span className="text-sm font-semibold text-foreground">
                   {sizeLabel}
                 </span>
               </div>
@@ -161,19 +162,19 @@ export function CeeSimulator({ operation }: { operation: LiveCeeOperation }) {
             </div>
 
             {/* Résultat */}
-            <div className="rounded-xl bg-primary-50 p-5">
-              <p className="text-sm text-primary-700">
+            <div className="rounded-sm bg-primary-900 p-6 text-white">
+              <p className="text-sm text-white/70">
                 {region
                   ? "Votre projet pourrait ouvrir droit à une aide d'environ"
                   : "Sélectionnez votre région pour affiner. Estimation actuelle :"}
               </p>
-              <p className="mt-1 text-3xl font-extrabold tracking-tight text-primary-700">
+              <p className="display mt-2 text-5xl text-accent">
                 {formatNumberFr(cumac)}{" "}
-                <span className="text-lg font-bold">kWh cumac</span>
+                <span className="text-lg font-medium text-white">kWh cumac</span>
               </p>
-              <p className="mt-2 text-xs leading-relaxed text-primary-700/80">
+              <p className="mt-2 text-xs leading-relaxed text-white/55">
                 C&apos;est le volume officiel de l&apos;aide. Sa valeur en euros
-                dépend du moment et de votre situation — indicative, non
+                dépend du moment et de votre situation : indicative, non
                 contractuelle, sous réserve d&apos;éligibilité.
               </p>
 
@@ -189,6 +190,7 @@ export function CeeSimulator({ operation }: { operation: LiveCeeOperation }) {
               </Button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

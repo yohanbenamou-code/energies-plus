@@ -1,9 +1,16 @@
 import * as React from "react";
 import Link from "next/link";
-import { Check, PhoneCall, X } from "lucide-react";
+import { PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
 import { site } from "@/data/site";
+
+const ORDER = [
+  "Qualification et vérification de l'éligibilité",
+  "Engagement CEE formalisé",
+  "Signature du devis avec l'installateur",
+  "Travaux, puis dossier de preuve",
+];
 
 /**
  * Section pédagogique factuelle. Ne cite volontairement AUCUN article de loi
@@ -13,21 +20,21 @@ export function RulesBeforeQuoteSection() {
   return (
     <section
       id="avant-devis"
-      className="relative overflow-hidden border-b border-border bg-primary-900 py-20 text-white sm:py-24"
+      className="relative overflow-hidden bg-primary-900 py-20 text-white sm:py-28"
     >
-      <div className="surface-grid pointer-events-none absolute inset-0 opacity-30" />
-      <div className="pointer-events-none absolute -right-32 top-0 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
-
-      <div className="container relative grid gap-12 lg:grid-cols-2 lg:items-center">
-        <Reveal>
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">
+      <span
+        aria-hidden
+        className="plus-mark -bottom-48 -left-40 hidden h-[40rem] text-white/[0.06] [--t:2px] lg:block"
+      />
+      <div className="container relative grid gap-14 lg:grid-cols-12 lg:gap-10">
+        <Reveal className="lg:col-span-6">
+          <p className="text-sm font-medium text-accent">
             L&apos;erreur à ne pas commettre
           </p>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-            Appelez-nous <span className="text-brand-gradient">avant</span> de
-            signer votre devis
+          <h2 className="display mt-4 text-balance text-4xl sm:text-5xl">
+            Appelez-nous avant de signer votre devis
           </h2>
-          <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-white/80">
+          <div className="mt-6 max-w-lg space-y-4 text-[15px] leading-relaxed text-white/75">
             <p>
               Dans le dispositif des Certificats d&apos;Économies d&apos;Énergie,
               la qualification et la sécurisation du dossier doivent intervenir{" "}
@@ -36,52 +43,45 @@ export function RulesBeforeQuoteSection() {
             </p>
             <p>
               Un devis signé trop tôt, et le bénéfice de l&apos;aide peut être
-              perdu — sans rattrapage possible. C&apos;est l&apos;erreur la plus
+              perdu, sans rattrapage possible. C&apos;est l&apos;erreur la plus
               fréquente, et la plus coûteuse.
             </p>
           </div>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button asChild variant="accent">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Button asChild variant="accent" size="lg">
               <Link href="#contact">
                 <PhoneCall /> Faire cadrer mon projet
               </Link>
             </Button>
             <a
               href={site.contact.phoneHref}
-              className="text-sm font-semibold text-white hover:text-accent"
+              className="px-1 text-sm font-semibold text-white hover:text-accent"
             >
               ou appelez le {site.contact.phoneDisplay}
             </a>
           </div>
         </Reveal>
 
-        <Reveal variant="left" className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur">
-          <p className="text-xs font-semibold uppercase tracking-wide text-white/50">
-            Le bon ordre
-          </p>
-          <ol className="mt-4 space-y-3">
-            {[
-              "Qualification & vérification de l'éligibilité",
-              "Engagement CEE formalisé",
-              "Signature du devis avec l'installateur",
-              "Travaux, puis dossier de preuve",
-            ].map((label, i) => (
-              <li key={label} className="flex items-center gap-3 text-sm">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/20 text-accent">
-                  <Check className="h-3.5 w-3.5" strokeWidth={3} />
+        <Reveal variant="left" className="lg:col-span-5 lg:col-start-8">
+          <p className="text-sm font-medium text-white/60">Le bon ordre</p>
+          <ol className="mt-4 border-t border-white/20">
+            {ORDER.map((label, i) => (
+              <li
+                key={label}
+                className="flex items-baseline gap-5 border-b border-white/20 py-4"
+              >
+                <span className="font-mono text-sm text-accent">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-white/85">
-                  {i + 1}. {label}
-                </span>
+                <span className="text-[15px] text-white/90">{label}</span>
               </li>
             ))}
           </ol>
-          <div className="mt-5 flex items-center gap-3 rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-white/80">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-destructive/20 text-destructive-foreground">
-              <X className="h-3.5 w-3.5" strokeWidth={3} />
-            </span>
-            Devis signé avant l&apos;engagement CEE = aide généralement perdue.
-          </div>
+          <p className="mt-5 text-sm leading-relaxed text-white/70">
+            <span className="font-semibold text-white">À éviter :</span> un
+            devis signé avant l&apos;engagement CEE. L&apos;aide est alors
+            généralement perdue.
+          </p>
         </Reveal>
       </div>
     </section>

@@ -1,9 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { ArrowRight, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/Reveal";
+import { ArrowRight } from "lucide-react";
+import { SectionHead } from "@/components/SectionHead";
 import { Stagger, StaggerItem } from "@/components/motion";
 import { useSolutionForm } from "@/components/solution-form-context";
 import type { LiveCeeOperation } from "@/types/operation";
@@ -20,7 +19,13 @@ const FRIENDLY: Record<string, { title: string; subtitle: string }> = {
   },
 };
 
-export function SolutionVariantCards({ operation }: { operation: LiveCeeOperation }) {
+export function SolutionVariantCards({
+  operation,
+  index = "02",
+}: {
+  operation: LiveCeeOperation;
+  index?: string;
+}) {
   const { applyPrefill, scrollToContact } = useSolutionForm();
 
   const choose = (variantKey: string) => {
@@ -31,23 +36,17 @@ export function SolutionVariantCards({ operation }: { operation: LiveCeeOperatio
   return (
     <section
       id="solutions"
-      className="border-b border-border bg-background py-20 sm:py-24"
+      className="border-b border-border bg-secondary/50 py-20 sm:py-28"
     >
       <div className="container">
-        <Reveal className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
-            Deux cas de figure
-          </p>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Quel que soit votre point de départ
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Nos conseillers déterminent avec vous la configuration adaptée à
-            votre bâtiment.
-          </p>
-        </Reveal>
+        <SectionHead
+          index={index}
+          label="Deux cas de figure"
+          title="Quel que soit votre point de départ"
+          description="Nos conseillers déterminent avec vous la configuration adaptée à votre bâtiment."
+        />
 
-        <Stagger className="mt-12 grid gap-6 md:grid-cols-2">
+        <Stagger className="mt-12 grid gap-5 md:grid-cols-2">
           {operation.variants.map((variant) => {
             const f = FRIENDLY[variant.key] ?? {
               title: variant.label,
@@ -55,35 +54,29 @@ export function SolutionVariantCards({ operation }: { operation: LiveCeeOperatio
             };
             return (
               <StaggerItem key={variant.key} as="article">
-                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-soft">
-                  <h3 className="text-xl font-semibold text-foreground">
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <div className="flex h-full flex-col rounded-md border border-foreground/20 bg-card p-7">
+                  <h3 className="display text-2xl text-foreground">{f.title}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
                     {f.subtitle}
                   </p>
 
-                  <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  <p className="mt-6 text-sm font-semibold text-foreground">
                     Ce qui est installé
                   </p>
-                  <ul className="mt-2 flex-1 space-y-2">
+                  <ul className="list-plus mt-3 flex-1 space-y-2 text-sm text-foreground">
                     {variant.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-600" />
-                        <span className="text-foreground">{item}</span>
-                      </li>
+                      <li key={item}>{item}</li>
                     ))}
                   </ul>
 
-                  <Button
+                  <button
                     type="button"
-                    variant="outline"
-                    className="mt-6 w-full"
                     onClick={() => choose(variant.key)}
+                    className="mt-7 inline-flex items-center gap-2 self-start border-b-2 border-accent pb-1 text-sm font-semibold text-foreground transition-colors hover:text-accent-600"
                   >
                     C&apos;est mon cas
-                    <ArrowRight />
-                  </Button>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
               </StaggerItem>
             );

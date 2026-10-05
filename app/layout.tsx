@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Manrope, Fraunces } from "next/font/google";
+import { Manrope, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { UtmCapture } from "@/components/UtmCapture";
-import { ScrollProgress } from "@/components/ScrollProgress";
 import { RevealInit } from "@/components/RevealInit";
 import { site } from "@/data/site";
 
@@ -13,11 +12,9 @@ const manrope = Manrope({
   variable: "--font-sans",
 });
 
-const fraunces = Fraunces({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
   variable: "--font-display",
 });
 
@@ -28,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Énergies Plus — Le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés",
+      "Énergies Plus : le dispositif des Certificats d'Économies d'Énergie, transformé en travaux financés",
     template: "%s | Énergies Plus",
   },
   description:
@@ -52,14 +49,14 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Énergies Plus",
     title:
-      "Énergies Plus — Les Certificats d'Économies d'Énergie, transformés en travaux financés",
+      "Énergies Plus : les Certificats d'Économies d'Énergie, transformés en travaux financés",
     description:
       "Vérification d'éligibilité, montage du dossier d'aide CEE avant devis, suivi jusqu'aux travaux. Résidentiel, tertiaire, industrie, agriculture, réseaux, transport.",
     // Image Open Graph générée par app/opengraph-image.tsx (bloc-marque Énergies Plus).
   },
   twitter: {
     card: "summary_large_image",
-    title: "Énergies Plus — Les aides CEE, en clair",
+    title: "Énergies Plus : les aides CEE, en clair",
     description:
       "Le dispositif public des Certificats d'Économies d'Énergie, transformé en travaux financés.",
   },
@@ -75,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${manrope.variable} ${fraunces.variable}`}
+      className={`${manrope.variable} ${bricolage.variable}`}
     >
       <body className="min-h-screen bg-background font-sans text-foreground">
         <a
@@ -84,7 +81,6 @@ export default function RootLayout({
         >
           Aller au contenu
         </a>
-        <ScrollProgress />
         <RevealInit />
         {children}
         <UtmCapture />

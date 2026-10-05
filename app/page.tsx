@@ -3,7 +3,6 @@ import { BellRing, PackageX, Sparkles } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
-import { SectorMarquee } from "@/components/SectorMarquee";
 import { CeeMechanism } from "@/components/CeeMechanism";
 import { OperationsCatalog } from "@/components/OperationsCatalog";
 import { SectorGrid } from "@/components/SectorGrid";
@@ -11,6 +10,8 @@ import { RulesBeforeQuoteSection } from "@/components/RulesBeforeQuoteSection";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TrustSection } from "@/components/TrustSection";
 import { Faq, type FaqItem } from "@/components/Faq";
+import { BookingSection } from "@/components/BookingSection";
+import { SectionHead } from "@/components/SectionHead";
 import { QuickLeadForm } from "@/components/QuickLeadForm";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion";
@@ -113,23 +114,25 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Qui peut en bénéficier ?",
     plainAnswer:
-      "Bailleurs sociaux, établissements de santé et médico-sociaux, collectivités, copropriétés, sites industriels et tertiaires, exploitations agricoles : dès qu'un projet correspond à une fiche CEE et en respecte les conditions.",
+      "Bailleurs sociaux, établissements de santé et médico-sociaux, collectivités, copropriétés, sites industriels et tertiaires, exploitations agricoles, propriétaires de maison individuelle : dès qu'un projet correspond à une fiche CEE et en respecte les conditions.",
     answer: (
       <p>
         Bailleurs sociaux, établissements de santé, collectivités, copropriétés,
-        sites industriels et tertiaires, exploitations agricoles… Dès qu&apos;un
-        projet correspond à une fiche CEE. Nous vérifions votre cas gratuitement.
+        sites industriels et tertiaires, exploitations agricoles, propriétaires
+        de maison individuelle… Dès qu&apos;un projet correspond à une fiche CEE.
+        Nous vérifions votre cas gratuitement.
       </p>
     ),
   },
   {
     question: "Quelles opérations accompagnez-vous ?",
     plainAnswer:
-      "Pompe à chaleur tertiaire (fiche BAT-TH-163, avec page dédiée), isolation des réseaux de chauffage (calorifugeage) et des points singuliers, isolation des planchers, combles et murs, robinets thermostatiques, GTB, éclairage LED, désembouage et équilibrage, récupération de chaleur sur groupes froids, Contrat de Performance Énergétique, et séchage solaire agricole (fiche AGRI-EQ-110, avec page dédiée).",
+      "Pompe à chaleur tertiaire (fiche BAT-TH-163, avec page dédiée), pompe à chaleur et solaire pour maison individuelle (fiche BAR-TH-168, avec page dédiée), isolation des réseaux de chauffage (calorifugeage) et des points singuliers, isolation des planchers, combles et murs, robinets thermostatiques, GTB, éclairage LED, désembouage et équilibrage, récupération de chaleur sur groupes froids, Contrat de Performance Énergétique, et séchage solaire agricole (fiche AGRI-EQ-110, avec page dédiée).",
     answer: (
       <p>
-        Pompe à chaleur tertiaire (fiche <strong>BAT-TH-163</strong>),
-        calorifugeage et points singuliers, isolation des planchers / combles
+        Pompe à chaleur tertiaire (fiche <strong>BAT-TH-163</strong>), pompe à
+        chaleur et solaire pour maison individuelle (fiche{" "}
+        <strong>BAR-TH-168</strong>), calorifugeage et points singuliers, isolation des planchers / combles
         / murs, robinets thermostatiques, GTB, éclairage LED, désembouage et
         équilibrage, récupération de chaleur sur groupes froids, Contrat de
         Performance Énergétique, et séchage solaire agricole (fiche{" "}
@@ -165,11 +168,11 @@ export default function HomePage() {
 
       <main id="contenu">
         <Hero
-          eyebrow="Conseil & travaux CEE — depuis 2015"
+          eyebrow="Conseil et travaux CEE depuis 2015"
           title="Vos travaux d'économies d'énergie,"
           titleAccent="souvent financés à 100 %."
-          subtitle="Énergies Plus identifie la bonne fiche CEE, sécurise votre dossier avant la signature du devis et coordonne le chantier jusqu'au contrôle COFRAC. Bailleurs sociaux, santé, collectivités, copropriétés, industrie, agriculture."
-          note="Le dossier CEE doit être engagé avant la signature du devis — faites vérifier votre projet avant de vous engager."
+          subtitle="Énergies Plus identifie la bonne fiche CEE, sécurise votre dossier avant la signature du devis et coordonne le chantier jusqu'au contrôle COFRAC. Bailleurs sociaux, santé, collectivités, copropriétés, industrie, agriculture, particuliers."
+          note="Le dossier CEE doit être engagé avant la signature du devis : faites vérifier votre projet avant de vous engager."
           primaryCta={{ label: "Vérifier mon éligibilité", href: "#contact" }}
           secondaryCta={{ label: "Voir le catalogue des fiches", href: "#catalogue" }}
           image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1900&q=80&auto=format&fit=crop"
@@ -182,7 +185,6 @@ export default function HomePage() {
           ]}
         />
 
-        <SectorMarquee />
         <CeeMechanism />
         <OperationsCatalog />
         <SectorGrid />
@@ -196,30 +198,23 @@ export default function HomePage() {
         />
 
         {/* Engagements chantier */}
-        <section className="border-b border-border bg-background py-16 sm:py-20">
+        <section className="border-b border-border bg-secondary/50 py-20 sm:py-28">
           <div className="container">
-            <Reveal className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-600">
-                Sur site
-              </p>
-              <h2 className="display mt-3 text-2xl text-foreground sm:text-3xl">
-                Des travaux menés <em>sans perturber</em> l&apos;activité
-              </h2>
-            </Reveal>
-            <Stagger className="mt-8 grid gap-6 sm:grid-cols-3">
+            <SectionHead
+              index="05"
+              label="Sur site"
+              title="Des travaux menés sans perturber l'activité"
+            />
+            <Stagger className="mt-12 grid gap-10 sm:grid-cols-3">
               {ENGAGEMENTS.map((e) => (
                 <StaggerItem key={e.title} as="div">
-                  <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
-                      <e.icon className="h-5 w-5" />
-                    </span>
-                    <h3 className="mt-3 text-base font-semibold text-foreground">
-                      {e.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {e.body}
-                    </p>
-                  </div>
+                  <e.icon className="h-6 w-6 text-accent-600" strokeWidth={1.75} />
+                  <h3 className="mt-4 text-lg font-semibold text-foreground">
+                    {e.title}
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                    {e.body}
+                  </p>
                 </StaggerItem>
               ))}
             </Stagger>
@@ -228,6 +223,7 @@ export default function HomePage() {
 
         <TrustSection
           id="references"
+          index="06"
           eyebrow="Références"
           title="Une expertise du dispositif, pas un intermédiaire de plus"
           description="L'équipe accompagne des patrimoines complets depuis 2015, avec un contrôle COFRAC systématique."
@@ -241,47 +237,53 @@ export default function HomePage() {
         />
 
         {/* CTA final */}
-        <section
-          id="contact"
-          className="relative overflow-hidden bg-secondary/40 py-20 sm:py-28"
-        >
-          <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
-          <div className="container grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-start">
-            <Reveal>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-600">
-                Contact
-              </p>
-              <h2 className="display mt-3 text-3xl text-foreground sm:text-4xl">
-                Parlons de votre projet <em>avant</em> que le devis ne soit signé
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                Décrivez-nous votre projet en quelques lignes. Un conseiller vous
-                rappelle sous 24–48h ouvrées pour vérifier son éligibilité — sans
-                engagement.
-              </p>
-              <p className="mt-6 text-sm text-muted-foreground">
-                Vous préférez le téléphone ?{" "}
-                <a
-                  href={site.contact.phoneHref}
-                  className="font-semibold text-foreground hover:text-primary"
-                >
-                  {site.contact.phoneDisplay}
-                </a>{" "}
-                — {site.contact.hours}.
-              </p>
-              <p className="mt-6 max-w-md text-xs text-muted-foreground">
-                {site.privateActorShort}
-              </p>
-            </Reveal>
+        <section id="contact" className="bg-secondary/50 py-20 sm:py-28">
+          <div className="container">
+            <SectionHead
+              index="08"
+              label="Contact"
+              title="Parlons de votre projet avant que le devis ne soit signé"
+            />
+            <div className="mt-12 grid gap-12 lg:grid-cols-12">
+              <Reveal className="lg:col-span-5">
+                <p className="text-lg leading-relaxed text-muted-foreground">
+                  Décrivez-nous votre projet en quelques lignes. Un conseiller
+                  vous rappelle sous 24 à 48h ouvrées pour vérifier son
+                  éligibilité, sans engagement.
+                </p>
+                <p className="mt-6 text-sm text-muted-foreground">
+                  Vous préférez le téléphone ?{" "}
+                  <a
+                    href={site.contact.phoneHref}
+                    className="font-semibold text-foreground underline underline-offset-4 hover:text-accent-600"
+                  >
+                    {site.contact.phoneDisplay}
+                  </a>{" "}
+                  ({site.contact.hours}). Ou{" "}
+                  <a
+                    href="#rendez-vous"
+                    className="font-semibold text-foreground underline underline-offset-4 hover:text-accent-600"
+                  >
+                    réservez un créneau
+                  </a>
+                  .
+                </p>
+                <p className="mt-6 max-w-md text-xs text-muted-foreground">
+                  {site.privateActorShort}
+                </p>
+              </Reveal>
 
-            <Reveal
-              variant="left"
-              className="rounded-2xl border border-border bg-card p-6 shadow-lift sm:p-8"
-            >
-              <QuickLeadForm source="homepage" />
-            </Reveal>
+              <Reveal
+                variant="left"
+                className="rounded-md border border-foreground/20 bg-card p-6 sm:p-8 lg:col-span-7"
+              >
+                <QuickLeadForm source="homepage" />
+              </Reveal>
+            </div>
           </div>
         </section>
+
+        <BookingSection index="09" />
       </main>
 
       <Footer />

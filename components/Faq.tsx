@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SectionHeading } from "@/components/SectionHeading";
+import { SectionHead } from "@/components/SectionHead";
 
 export interface FaqItem {
   question: string;
@@ -16,6 +16,7 @@ export interface FaqItem {
 
 interface FaqProps {
   id?: string;
+  index?: string;
   title?: string;
   description?: string;
   items: FaqItem[];
@@ -25,30 +26,44 @@ interface FaqProps {
 
 export function Faq({
   id = "faq",
+  index = "07",
   title = "Questions fréquentes",
   description,
   items,
   withJsonLd = true,
 }: FaqProps) {
   return (
-    <section id={id} className="border-b border-border bg-background py-20 sm:py-24">
-      <div className="container max-w-3xl">
-        <SectionHeading eyebrow="FAQ" title={title} description={description} />
+    <section id={id} className="border-b border-border bg-background py-20 sm:py-28">
+      <div className="container">
+        <SectionHead
+          index={index}
+          label="FAQ"
+          title={title}
+          description={description}
+        />
 
-        <Accordion
-          type="single"
-          collapsible
-          className="mt-10 rounded-2xl border border-border bg-card px-6 shadow-soft [&>*:last-child]:border-b-0"
-        >
-          {items.map((item, i) => (
-            <AccordionItem key={item.question} value={`item-${i}`}>
-              <AccordionTrigger>{item.question}</AccordionTrigger>
-              <AccordionContent>
-                <div className="space-y-3">{item.answer}</div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
+          <Accordion
+            type="single"
+            collapsible
+            className="border-t border-foreground/20 lg:col-span-8 lg:col-start-4"
+          >
+            {items.map((item, i) => (
+              <AccordionItem
+                key={item.question}
+                value={`item-${i}`}
+                className="border-foreground/20"
+              >
+                <AccordionTrigger className="text-[1.05rem]">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="max-w-2xl space-y-3">{item.answer}</div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </div>
 
       {withJsonLd ? (

@@ -27,18 +27,18 @@ export default function MentionsLegalesPage() {
       <h2>Éditeur du site</h2>
       <p>
         <strong>{legal.companyName}</strong>
-        {legal.legalForm ? ` — ${legal.legalForm}` : null}
+        {legal.legalForm ? `, ${legal.legalForm}` : null}
         {legal.capital ? ` au capital de ${legal.capital}` : null}
         <br />
         Siège social : {legal.address}
         <br />
-        SIREN : {legal.siren} — SIRET (siège) : {legal.siret}
+        SIREN : {legal.siren}, SIRET (siège) : {legal.siret}
         <br />
         {legal.rcs}
         <br />
         N° TVA intracommunautaire : {legal.vat}
         <br />
-        Téléphone : {contact.phoneDisplay} — Email : {contact.email}
+        Téléphone : {contact.phoneDisplay}, email : {contact.email}
       </p>
       <p>
         Directeur de la publication :{" "}
@@ -52,7 +52,7 @@ export default function MentionsLegalesPage() {
       <p>
         Ce site est hébergé par <strong>{host.name}</strong>, {host.address}.
         <br />
-        Site : <a href={host.url}>{host.url}</a> — Contact : {host.contact}
+        Site : <a href={host.url}>{host.url}</a>, contact : {host.contact}
       </p>
 
       <h2>Assurance</h2>

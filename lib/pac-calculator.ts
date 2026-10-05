@@ -75,23 +75,23 @@ export const PAC_PERFORMANCE_LABELS: Record<
 > = {
   "etas-111-126": {
     label: "PAC standard",
-    help: "Efficacité saisonnière (Etas) entre 111 % et 126 % — puissance ≤ 400 kW",
+    help: "Efficacité saisonnière (Etas) entre 111 % et 126 %, puissance ≤ 400 kW",
   },
   "etas-126-175": {
     label: "PAC performante",
-    help: "Efficacité saisonnière (Etas) entre 126 % et 175 % — puissance ≤ 400 kW",
+    help: "Efficacité saisonnière (Etas) entre 126 % et 175 %, puissance ≤ 400 kW",
   },
   "etas-175-plus": {
     label: "PAC très performante",
-    help: "Efficacité saisonnière (Etas) ≥ 175 % — puissance ≤ 400 kW",
+    help: "Efficacité saisonnière (Etas) ≥ 175 %, puissance ≤ 400 kW",
   },
   "cop-34-45": {
     label: "PAC standard (> 400 kW)",
-    help: "COP mesuré entre 3,4 et 4,5 — puissance > 400 kW",
+    help: "COP mesuré entre 3,4 et 4,5, puissance > 400 kW",
   },
   "cop-45-plus": {
     label: "PAC performante (> 400 kW)",
-    help: "COP mesuré ≥ 4,5 — puissance > 400 kW",
+    help: "COP mesuré ≥ 4,5, puissance > 400 kW",
   },
 };
 

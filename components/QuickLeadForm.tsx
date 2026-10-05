@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RgpdConsent } from "@/components/RgpdConsent";
-import { STRUCTURE_TYPES } from "@/data/form-options";
+import { HOME_STRUCTURE_TYPES } from "@/data/form-options";
 import { submitLead } from "@/lib/submit-lead";
 import type { LeadSource } from "@/types/lead";
 
@@ -137,7 +137,7 @@ export function QuickLeadForm({
             className="mt-1.5 flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <option value="">Sélectionnez…</option>
-            {STRUCTURE_TYPES.map((type) => (
+            {HOME_STRUCTURE_TYPES.map((type) => (
               <option key={type} value={type}>
                 {type}
               </option>
@@ -204,7 +204,7 @@ export function QuickLeadForm({
         )}
       </Button>
       <p className="mt-3 text-center text-xs text-muted-foreground">
-        Réponse d&apos;un conseiller sous 24–48h ouvrées. Aucun engagement.
+        Réponse d&apos;un conseiller sous 24 à 48h ouvrées. Aucun engagement.
       </p>
     </form>
   );

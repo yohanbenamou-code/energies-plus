@@ -3,8 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
+import { ArrowUpRight } from "lucide-react";
+import { SectionHead } from "@/components/SectionHead";
 import { operations } from "@/data/operations";
 import { SECTORS } from "@/data/sectors";
 import { cn } from "@/lib/utils";
@@ -20,7 +20,7 @@ function OperationCard({ operation }: { operation: CeeOperation }) {
 
   const inner = (
     <>
-      <div className="relative aspect-[16/10] overflow-hidden bg-brand-gradient">
+      <div className="relative aspect-[16/10] overflow-hidden bg-primary-900">
         {operation.image ? (
           <Image
             src={operation.image}
@@ -29,21 +29,19 @@ function OperationCard({ operation }: { operation: CeeOperation }) {
             sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
             className={cn(
               "object-cover transition-transform duration-500",
-              isLive && "group-hover:scale-105",
+              isLive && "group-hover:scale-[1.03]",
             )}
           />
         ) : null}
-        <div
+        {!isLive ? <div className="absolute inset-0 bg-primary-900/50" /> : null}
+        <span
           className={cn(
-            "absolute left-3 top-3 rounded-md bg-white/95 px-2 py-1 text-[11px] font-semibold text-primary-700 shadow-sm",
-            isFiche ? "font-mono" : "uppercase tracking-wide",
+            "absolute left-0 top-0 bg-background px-3 py-1.5 text-xs font-semibold text-foreground",
+            isFiche ? "font-mono" : "",
           )}
         >
           {isFiche ? operation.code : "Opération CEE"}
-        </div>
-        {!isLive ? (
-          <div className="absolute inset-0 bg-primary-900/45" />
-        ) : null}
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
@@ -55,17 +53,17 @@ function OperationCard({ operation }: { operation: CeeOperation }) {
         </p>
         <span
           className={cn(
-            "mt-4 inline-flex items-center gap-1.5 text-sm font-semibold",
-            isLive ? "text-accent-600" : "text-muted-foreground",
+            "mt-5 inline-flex items-center gap-1.5 border-t border-border pt-4 text-sm font-semibold",
+            isLive ? "text-foreground" : "text-muted-foreground",
           )}
         >
           {isLive ? (
             <>
               Voir la solution
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowUpRight className="h-4 w-4 text-accent-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </>
           ) : (
-            "Accompagnement à activer — nous consulter"
+            "Accompagnement à activer, nous consulter"
           )}
         </span>
       </div>
@@ -74,7 +72,7 @@ function OperationCard({ operation }: { operation: CeeOperation }) {
 
   if (!isLive) {
     return (
-      <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-border bg-card/60">
+      <div className="flex h-full flex-col overflow-hidden rounded-md border border-dashed border-foreground/25 bg-card/50">
         {inner}
       </div>
     );
@@ -83,7 +81,7 @@ function OperationCard({ operation }: { operation: CeeOperation }) {
   return (
     <Link
       href={`/solutions/${operation.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="group flex h-full flex-col overflow-hidden rounded-md border border-foreground/20 bg-card transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       {inner}
     </Link>
@@ -109,35 +107,33 @@ export function OperationsCatalog() {
   return (
     <section
       id="catalogue"
-      className="border-b border-border bg-background py-20 sm:py-28"
+      className="border-b border-border bg-secondary/50 py-20 sm:py-28"
     >
       <div className="container">
-        <Reveal className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-600">
-            Catalogue des fiches
-          </p>
-          <h2 className="display mt-3 text-3xl text-foreground sm:text-4xl">
-            Les opérations CEE les plus <em>demandées</em>
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Chaque fiche est une opération standardisée publiée par le Ministère
-            de la Transition Écologique. Celles marquées d&apos;une flèche
-            disposent déjà d&apos;un accompagnement complet chez Énergies Plus.
-          </p>
-        </Reveal>
+        <SectionHead
+          index="02"
+          label="Catalogue des fiches"
+          title="Les opérations CEE les plus demandées"
+          description="Chaque fiche est une opération standardisée publiée par le Ministère de la Transition Écologique. Celles qui portent une flèche disposent déjà d'un accompagnement complet chez Énergies Plus."
+        />
 
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div
+          role="tablist"
+          aria-label="Filtrer par secteur"
+          className="mt-10 flex flex-wrap gap-x-7 gap-y-2 border-b border-foreground/15"
+        >
           {tabs.map((tab) => (
             <button
               key={tab.key}
               type="button"
+              role="tab"
               onClick={() => setFilter(tab.key)}
-              aria-pressed={filter === tab.key}
+              aria-selected={filter === tab.key}
               className={cn(
-                "rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
+                "-mb-px border-b-2 pb-3 text-sm font-semibold transition-colors",
                 filter === tab.key
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-background text-muted-foreground hover:text-foreground",
+                  ? "border-accent text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
               {tab.label}
@@ -145,14 +141,14 @@ export function OperationsCatalog() {
           ))}
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((operation) => (
             <OperationCard key={operation.slug} operation={operation} />
           ))}
         </div>
 
         <p className="mt-8 max-w-3xl text-xs leading-relaxed text-muted-foreground">
-          {/* TODO: Yohan/Énergies Plus — confirmer la liste des fiches accompagnées */}
+          {/* TODO: Yohan/Énergies Plus : confirmer la liste des fiches accompagnées */}
           Catalogue non exhaustif et donné à titre indicatif. Le dispositif CEE
           évolue régulièrement : certaines fiches sont modifiées ou abrogées.
           Avant tout engagement, faites vérifier l&apos;éligibilité de votre

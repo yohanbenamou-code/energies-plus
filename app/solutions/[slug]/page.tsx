@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SolutionLanding } from "@/components/SolutionLanding";
 import { PacLanding } from "@/components/PacLanding";
+import { SolarLanding } from "@/components/SolarLanding";
 import { getLiveOperations, getOperationBySlug } from "@/data/operations";
 import { isLiveOperation } from "@/types/operation";
 
@@ -11,6 +12,7 @@ interface PageProps {
 
 const AGRI_SLUG = "agri-eq-110-sechage-solaire-agricole";
 const PAC_SLUG = "bat-th-163-pompe-a-chaleur-air-eau-tertiaire";
+const SOLAR_SLUG = "bar-th-168-pompe-a-chaleur-solaire-maison-individuelle";
 
 export function generateStaticParams() {
   return getLiveOperations().map((operation) => ({ slug: operation.slug }));
@@ -24,9 +26,34 @@ export function generateMetadata({ params }: PageProps): Metadata {
     return { title: "Solution introuvable" };
   }
 
+  if (params.slug === SOLAR_SLUG) {
+    const title =
+      "Pompe à chaleur et solaire pour maison individuelle (BAR-TH-168) : MaPrimeRénov' et CEE";
+    const description = `${operation.heroSubtitle ?? operation.shortDescription} Étude d'éligibilité gratuite et accompagnement de A à Z.`;
+    return {
+      title,
+      description,
+      keywords: [
+        "pompe à chaleur et solaire",
+        "BAR-TH-168",
+        "système solaire combiné",
+        "MaPrimeRénov' pompe à chaleur",
+        "remplacement chaudière fioul gaz",
+        "CEE maison individuelle",
+      ],
+      alternates: { canonical: `/solutions/${operation.slug}` },
+      openGraph: {
+        type: "article",
+        title,
+        description,
+        url: `/solutions/${operation.slug}`,
+      },
+    };
+  }
+
   if (params.slug === PAC_SLUG) {
     const title =
-      "Pompe à chaleur tertiaire (BAT-TH-163) — l'aide CEE, expliquée simplement";
+      "Pompe à chaleur tertiaire (BAT-TH-163) : l'aide CEE, expliquée simplement";
     const description = `${operation.heroSubtitle ?? operation.shortDescription} Estimation gratuite et accompagnement de A à Z.`;
     return {
       title,
@@ -50,7 +77,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   }
 
   const title =
-    "Séchage solaire agricole & forestier — l'aide CEE, expliquée simplement";
+    "Séchage solaire agricole et forestier : l'aide CEE, expliquée simplement";
   const description = `${operation.heroSubtitle ?? operation.shortDescription} Estimation gratuite et accompagnement de A à Z.`;
 
   return {
@@ -79,6 +106,10 @@ export default function SolutionPage({ params }: PageProps) {
 
   if (!operation || operation.status !== "live") {
     notFound();
+  }
+
+  if (params.slug === SOLAR_SLUG) {
+    return <SolarLanding />;
   }
 
   if (params.slug === PAC_SLUG) {

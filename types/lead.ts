@@ -5,6 +5,7 @@ export const leadSourceSchema = z.enum([
   "homepage",
   "agri-eq-110",
   "bat-th-163",
+  "bar-th-168",
 ]);
 export type LeadSource = z.infer<typeof leadSourceSchema>;
 

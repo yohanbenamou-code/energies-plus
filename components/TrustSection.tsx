@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Check } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 import { Stagger, StaggerItem } from "@/components/motion";
 import {
   CHANTIER_HIGHLIGHTS,
@@ -11,6 +11,8 @@ import {
 
 interface TrustSectionProps {
   id?: string;
+  index?: string;
+  /** Rubrique affichée à gauche du titre. */
   eyebrow?: string;
   title: string;
   description?: string;
@@ -24,6 +26,7 @@ const currentYear = new Date().getFullYear();
 
 export function TrustSection({
   id = "references",
+  index = "06",
   eyebrow = "Références",
   title,
   description,
@@ -31,100 +34,92 @@ export function TrustSection({
   showCredentials = true,
   className,
 }: TrustSectionProps) {
+  const stats = [
+    {
+      value: `${currentYear - TRACK_RECORD.sinceYear} ans`,
+      label: `d'expérience du dispositif CEE (depuis ${TRACK_RECORD.sinceYear})`,
+    },
+    {
+      value: `+${TRACK_RECORD.buildings.toLocaleString("fr-FR")}`,
+      label: "bâtiments accompagnés",
+    },
+    ...CHANTIER_HIGHLIGHTS.slice(0, 2).map((h) => ({
+      value: h.metric,
+      label: h.label,
+    })),
+  ];
+
   return (
     <section
       id={id}
       className={className ?? "border-b border-border bg-background py-20 sm:py-28"}
     >
       <div className="container">
-        <Reveal className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-600">
-            {eyebrow}
-          </p>
-          <h2 className="display mt-3 text-3xl text-foreground sm:text-4xl">
-            {title}
-          </h2>
-          {description ? (
-            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-              {description}
-            </p>
-          ) : null}
-        </Reveal>
+        <SectionHead
+          index={index}
+          label={eyebrow}
+          title={title}
+          description={description}
+        />
 
         {/* Repères chiffrés issus du dossier de l'équipe */}
-        <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <StaggerItem as="div">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
-              <p className="display text-4xl text-primary-700">
-                {currentYear - TRACK_RECORD.sinceYear} ans
+        <Stagger className="mt-14 grid grid-cols-2 border-y border-foreground/20 lg:grid-cols-4 lg:divide-x lg:divide-foreground/20">
+          {stats.map((stat, i) => (
+            <StaggerItem
+              key={stat.label}
+              as="div"
+              className={
+                "py-7 lg:px-7 lg:first:pl-0 lg:last:pr-0" +
+                (i % 2 === 0 ? " pr-4" : " pl-4 lg:pl-7") +
+                (i >= 2 ? " border-t border-foreground/20 lg:border-t-0" : "")
+              }
+            >
+              <p className="display text-4xl text-foreground sm:text-5xl">
+                {stat.value}
               </p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                d&apos;expérience du dispositif CEE (depuis {TRACK_RECORD.sinceYear})
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {stat.label}
               </p>
-            </div>
-          </StaggerItem>
-          <StaggerItem as="div">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
-              <p className="display text-4xl text-primary-700">
-                +{TRACK_RECORD.buildings.toLocaleString("fr-FR")}
-              </p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                bâtiments accompagnés
-              </p>
-            </div>
-          </StaggerItem>
-          {CHANTIER_HIGHLIGHTS.slice(0, 2).map((h) => (
-            <StaggerItem key={h.label} as="div">
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
-                <p className="display text-4xl text-primary-700">{h.metric}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{h.label}</p>
-              </div>
             </StaggerItem>
           ))}
         </Stagger>
 
         {points && points.length > 0 ? (
-          <Stagger className="mt-8 grid gap-4 sm:grid-cols-2">
+          <Stagger className="mt-12 grid gap-x-12 gap-y-5 sm:grid-cols-2">
             {points.map((point) => (
               <StaggerItem key={point} as="div">
-                <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-soft">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent-600">
-                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                  </span>
-                  <span className="text-[15px] leading-relaxed text-foreground">
-                    {point}
-                  </span>
-                </div>
+                <p className="relative pl-6 text-[15px] leading-relaxed text-foreground before:absolute before:left-0 before:top-[-0.06em] before:text-[1.2em] before:font-bold before:leading-none before:text-accent-600 before:content-['+']">
+                  {point}
+                </p>
               </StaggerItem>
             ))}
           </Stagger>
         ) : null}
 
         {showCredentials ? (
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+          <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
             {CREDENTIALS.map((cert) => (
-              <span
+              <li
                 key={cert}
-                className="flex items-center gap-2 text-sm text-muted-foreground"
+                className="relative pl-5 before:absolute before:left-0 before:font-bold before:text-accent-600 before:content-['+']"
               >
-                <Check className="h-4 w-4 text-accent-600" />
                 {cert}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         ) : null}
 
         {/* Clients cités dans le dossier de références de l'équipe */}
-        <div className="mt-10 rounded-2xl border border-border bg-secondary/40 p-6 sm:p-8">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <Reveal className="mt-14">
+          <p className="text-sm font-semibold text-foreground">
             Ils ont fait appel à l&apos;équipe
           </p>
-          <ul className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 lg:grid-cols-4">
+          <ul className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-foreground/15 bg-foreground/15 sm:grid-cols-3 lg:grid-cols-4">
             {NAMED_CLIENTS.map((client) => (
               <li
                 key={client.name}
                 title={client.name}
-                className="flex h-16 items-center justify-center bg-background px-3"
+                className="flex h-16 items-center justify-center bg-card px-3"
               >
                 {client.logo ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -134,7 +129,7 @@ export function TrustSection({
                     className="max-h-8 w-auto max-w-full opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
                   />
                 ) : (
-                  <span className="text-center text-[13px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  <span className="text-center text-[13px] font-semibold tracking-wide text-muted-foreground">
                     {client.short}
                   </span>
                 )}
@@ -142,13 +137,13 @@ export function TrustSection({
             ))}
           </ul>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            {/* TODO: Yohan/Énergies Plus — déposer les logos autorisés dans
+            {/* TODO: Yohan/Énergies Plus : déposer les logos autorisés dans
                 public/logos/ et renseigner NAMED_CLIENTS[].logo. */}
             Sélection de références issues du dossier chantier de l&apos;équipe.
             Logos affichés dès réception des visuels et des autorisations. Liste
             complète sur demande.
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

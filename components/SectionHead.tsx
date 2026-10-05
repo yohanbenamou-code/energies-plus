@@ -1,0 +1,73 @@
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+interface SectionHeadProps {
+  /** Numéro de section affiché en orange (« 01 »). */
+  index: string;
+  label: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  tone?: "light" | "dark";
+  className?: string;
+}
+
+/**
+ * En-tête de section éditorial : filet, numéro + rubrique à gauche,
+ * titre à droite. Remplace le schéma « petit label en capitales + titre ».
+ */
+export function SectionHead({
+  index,
+  label,
+  title,
+  description,
+  tone = "light",
+  className,
+}: SectionHeadProps) {
+  const dark = tone === "dark";
+  return (
+    <div
+      className={cn(
+        "reveal grid gap-4 border-t pt-5 lg:grid-cols-12 lg:gap-8",
+        dark ? "border-white/20" : "border-foreground/20",
+        className,
+      )}
+    >
+      <p
+        className={cn(
+          "flex items-baseline gap-3 text-sm font-medium lg:col-span-3",
+          dark ? "text-white/65" : "text-muted-foreground",
+        )}
+      >
+        <span
+          className={cn(
+            "font-mono text-xs tabular-nums",
+            dark ? "text-accent" : "text-accent-600",
+          )}
+        >
+          {index}
+        </span>
+        {label}
+      </p>
+      <div className="lg:col-span-8">
+        <h2
+          className={cn(
+            "display text-balance text-[2rem] sm:text-5xl",
+            dark ? "text-white" : "text-foreground",
+          )}
+        >
+          {title}
+        </h2>
+        {description ? (
+          <p
+            className={cn(
+              "mt-6 max-w-2xl text-lg leading-relaxed",
+              dark ? "text-white/70" : "text-muted-foreground",
+            )}
+          >
+            {description}
+          </p>
+        ) : null}
+      </div>
+    </div>
+  );
+}

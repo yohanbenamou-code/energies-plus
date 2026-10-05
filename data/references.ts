@@ -28,6 +28,8 @@ export interface AudienceSegment {
   label: string;
   description: string;
   image: string;
+  /** Destination du lien (page solution dédiée ou ancre). */
+  href: string;
 }
 
 export const SEGMENTS: AudienceSegment[] = [
@@ -38,14 +40,16 @@ export const SEGMENTS: AudienceSegment[] = [
       "OPH et ESH : calorifugeage, points singuliers, planchers et combles à l'échelle du patrimoine.",
     image:
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1100&q=80&auto=format&fit=crop",
+    href: "/#catalogue",
   },
   {
     key: "sante",
-    label: "Santé & médico-social",
+    label: "Santé et médico-social",
     description:
       "EHPAD, centres hospitaliers, CHU : travaux menés en site occupé, sans interruption d'activité.",
     image:
       "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1100&q=80&auto=format&fit=crop",
+    href: "/solutions/bat-th-163-pompe-a-chaleur-air-eau-tertiaire",
   },
   {
     key: "collectivites",
@@ -54,22 +58,25 @@ export const SEGMENTS: AudienceSegment[] = [
       "Villes et départements : réseaux de chaleur, bâtiments publics, éclairage.",
     image:
       "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1100&q=80&auto=format&fit=crop",
+    href: "/solutions/bat-th-163-pompe-a-chaleur-air-eau-tertiaire",
   },
   {
     key: "copros",
-    label: "Copropriétés & syndics",
+    label: "Copropriétés et syndics",
     description:
-      "Immeubles collectifs : calorifugeage, planchers, régulation — sans avance de trésorerie et sans vote de travaux quand l'offre est financée à 100 %.",
+      "Immeubles collectifs : calorifugeage, planchers, régulation, sans avance de trésorerie et sans vote de travaux quand l'offre est financée à 100 %.",
     image:
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1100&q=80&auto=format&fit=crop",
+    href: "/#catalogue",
   },
   {
     key: "industrie",
-    label: "Industrie & tertiaire",
+    label: "Industrie et tertiaire",
     description:
       "Sites industriels et bâtiments d'activité : récupération de chaleur, GTB, HP flottante, CPE.",
     image:
       "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1100&q=80&auto=format&fit=crop",
+    href: "/#catalogue",
   },
   {
     key: "agriculture",
@@ -78,6 +85,16 @@ export const SEGMENTS: AudienceSegment[] = [
       "Exploitations, coopératives, CUMA, scieries : séchage solaire par insufflation d'air.",
     image:
       "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1100&q=80&auto=format&fit=crop",
+    href: "/solutions/agri-eq-110-sechage-solaire-agricole",
+  },
+  {
+    key: "particuliers",
+    label: "Particuliers",
+    description:
+      "Maison individuelle chauffée au gaz, au fioul ou au charbon : pompe à chaleur et solaire, avec MaPrimeRénov' et les CEE.",
+    image:
+      "https://images.unsplash.com/photo-1730807908064-c087959dd52c?w=1100&q=80&auto=format&fit=crop",
+    href: "/solutions/bar-th-168-pompe-a-chaleur-solaire-maison-individuelle",
   },
 ];
 
@@ -119,14 +136,14 @@ export interface ChantierHighlight {
 }
 
 export const CHANTIER_HIGHLIGHTS: ChantierHighlight[] = [
-  { metric: "67 km", label: "de réseaux calorifugés — Ville de Metz (57)" },
+  { metric: "67 km", label: "de réseaux calorifugés, Ville de Metz (57)" },
   {
     metric: "30 000 m²",
-    label: "de planchers isolés + 25 km de réseaux — CHU de Toulouse",
+    label: "de planchers isolés + 25 km de réseaux, CHU de Toulouse",
   },
   {
     metric: "66 km",
-    label: "de réseaux et 2 800 points singuliers — bailleur social, Paris (75)",
+    label: "de réseaux et 2 800 points singuliers, bailleur social, Paris (75)",
   },
   {
     metric: "50+",

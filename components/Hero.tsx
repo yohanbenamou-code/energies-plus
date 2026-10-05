@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PlusMark } from "@/components/PlusMark";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -13,24 +14,30 @@ interface HeroCta {
 
 interface HeroProps {
   eyebrow?: string;
-  /** Titre. Le fragment `titleAccent` est rendu en italique serif à la fin. */
   title: string;
+  /** Fin de titre, rendue en orange. */
   titleAccent?: string;
   subtitle: string;
   note?: string;
   primaryCta: HeroCta;
   secondaryCta?: HeroCta;
   showPhone?: boolean;
-  /** Photo de fond (placeholder Unsplash — à remplacer). */
+  /** Photo (placeholder Unsplash, à remplacer par une photo chantier). */
   image?: string;
   imageAlt?: string;
-  /** Petites vignettes flottantes (chiffres, labels). */
+  /** Repères chiffrés, affichés en bandeau sous le hero. */
   chips?: { value: string; label: string }[];
   className?: string;
 }
 
 const d = (delay: number) =>
   ({ "--reveal-delay": `${delay}s` }) as React.CSSProperties;
+
+const STAT_COLS: Record<number, string> = {
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-3",
+  4: "sm:grid-cols-4",
+};
 
 export function Hero({
   eyebrow,
@@ -49,73 +56,47 @@ export function Hero({
   return (
     <section
       className={cn(
-        "relative isolate grain overflow-hidden bg-primary-900 text-white",
+        "relative isolate overflow-hidden bg-primary-900 text-white",
         className,
       )}
     >
-      {image ? (
-        <>
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            priority
-            sizes="100vw"
-            className="-z-10 object-cover"
-          />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary-900/92 via-primary-900/78 to-primary-900/55" />
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,transparent,hsl(219_64%_10%/0.6))]" />
-        </>
-      ) : (
-        <div className="absolute inset-0 -z-10 bg-brand-gradient opacity-90" />
-      )}
+      <span
+        aria-hidden
+        className="plus-mark -right-40 -top-40 hidden h-[44rem] text-white/[0.07] [--t:2px] lg:block"
+      />
 
-      <div className="container grid gap-10 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-28">
-        <div className="max-w-2xl">
+      <div className="container grid gap-12 pb-14 pt-12 lg:grid-cols-12 lg:gap-14 lg:pb-20 lg:pt-20">
+        <div className="lg:col-span-7">
           {eyebrow ? (
-            <p
-              className="reveal mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white/90 backdrop-blur"
-            >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
-              </span>
+            <p className="reveal mb-8 flex items-center gap-2.5 text-sm font-medium text-white/75">
+              <PlusMark className="h-3.5 w-3.5 text-accent" />
               {eyebrow}
             </p>
           ) : null}
 
           <h1
-            className="reveal display text-balance text-[2.4rem] text-white sm:text-5xl lg:text-[3.5rem]"
+            className="reveal display text-balance text-[2.5rem] text-white sm:text-6xl lg:text-[4.25rem]"
             style={d(0.05)}
           >
             {title}
             {titleAccent ? (
               <>
                 {" "}
-                <em className="text-accent">{titleAccent}</em>
+                <span className="text-accent">{titleAccent}</span>
               </>
             ) : null}
           </h1>
 
           <p
-            className="reveal mt-6 max-w-xl text-lg leading-relaxed text-white/80"
-            style={d(0.15)}
+            className="reveal mt-7 max-w-xl text-lg leading-relaxed text-white/75"
+            style={d(0.12)}
           >
             {subtitle}
           </p>
 
-          {note ? (
-            <p
-              className="reveal mt-5 max-w-xl rounded-xl border-l-2 border-accent bg-white/[0.06] px-4 py-3 text-sm text-white/85 backdrop-blur"
-              style={d(0.22)}
-            >
-              {note}
-            </p>
-          ) : null}
-
           <div
-            className="reveal mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
-            style={d(0.3)}
+            className="reveal mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+            style={d(0.2)}
           >
             <Button asChild variant="accent" size="lg" className="group">
               <Link href={primaryCta.href}>
@@ -127,7 +108,7 @@ export function Hero({
               <Button
                 asChild
                 size="lg"
-                className="border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/20"
+                className="border border-white/30 bg-transparent text-white hover:border-white hover:bg-white hover:text-primary-900"
               >
                 <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
               </Button>
@@ -143,30 +124,62 @@ export function Hero({
             ) : null}
           </div>
 
-          <p
-            className="reveal mt-8 max-w-xl text-xs leading-relaxed text-white/55"
-            style={d(0.4)}
-          >
-            {site.privateActorShort}
-          </p>
+          {note ? (
+            <p
+              className="reveal mt-9 max-w-xl border-t border-white/15 pt-5 text-sm leading-relaxed text-white/60"
+              style={d(0.28)}
+            >
+              {note}
+            </p>
+          ) : null}
         </div>
 
-        {chips && chips.length > 0 ? (
-          <div className="reveal grid gap-4 sm:grid-cols-2 lg:justify-self-end" style={d(0.5)}>
-            {chips.map((chip) => (
-              <div
-                key={chip.label}
-                className="rounded-2xl border border-white/12 bg-white/[0.07] p-5 backdrop-blur"
-              >
-                <p className="display text-3xl text-white">{chip.value}</p>
-                <p className="mt-1 text-xs font-medium uppercase tracking-wide text-white/60">
-                  {chip.label}
-                </p>
-              </div>
-            ))}
+        {image ? (
+          <div className="reveal reveal--left relative lg:col-span-5" style={d(0.15)}>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-primary-700 sm:aspect-[5/4] lg:aspect-auto lg:h-full lg:min-h-[28rem]">
+              <Image
+                src={image}
+                alt={imageAlt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <PlusMark className="absolute -left-5 -top-5 h-14 w-14 text-accent lg:-left-7 lg:-top-7 lg:h-[4.5rem] lg:w-[4.5rem]" />
           </div>
         ) : null}
       </div>
+
+      {chips && chips.length > 0 ? (
+        <div className="relative border-t border-white/15">
+          <dl
+            className={cn(
+              "container grid grid-cols-2 divide-white/15 sm:divide-x",
+              STAT_COLS[chips.length] ?? "sm:grid-cols-4",
+            )}
+          >
+            {chips.map((chip, i) => (
+              <div
+                key={chip.label}
+                className={cn(
+                  "py-6 sm:px-6 sm:first:pl-0",
+                  i >= 2 && "border-t border-white/15 sm:border-t-0",
+                )}
+              >
+                <dt className="display text-3xl text-white lg:text-4xl">
+                  {chip.value}
+                </dt>
+                <dd className="mt-1 text-sm text-white/60">{chip.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ) : null}
+
+      <p className="container pb-6 text-xs leading-relaxed text-white/45">
+        {site.privateActorShort}
+      </p>
     </section>
   );
 }

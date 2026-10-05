@@ -14,7 +14,7 @@ export default function PolitiqueConfidentialitePage() {
     <LegalLayout title="Politique de confidentialité (RGPD)">
       <h2>Responsable de traitement</h2>
       <p>
-        {legal.companyName} — {legal.address}. Contact : {contact.email},{" "}
+        {legal.companyName}, {legal.address}. Contact : {contact.email},{" "}
         {contact.phoneDisplay}.
       </p>
 
@@ -59,7 +59,7 @@ export default function PolitiqueConfidentialitePage() {
       <p>Sous-traitants techniques mobilisés pour le fonctionnement du site :</p>
       <ul>
         <li>
-          <strong>{host.name}</strong> ({host.address}) — hébergement du site et
+          <strong>{host.name}</strong> ({host.address}) : hébergement du site et
           journaux techniques. Transfert hors UE encadré par les clauses
           contractuelles types de la Commission européenne.
         </li>

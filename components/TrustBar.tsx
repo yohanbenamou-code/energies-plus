@@ -1,31 +1,21 @@
 import * as React from "react";
-import { BadgeCheck, Clock, HandCoins, MapPin, Wrench } from "lucide-react";
+import { PlusMark } from "@/components/PlusMark";
 
-const ITEMS = [
-  { icon: HandCoins, label: "Financé par le dispositif public des CEE" },
-  { icon: Wrench, label: "Posé par des professionnels" },
-  { icon: BadgeCheck, label: "Matériel prévu pour durer 15 ans" },
-  { icon: Clock, label: "Étude sous 48h" },
-  { icon: MapPin, label: "Toute la France" },
-] as const;
-
-export function TrustBar() {
+/** Bandeau de réassurance sous le hero des pages solution. */
+export function TrustBar({ items }: { items: string[] }) {
   return (
     <section
       aria-label="Points de réassurance"
-      className="border-b border-border bg-secondary/50"
+      className="border-b border-border bg-secondary"
     >
-      <div className="container flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-4 text-sm">
-        {ITEMS.map((item) => (
-          <span
-            key={item.label}
-            className="inline-flex items-center gap-2 font-medium text-foreground"
-          >
-            <item.icon className="h-4 w-4 shrink-0 text-accent-600" />
-            {item.label}
-          </span>
+      <ul className="container flex flex-wrap items-center gap-x-9 gap-y-2.5 py-4 text-sm font-medium text-foreground">
+        {items.map((label) => (
+          <li key={label} className="inline-flex items-center gap-2.5">
+            <PlusMark className="h-3 w-3 shrink-0 text-accent" />
+            {label}
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

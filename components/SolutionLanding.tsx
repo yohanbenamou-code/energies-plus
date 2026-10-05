@@ -5,16 +5,17 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
-import { DispositifSection } from "@/components/DispositifSection";
+import { PrincipleSection } from "@/components/PrincipleSection";
 import { SolutionVariantCards } from "@/components/SolutionVariantCards";
 import { HowItWorks } from "@/components/HowItWorks";
 import { CeeSimulator } from "@/components/CeeSimulator";
-import { BenefitsGrid } from "@/components/BenefitsGrid";
+import { BenefitList } from "@/components/BenefitList";
 import { TrustSection } from "@/components/TrustSection";
 import { Testimonials } from "@/components/Testimonials";
 import { ServiceAreaSection } from "@/components/ServiceAreaSection";
 import { Faq, type FaqItem } from "@/components/Faq";
 import { MultiStepLeadForm } from "@/components/MultiStepLeadForm";
+import { BookingSection } from "@/components/BookingSection";
 import { StickyMobileCta } from "@/components/StickyMobileCta";
 import { SolutionFormProvider } from "@/components/solution-form-context";
 import type { LiveCeeOperation } from "@/types/operation";
@@ -24,9 +25,58 @@ const NAV = [
   { label: "Étapes", href: "#methode" },
   { label: "Votre cas", href: "#solutions" },
   { label: "Estimation", href: "#simulateur" },
-  { label: "Avis", href: "#avis" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
+];
+
+const TRUST_ITEMS = [
+  "Financé par le dispositif public des CEE",
+  "Posé par des professionnels",
+  "Matériel prévu pour durer 15 ans",
+  "Étude sous 48h",
+  "Toute la France",
+];
+
+const POINTS = [
+  {
+    title: "Une aide qui réduit votre facture",
+    body: "Le dispositif public des CEE finance une partie de votre séchoir solaire. Vous investissez, mais votre reste à charge baisse nettement.",
+  },
+  {
+    title: "Un séchage plus régulier",
+    body: "L'air chaud produit par les panneaux hybrides sèche votre récolte en douceur : meilleure conservation, moins de pertes, moins de dépendance au gaz ou au fioul.",
+  },
+  {
+    title: "Un ordre à respecter",
+    body: "Le dossier d'aide se monte avant la signature du devis. C'est notre métier : on s'en charge pour que rien ne bloque le versement.",
+  },
+];
+
+const BENEFITS = [
+  {
+    title: "Moins à sortir de votre poche",
+    body: "L'aide CEE couvre une part importante de l'investissement. Montant estimé lors de l'étude, non contractuel.",
+  },
+  {
+    title: "Le soleil fait le travail",
+    body: "Les panneaux hybrides produisent électricité et chaleur. La chaleur part directement dans votre séchoir.",
+  },
+  {
+    title: "Une meilleure récolte, mieux conservée",
+    body: "Un séchage régulier et maîtrisé, c'est moins de pertes et une qualité qui se vend mieux.",
+  },
+  {
+    title: "Moins dépendant du fioul et du gaz",
+    body: "Vous sécurisez votre poste séchage face aux hausses de prix de l'énergie.",
+  },
+  {
+    title: "Une démarche qui se valorise",
+    body: "Une énergie renouvelable, produite sur votre exploitation, utile à votre image auprès de vos clients.",
+  },
+  {
+    title: "Fait pour durer",
+    body: "Le matériel est prévu pour fonctionner une quinzaine d'années.",
+  },
 ];
 
 const STEPS = [
@@ -36,7 +86,7 @@ const STEPS = [
   },
   {
     title: "Montage du dossier",
-    body: "On formalise l'aide CEE — avant la signature du devis de l'installateur.",
+    body: "On formalise l'aide CEE avant la signature du devis de l'installateur.",
   },
   {
     title: "Installation",
@@ -75,7 +125,7 @@ function buildFaq(operation: LiveCeeOperation): FaqItem[] {
         <p>
           L&apos;étude est gratuite. Vous investissez dans l&apos;installation,
           mais l&apos;aide en couvre une part importante. Le montant en euros
-          vous est estimé lors de l&apos;étude — indicatif et non contractuel,
+          vous est estimé lors de l&apos;étude : indicatif et non contractuel,
           car seul le volume officiel (kWh cumac) est fixé par le barème.
         </p>
       ),
@@ -87,20 +137,20 @@ function buildFaq(operation: LiveCeeOperation): FaqItem[] {
       answer: (
         <p>
           <strong>Non.</strong> Seul le volume en kWh cumac est fixé par le
-          barème. Sa valeur en euros varie&nbsp;: tout montant est une estimation
-          non contractuelle, sous réserve d&apos;éligibilité.
+          barème. Sa valeur en euros varie&nbsp;: tout montant est une
+          estimation non contractuelle, sous réserve d&apos;éligibilité.
         </p>
       ),
     },
     {
       question: "Quel délai entre l'étude et l'installation ?",
       plainAnswer:
-        "Le délai varie selon la saison, la disponibilité des installateurs partenaires et votre bâtiment. Une estimation vous est donnée lors de l'étude. En revanche, l'ordre des étapes — dossier CEE avant devis — est impératif.",
+        "Le délai varie selon la saison, la disponibilité des installateurs partenaires et votre bâtiment. Une estimation vous est donnée lors de l'étude. En revanche, l'ordre des étapes (dossier CEE avant devis) est impératif.",
       answer: (
         <p>
           Cela dépend de la saison, des installateurs disponibles et de votre
           bâtiment. On vous donne une fourchette lors de l&apos;étude.
-          L&apos;ordre des étapes — dossier avant devis — est, lui, impératif.
+          L&apos;ordre des étapes (dossier avant devis) est, lui, impératif.
         </p>
       ),
     },
@@ -146,7 +196,7 @@ export function SolutionLanding({ operation }: { operation: LiveCeeOperation }) 
 
       <main id="contenu" className="pb-24 lg:pb-0">
         <Hero
-          eyebrow={`Aide de l'État · Fiche CEE ${operation.code}`}
+          eyebrow={`Aide de l'État, fiche CEE ${operation.code}`}
           title="Séchez vos récoltes au soleil,"
           titleAccent="avec une aide de l'État."
           subtitle={operation.heroSubtitle}
@@ -159,23 +209,44 @@ export function SolutionLanding({ operation }: { operation: LiveCeeOperation }) 
           }
           imageAlt="Bottes de foin dans un champ au soleil couchant"
           chips={[
-            { value: "Gratuite", label: "Étude & simulation" },
+            { value: "Gratuite", label: "Étude et simulation" },
             { value: "15 ans", label: "Durée de vie du matériel" },
             { value: "France", label: "Toutes régions" },
           ]}
         />
-        <TrustBar />
-        <DispositifSection operation={operation} />
-        <SolutionVariantCards operation={operation} />
+        <TrustBar items={TRUST_ITEMS} />
+        <PrincipleSection
+          index="01"
+          title="Une aide de l'État, un séchoir qui travaille pour vous"
+          description="Les Certificats d'Économies d'Énergie sont un dispositif public : l'État oblige les fournisseurs d'énergie à financer des travaux d'économies d'énergie. Le séchage solaire agricole en fait partie."
+          points={POINTS}
+          tech={{
+            title: `Le cadre technique de l'aide (opération ${operation.code})`,
+            intro:
+              "Pour information, l'aide s'appuie sur une fiche officielle qui fixe des conditions précises. Nos conseillers les vérifient pour vous ; vous n'avez pas à les maîtriser.",
+            conditions: operation.conditions,
+            footnotes: [
+              `Durée de vie conventionnelle retenue par la fiche : ${operation.lifespanYears} ans.`,
+            ],
+          }}
+        />
+        <SolutionVariantCards operation={operation} index="02" />
         <HowItWorks
           id="methode"
+          index="03"
+          label="Comment ça marche"
           title="De l'étude au séchage, en 5 étapes"
           steps={STEPS}
         />
-        <CeeSimulator operation={operation} />
-        <BenefitsGrid />
+        <CeeSimulator operation={operation} index="04" />
+        <BenefitList
+          index="05"
+          title="Concrètement, pour votre exploitation"
+          items={BENEFITS}
+        />
         <TrustSection
           id="references"
+          index="06"
           eyebrow="Pourquoi Énergies Plus"
           title="On s'occupe de tout, dans le bon ordre"
           description="Un interlocuteur unique, du premier appel au versement de la prime."
@@ -188,9 +259,14 @@ export function SolutionLanding({ operation }: { operation: LiveCeeOperation }) 
           showCredentials
         />
         <Testimonials />
-        <ServiceAreaSection />
-        <Faq title="Vos questions" items={faqItems} />
-        <MultiStepLeadForm operation={operation} />
+        <ServiceAreaSection
+          index="07"
+          subject="exploitation"
+          note="Le montant de l'aide varie légèrement selon la région (climat plus ou moins froid). Nous en tenons compte dans votre estimation."
+        />
+        <Faq index="08" title="Vos questions" items={faqItems} />
+        <MultiStepLeadForm operation={operation} index="09" />
+        <BookingSection index="10" />
       </main>
 
       <Footer />

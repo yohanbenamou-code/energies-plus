@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionHead } from "@/components/SectionHead";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
@@ -72,7 +73,13 @@ const STEP_FIELDS: Array<Array<keyof FormValues>> = [
 
 const STEP_LABELS = ["Structure", "Projet", "Produits", "Coordonnées"];
 
-export function MultiStepLeadForm({ operation }: { operation: LiveCeeOperation }) {
+export function MultiStepLeadForm({
+  operation,
+  index = "09",
+}: {
+  operation: LiveCeeOperation;
+  index?: string;
+}) {
   const router = useRouter();
   const { prefill, nonce, scrollToContact } = useSolutionForm();
   const [step, setStep] = React.useState(0);
@@ -177,40 +184,36 @@ export function MultiStepLeadForm({ operation }: { operation: LiveCeeOperation }
   const progress = ((step + 1) / STEP_FIELDS.length) * 100;
 
   return (
-    <section id="contact" className="bg-primary/5 py-16 sm:py-20">
-      <div className="container max-w-2xl">
-        <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-primary">
-            Contact
-          </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Recevoir mon étude gratuite
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            4 étapes rapides. Un conseiller vous recontacte sous 24–48h ouvrées.
-            Sans engagement.
-          </p>
-        </div>
+    <section id="contact" className="border-b border-border bg-secondary/50 py-20 sm:py-28">
+      <div className="container">
+        <SectionHead
+          index={index}
+          label="Contact"
+          title="Recevoir mon étude gratuite"
+          description="4 étapes rapides. Un conseiller vous recontacte sous 24 à 48h ouvrées. Sans engagement."
+        />
 
+        <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-8 lg:col-start-4">
         {(projectLabel || prefill.estimatedCumac) && step === 0 ? (
-          <div className="mt-6 rounded-lg border border-primary/20 bg-primary-50 px-4 py-3 text-sm text-primary-700">
+          <div className="mt-6 rounded-sm border border-foreground/20 bg-card px-4 py-3 text-sm text-foreground">
             D&apos;après le simulateur&nbsp;:
             {projectLabel ? ` ${projectLabel}` : ""}
-            {prefill.zone ? ` · zone ${prefill.zone}` : ""}
-            {prefill.powerKw ? ` · ${prefill.powerKw} kW` : ""}
+            {prefill.zone ? `, zone ${prefill.zone}` : ""}
+            {prefill.powerKw ? `, ${prefill.powerKw} kW` : ""}
             {prefill.estimatedCumac
-              ? ` · ≈ ${formatNumberFr(prefill.estimatedCumac)} kWh cumac`
+              ? `, ≈ ${formatNumberFr(prefill.estimatedCumac)} kWh cumac`
               : ""}
             . Il ne reste plus qu&apos;à préciser votre structure et vos
             coordonnées.
           </div>
         ) : null}
 
-        <div className="mt-8 rounded-2xl border border-border bg-card p-6 sm:p-8">
+        <div className="mt-8 rounded-md border border-foreground/20 bg-card p-6 sm:p-8">
           <div className="mb-6">
             <div className="mb-2 flex items-center justify-between text-xs font-medium text-muted-foreground">
               <span>
-                Étape {step + 1} / {STEP_FIELDS.length} — {STEP_LABELS[step]}
+                Étape {step + 1} / {STEP_FIELDS.length} : {STEP_LABELS[step]}
               </span>
               <span>{Math.round(progress)} %</span>
             </div>
@@ -503,20 +506,27 @@ export function MultiStepLeadForm({ operation }: { operation: LiveCeeOperation }
         </div>
 
         {/* Encart alternatif basse friction */}
-        <div className="mt-6 flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-5 text-center sm:flex-row sm:justify-between sm:text-left">
+        <div className="mt-6 flex flex-col gap-4 border-t border-foreground/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
             Vous préférez qu&apos;on vous appelle ? Laissez-nous simplement votre
-            numéro.
+            numéro, ou réservez directement un créneau.
           </p>
-          <CallbackDialog
-            source="agri-eq-110"
-            operationCode={operation.code}
-            trigger={
-              <Button type="button" variant="outline">
-                Être rappelé
-              </Button>
-            }
-          />
+          <div className="flex flex-wrap gap-2">
+            <CallbackDialog
+              source="agri-eq-110"
+              operationCode={operation.code}
+              trigger={
+                <Button type="button" variant="outline">
+                  Être rappelé
+                </Button>
+              }
+            />
+            <Button asChild variant="outline">
+              <a href="#rendez-vous">Réserver un créneau</a>
+            </Button>
+          </div>
+        </div>
+        </div>
         </div>
       </div>
     </section>

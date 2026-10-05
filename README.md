@@ -19,7 +19,7 @@ standardisée **AGRI-EQ-110**.
 | Framework | Next.js 14 (App Router) + TypeScript |
 | Styling | Tailwind CSS + composants type shadcn/ui (Radix) |
 | Formulaires | react-hook-form + zod |
-| Animations | framer-motion (sobres, respectent `prefers-reduced-motion`) |
+| Animations | CSS (révélation au scroll, `prefers-reduced-motion` respecté) |
 | Icônes | lucide-react |
 | Police | Manrope via `next/font/google` |
 | Tests | Vitest |
@@ -187,7 +187,9 @@ déduites — voir `data/site.ts`) :
 - Logos clients autorisés → `public/logos/` + `NAMED_CLIENTS[].logo`
   (`data/references.ts`).
 - Photos de chantier réelles (remplacent les placeholders Unsplash).
-- Logo vectoriel officiel (SVG) si disponible → `components/Logo.tsx`.
+- Logo Energie+ : intégré en PNG détouré (`public/logo.png`, `public/logo-white.png`). Un SVG vectoriel officiel, s'il existe, est à substituer dans `components/Logo.tsx`.
+- Photos de chantier réelles : les visuels Unsplash (hero, catalogue, segments) sont des placeholders.
+- Agenda : `site.booking` dans `data/site.ts` (lien Google Agenda + version intégrée).
 - Confirmation de la liste des fiches CEE du catalogue (`data/operations.ts`).
 - Variables Vercel : `NEXT_PUBLIC_SITE_URL=https://energies-plus.fr`,
   Resend **ou** Supabase pour la collecte des leads, et le cas échéant

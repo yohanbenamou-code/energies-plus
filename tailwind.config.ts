@@ -18,7 +18,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "Georgia", "serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -29,21 +29,21 @@ const config: Config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          50: "hsl(214 56% 96%)",
-          100: "hsl(214 52% 90%)",
-          200: "hsl(214 50% 82%)",
-          500: "hsl(219 58% 42%)",
-          600: "hsl(219 62% 34%)",
-          700: "hsl(219 66% 26%)",
-          900: "hsl(220 60% 16%)",
+          50: "hsl(38 22% 94%)",
+          100: "hsl(36 16% 88%)",
+          200: "hsl(36 12% 78%)",
+          500: "hsl(210 8% 38%)",
+          600: "hsl(210 12% 24%)",
+          700: "hsl(210 16% 16%)",
+          900: "hsl(210 22% 7%)",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
-          50: "hsl(100 45% 95%)",
-          100: "hsl(100 44% 87%)",
-          600: "hsl(98 50% 37%)",
-          700: "hsl(100 52% 29%)",
+          50: "hsl(32 100% 96%)",
+          100: "hsl(32 100% 90%)",
+          600: "hsl(24 94% 42%)",
+          700: "hsl(22 92% 33%)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -72,8 +72,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        soft: "0 1px 2px hsl(219 40% 20% / 0.04), 0 8px 24px -12px hsl(219 40% 20% / 0.12)",
-        lift: "0 2px 6px hsl(219 40% 20% / 0.06), 0 24px 48px -20px hsl(219 45% 20% / 0.25)",
+        soft: "0 1px 2px hsl(210 22% 8% / 0.04)",
+        lift: "0 14px 36px -14px hsl(210 22% 8% / 0.22)",
       },
       keyframes: {
         "accordion-down": {
