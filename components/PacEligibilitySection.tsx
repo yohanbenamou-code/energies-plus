@@ -29,7 +29,7 @@ export function PacEligibilitySection({ index = "02" }: { index?: string }) {
   return (
     <section
       id="solutions"
-      className="border-b border-border bg-secondary/50 py-20 sm:py-28"
+      className="border-b border-border bg-secondary/50 py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -39,7 +39,7 @@ export function PacEligibilitySection({ index = "02" }: { index?: string }) {
           description="La fiche BAT-TH-163 couvre tous les bâtiments tertiaires existants depuis plus de 2 ans. Nos conseillers déterminent avec vous la configuration adaptée."
         />
 
-        <Stagger className="mt-12 grid gap-px overflow-hidden rounded-md border border-foreground/20 bg-foreground/20 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-8 sm:mt-12 grid gap-px overflow-hidden rounded-md border border-foreground/20 bg-foreground/20 sm:grid-cols-2 lg:grid-cols-3">
           {SECTOR_KEYS.map((key) => (
             <StaggerItem key={key} as="article">
               <div className="flex h-full flex-col bg-card p-7">

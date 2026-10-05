@@ -93,7 +93,7 @@ export function MprProfileChecker({ index = "05" }: { index?: string }) {
   return (
     <section
       id="profil"
-      className="border-b border-border bg-secondary/50 py-20 sm:py-28"
+      className="border-b border-border bg-secondary/50 py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -103,7 +103,7 @@ export function MprProfileChecker({ index = "05" }: { index?: string }) {
           description="Votre revenu fiscal de référence détermine le type de financement mobilisable. Renseignez-le pour connaître votre catégorie. Votre conseiller la confirme ensuite sur votre avis d'imposition."
         />
 
-        <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="mt-8 sm:mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
           <div className="overflow-hidden rounded-md border border-foreground/20 bg-card p-6 sm:p-8 lg:col-span-8 lg:col-start-4">
             <div className="grid gap-5 sm:grid-cols-3">
               <div>

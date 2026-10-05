@@ -20,12 +20,12 @@ export function BenefitList({
   return (
     <section
       id="benefices"
-      className="border-b border-border bg-secondary/50 py-20 sm:py-28"
+      className="border-b border-border bg-secondary/50 py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead index={index} label="Ce que ça change" title={title} />
 
-        <div className="mt-12 border-t border-foreground/20">
+        <div className="mt-8 sm:mt-12 border-t border-foreground/20">
           {items.map((item, i) => (
             <Reveal
               key={item.title}

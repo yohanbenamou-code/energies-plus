@@ -8,6 +8,8 @@ interface SectionHeadProps {
   title: React.ReactNode;
   description?: React.ReactNode;
   tone?: "light" | "dark";
+  /** Masque la description sous 640 px (pages longues sur mobile). */
+  descriptionDesktopOnly?: boolean;
   className?: string;
 }
 
@@ -21,13 +23,14 @@ export function SectionHead({
   title,
   description,
   tone = "light",
+  descriptionDesktopOnly = false,
   className,
 }: SectionHeadProps) {
   const dark = tone === "dark";
   return (
     <div
       className={cn(
-        "reveal grid gap-4 border-t pt-5 lg:grid-cols-12 lg:gap-8",
+        "reveal grid gap-2 border-t pt-4 sm:gap-4 sm:pt-5 lg:grid-cols-12 lg:gap-8",
         dark ? "border-white/20" : "border-foreground/20",
         className,
       )}
@@ -51,7 +54,7 @@ export function SectionHead({
       <div className="lg:col-span-8">
         <h2
           className={cn(
-            "display text-balance text-[2rem] sm:text-5xl",
+            "display text-balance text-[1.75rem] sm:text-5xl",
             dark ? "text-white" : "text-foreground",
           )}
         >
@@ -60,7 +63,8 @@ export function SectionHead({
         {description ? (
           <p
             className={cn(
-              "mt-6 max-w-2xl text-lg leading-relaxed",
+              "mt-3 max-w-2xl text-[15px] leading-relaxed sm:mt-6 sm:text-lg",
+              descriptionDesktopOnly && "hidden sm:block",
               dark ? "text-white/70" : "text-muted-foreground",
             )}
           >

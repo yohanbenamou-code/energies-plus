@@ -90,7 +90,7 @@ export function SolarSimulator({ index = "06" }: { index?: string }) {
   return (
     <section
       id="simulateur"
-      className="border-b border-border bg-background py-20 sm:py-28"
+      className="border-b border-border bg-background py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -100,7 +100,7 @@ export function SolarSimulator({ index = "06" }: { index?: string }) {
           description="Le calcul s'appuie sur le barème officiel de la fiche BAR-TH-168 (dispositif solaire thermique) et sur la bonification en vigueur."
         />
 
-        <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="mt-8 sm:mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
           <div className="overflow-hidden rounded-md border border-foreground/20 bg-card p-6 sm:p-8 lg:col-span-8 lg:col-start-4">
             <div className="grid gap-8 [&>*]:min-w-0">
               {/* Région */}

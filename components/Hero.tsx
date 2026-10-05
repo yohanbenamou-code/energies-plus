@@ -65,17 +65,17 @@ export function Hero({
         className="plus-mark -right-40 -top-40 hidden h-[44rem] text-white/[0.07] [--t:2px] lg:block"
       />
 
-      <div className="container grid gap-12 pb-14 pt-12 lg:grid-cols-12 lg:gap-14 lg:pb-20 lg:pt-20">
+      <div className="container grid gap-8 pb-8 pt-8 sm:gap-12 sm:pb-14 sm:pt-12 lg:grid-cols-12 lg:gap-14 lg:pb-20 lg:pt-20">
         <div className="lg:col-span-7">
           {eyebrow ? (
-            <p className="reveal mb-8 flex items-center gap-2.5 text-sm font-medium text-white/75">
+            <p className="reveal mb-5 flex items-center gap-2.5 text-sm font-medium text-white/75 sm:mb-8">
               <PlusMark className="h-3.5 w-3.5 text-accent" />
               {eyebrow}
             </p>
           ) : null}
 
           <h1
-            className="reveal display text-balance text-[2.5rem] text-white sm:text-6xl lg:text-[4.25rem]"
+            className="reveal display text-balance text-[2.1rem] text-white sm:text-6xl lg:text-[4.25rem]"
             style={d(0.05)}
           >
             {title}
@@ -88,14 +88,14 @@ export function Hero({
           </h1>
 
           <p
-            className="reveal mt-7 max-w-xl text-lg leading-relaxed text-white/75"
+            className="reveal mt-4 max-w-xl text-base leading-relaxed text-white/75 sm:mt-7 sm:text-lg"
             style={d(0.12)}
           >
             {subtitle}
           </p>
 
           <div
-            className="reveal mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+            className="reveal mt-6 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center"
             style={d(0.2)}
           >
             <Button asChild variant="accent" size="lg" className="group">
@@ -108,7 +108,7 @@ export function Hero({
               <Button
                 asChild
                 size="lg"
-                className="border border-white/30 bg-transparent text-white hover:border-white hover:bg-white hover:text-primary-900"
+                className="hidden border border-white/30 bg-transparent text-white hover:border-white hover:bg-white hover:text-primary-900 sm:inline-flex"
               >
                 <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
               </Button>
@@ -126,7 +126,7 @@ export function Hero({
 
           {note ? (
             <p
-              className="reveal mt-9 max-w-xl border-t border-white/15 pt-5 text-sm leading-relaxed text-white/60"
+              className="reveal mt-6 hidden max-w-xl border-t border-white/15 pt-4 text-xs leading-relaxed text-white/60 sm:mt-9 sm:block sm:pt-5 sm:text-sm"
               style={d(0.28)}
             >
               {note}
@@ -136,7 +136,7 @@ export function Hero({
 
         {image ? (
           <div className="reveal reveal--left relative lg:col-span-5" style={d(0.15)}>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-primary-700 sm:aspect-[5/4] lg:aspect-auto lg:h-full lg:min-h-[28rem]">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-primary-700 sm:aspect-[5/4] lg:aspect-auto lg:h-full lg:min-h-[28rem]">
               <Image
                 src={image}
                 alt={imageAlt}
@@ -163,21 +163,21 @@ export function Hero({
               <div
                 key={chip.label}
                 className={cn(
-                  "py-6 sm:px-6 sm:first:pl-0",
+                  "py-4 sm:px-6 sm:py-6 sm:first:pl-0",
                   i >= 2 && "border-t border-white/15 sm:border-t-0",
                 )}
               >
-                <dt className="display text-3xl text-white lg:text-4xl">
+                <dt className="display text-2xl text-white sm:text-3xl lg:text-4xl">
                   {chip.value}
                 </dt>
-                <dd className="mt-1 text-sm text-white/60">{chip.label}</dd>
+                <dd className="mt-0.5 text-xs text-white/60 sm:mt-1 sm:text-sm">{chip.label}</dd>
               </div>
             ))}
           </dl>
         </div>
       ) : null}
 
-      <p className="container pb-6 text-xs leading-relaxed text-white/45">
+      <p className="container pb-5 text-[11px] leading-relaxed text-white/45 sm:pb-6 sm:text-xs">
         {site.privateActorShort}
       </p>
     </section>

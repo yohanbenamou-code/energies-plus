@@ -155,7 +155,7 @@ export function PacLeadForm({ index = "09" }: { index?: string }) {
   const progress = ((step + 1) / STEP_FIELDS.length) * 100;
 
   return (
-    <section id="contact" className="border-b border-border bg-secondary/50 py-20 sm:py-28">
+    <section id="contact" className="border-b border-border bg-secondary/50 py-12 sm:py-28">
       <div className="container">
         <SectionHead
           index={index}
@@ -164,7 +164,7 @@ export function PacLeadForm({ index = "09" }: { index?: string }) {
           description="3 étapes rapides. Un conseiller vous recontacte sous 24 à 48h ouvrées. Sans engagement."
         />
 
-        <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="mt-8 sm:mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-8 lg:col-start-4">
         {(sectorLabel || prefill.estimatedCumac) && step === 0 ? (
           <div className="mt-6 rounded-sm border border-foreground/20 bg-card px-4 py-3 text-sm text-foreground">

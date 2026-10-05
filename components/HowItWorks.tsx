@@ -37,7 +37,7 @@ export function HowItWorks({
     <section
       id={id}
       className={cn(
-        className ?? "border-b border-border bg-secondary/50 py-20 sm:py-28",
+        className ?? "border-b border-border bg-secondary/50 py-12 sm:py-28",
       )}
     >
       <div className="container">
@@ -50,20 +50,20 @@ export function HowItWorks({
 
         <Stagger
           className={cn(
-            "mt-14 grid gap-x-8 gap-y-10",
+            "mt-6 grid gap-x-8 gap-y-5 sm:mt-14 sm:gap-y-10",
             COLS[steps.length] ?? "md:grid-cols-4",
           )}
         >
           {steps.map((step, i) => (
             <StaggerItem key={step.title} as="div">
-              <div className="border-t-2 border-foreground pt-5">
+              <div className="border-t-2 border-foreground pt-3 sm:pt-5">
                 <p className="font-mono text-sm text-accent-600">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-3 text-lg font-semibold leading-snug text-foreground">
+                <h3 className="mt-1 text-base font-semibold leading-snug text-foreground sm:mt-3 sm:text-lg">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground sm:mt-2">
                   {step.body}
                 </p>
               </div>

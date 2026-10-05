@@ -179,7 +179,7 @@ export function SolarLeadForm({ index = "11" }: { index?: string }) {
   return (
     <section
       id="contact"
-      className="border-b border-border bg-secondary/50 py-20 sm:py-28"
+      className="border-b border-border bg-secondary/50 py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -189,7 +189,7 @@ export function SolarLeadForm({ index = "11" }: { index?: string }) {
           description="3 étapes rapides. Un conseiller vous recontacte sous 24 à 48h ouvrées pour confirmer votre éligibilité. Sans engagement."
         />
 
-        <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="mt-8 sm:mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-8 lg:col-start-4">
             {prefill.estimatedCumac && step === 0 ? (
               <div className="rounded-sm border border-foreground/20 bg-card px-4 py-3 text-sm text-foreground">

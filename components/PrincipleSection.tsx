@@ -40,7 +40,7 @@ export function PrincipleSection({
   return (
     <section
       id="dispositif"
-      className="border-b border-border bg-background py-20 sm:py-28"
+      className="border-b border-border bg-background py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -50,7 +50,7 @@ export function PrincipleSection({
           description={description}
         />
 
-        <div className="mt-14 grid border-y border-foreground/20 md:grid-cols-3 md:divide-x md:divide-foreground/20">
+        <div className="mt-8 sm:mt-14 grid border-y border-foreground/20 md:grid-cols-3 md:divide-x md:divide-foreground/20">
           {points.map((point, i) => (
             <Reveal
               key={point.title}

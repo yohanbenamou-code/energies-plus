@@ -13,7 +13,7 @@ export function Testimonials({ index = "" }: { index?: string }) {
   if (site.testimonials.length === 0) return null;
 
   return (
-    <section id="avis" className="border-b border-border bg-secondary/50 py-20 sm:py-28">
+    <section id="avis" className="border-b border-border bg-secondary/50 py-12 sm:py-28">
       <div className="container">
         <SectionHead
           index={index || "+"}
@@ -21,7 +21,7 @@ export function Testimonials({ index = "" }: { index?: string }) {
           title="Ce que disent les clients accompagnés"
         />
 
-        <div className="mt-12 grid gap-8 border-t border-foreground/20 pt-8 md:grid-cols-3">
+        <div className="mt-8 sm:mt-12 grid gap-8 border-t border-foreground/20 pt-8 md:grid-cols-3">
           {site.testimonials.map((t, i) => (
             <Reveal key={t.author + i} delay={i * 0.06}>
               <figure>

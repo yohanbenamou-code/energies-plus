@@ -89,7 +89,7 @@ export function QuickLeadForm({
 
   return (
     <form onSubmit={onSubmit} className={className} noValidate>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
         <div className="sm:col-span-2">
           <Label htmlFor="q-nom">Nom / raison sociale</Label>
           <Input id="q-nom" autoComplete="organization" {...register("nom")} className="mt-1.5" />
@@ -152,7 +152,7 @@ export function QuickLeadForm({
 
         <div className="sm:col-span-2">
           <Label htmlFor="q-message">Votre projet en quelques mots (optionnel)</Label>
-          <Textarea id="q-message" {...register("message")} className="mt-1.5" />
+          <Textarea id="q-message" {...register("message")} className="mt-1.5 min-h-[72px] sm:min-h-[96px]" />
         </div>
 
         {/* Honeypot anti-spam : caché aux humains */}

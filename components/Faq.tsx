@@ -33,7 +33,7 @@ export function Faq({
   withJsonLd = true,
 }: FaqProps) {
   return (
-    <section id={id} className="border-b border-border bg-background py-20 sm:py-28">
+    <section id={id} className="border-b border-border bg-background py-12 sm:py-28">
       <div className="container">
         <SectionHead
           index={index}
@@ -42,7 +42,7 @@ export function Faq({
           description={description}
         />
 
-        <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="mt-8 sm:mt-12 lg:grid lg:grid-cols-12 lg:gap-8">
           <Accordion
             type="single"
             collapsible

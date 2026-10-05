@@ -15,7 +15,7 @@ export function ServiceAreaSection({
   return (
     <section
       id="zone"
-      className="border-b border-border bg-background py-20 sm:py-28"
+      className="border-b border-border bg-background py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -24,7 +24,7 @@ export function ServiceAreaSection({
           title="Partout en France métropolitaine"
           description={`Nous intervenons sur tout le territoire métropolitain. Où que se trouve votre ${subject}, nos conseillers évaluent votre projet et le montant d'aide auquel il peut prétendre.`}
         />
-        <Reveal className="mt-12 grid gap-8 border-t border-foreground/20 pt-8 md:grid-cols-2 md:gap-14">
+        <Reveal className="mt-8 sm:mt-12 grid gap-8 border-t border-foreground/20 pt-8 md:grid-cols-2 md:gap-14">
           <div>
             <p className="text-lg font-semibold text-foreground">
               Étude à distance, puis visite si besoin

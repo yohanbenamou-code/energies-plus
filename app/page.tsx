@@ -198,23 +198,30 @@ export default function HomePage() {
         />
 
         {/* Engagements chantier */}
-        <section className="border-b border-border bg-secondary/50 py-20 sm:py-28">
+        <section className="border-b border-border bg-secondary/50 py-12 sm:py-28">
           <div className="container">
             <SectionHead
               index="05"
               label="Sur site"
               title="Des travaux menés sans perturber l'activité"
             />
-            <Stagger className="mt-12 grid gap-10 sm:grid-cols-3">
+            <Stagger className="mt-6 grid gap-5 sm:mt-12 sm:grid-cols-3 sm:gap-10">
               {ENGAGEMENTS.map((e) => (
                 <StaggerItem key={e.title} as="div">
-                  <e.icon className="h-6 w-6 text-accent-600" strokeWidth={1.75} />
-                  <h3 className="mt-4 text-lg font-semibold text-foreground">
-                    {e.title}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-                    {e.body}
-                  </p>
+                  <div className="flex gap-4 sm:block">
+                    <e.icon
+                      className="mt-0.5 h-6 w-6 shrink-0 text-accent-600"
+                      strokeWidth={1.75}
+                    />
+                    <div>
+                      <h3 className="text-base font-semibold text-foreground sm:mt-4 sm:text-lg">
+                        {e.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground sm:mt-2 sm:text-[15px]">
+                        {e.body}
+                      </p>
+                    </div>
+                  </div>
                 </StaggerItem>
               ))}
             </Stagger>
@@ -237,16 +244,16 @@ export default function HomePage() {
         />
 
         {/* CTA final */}
-        <section id="contact" className="bg-secondary/50 py-20 sm:py-28">
+        <section id="contact" className="bg-secondary/50 py-12 sm:py-28">
           <div className="container">
             <SectionHead
               index="08"
               label="Contact"
               title="Parlons de votre projet avant que le devis ne soit signé"
             />
-            <div className="mt-12 grid gap-12 lg:grid-cols-12">
+            <div className="mt-6 grid gap-6 sm:mt-12 sm:gap-12 lg:grid-cols-12">
               <Reveal className="lg:col-span-5">
-                <p className="text-lg leading-relaxed text-muted-foreground">
+                <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
                   Décrivez-nous votre projet en quelques lignes. Un conseiller
                   vous rappelle sous 24 à 48h ouvrées pour vérifier son
                   éligibilité, sans engagement.
@@ -275,7 +282,7 @@ export default function HomePage() {
 
               <Reveal
                 variant="left"
-                className="rounded-md border border-foreground/20 bg-card p-6 sm:p-8 lg:col-span-7"
+                className="rounded-md border border-foreground/20 bg-card p-5 sm:p-8 lg:col-span-7"
               >
                 <QuickLeadForm source="homepage" />
               </Reveal>

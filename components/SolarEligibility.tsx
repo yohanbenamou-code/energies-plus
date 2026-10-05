@@ -87,7 +87,7 @@ export function SolarEligibility({ index = "02" }: { index?: string }) {
   return (
     <section
       id="solutions"
-      className="border-b border-border bg-secondary/50 py-20 sm:py-28"
+      className="border-b border-border bg-secondary/50 py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -97,7 +97,7 @@ export function SolarEligibility({ index = "02" }: { index?: string }) {
           description="Deux dossiers peuvent être montés, MaPrimeRénov' et CEE, avec des critères différents. Nos conseillers choisissent avec vous le financement adapté."
         />
 
-        <Reveal className="mt-14 grid gap-12 border-t border-foreground/20 pt-10 lg:grid-cols-3 lg:gap-10">
+        <Reveal className="mt-8 sm:mt-14 grid gap-12 border-t border-foreground/20 pt-10 lg:grid-cols-3 lg:gap-10">
           <Column
             title="Dossier MaPrimeRénov'"
             items={MPR}
@@ -107,7 +107,7 @@ export function SolarEligibility({ index = "02" }: { index?: string }) {
           <Column title="Votre logement" items={HOUSING} />
         </Reveal>
 
-        <Reveal className="mt-12 border-t border-foreground/20 pt-10 lg:grid lg:grid-cols-12 lg:gap-10">
+        <Reveal className="mt-8 sm:mt-12 border-t border-foreground/20 pt-10 lg:grid lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
             <h3 className="display text-2xl text-foreground">
               Cas où le projet n&apos;est pas réalisable
@@ -137,7 +137,7 @@ export function SolarDocuments({ index = "04" }: { index?: string }) {
   return (
     <section
       id="dossier"
-      className="border-b border-border bg-background py-20 sm:py-28"
+      className="border-b border-border bg-background py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -147,7 +147,7 @@ export function SolarDocuments({ index = "04" }: { index?: string }) {
           description="Transmettez l'ensemble des pièces dès la création du dossier : un dossier complet est traité rapidement et sans relance. Documents lisibles, non flous, idéalement au format PDF."
         />
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="mt-8 sm:mt-14 grid gap-12 lg:grid-cols-12 lg:gap-10">
           <Reveal className="space-y-10 lg:col-span-5">
             <div>
               <h3 className="display text-2xl text-foreground">

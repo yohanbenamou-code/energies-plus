@@ -36,7 +36,7 @@ export function SolutionVariantCards({
   return (
     <section
       id="solutions"
-      className="border-b border-border bg-secondary/50 py-20 sm:py-28"
+      className="border-b border-border bg-secondary/50 py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
@@ -46,7 +46,7 @@ export function SolutionVariantCards({
           description="Nos conseillers déterminent avec vous la configuration adaptée à votre bâtiment."
         />
 
-        <Stagger className="mt-12 grid gap-5 md:grid-cols-2">
+        <Stagger className="mt-8 sm:mt-12 grid gap-5 md:grid-cols-2">
           {operation.variants.map((variant) => {
             const f = FRIENDLY[variant.key] ?? {
               title: variant.label,

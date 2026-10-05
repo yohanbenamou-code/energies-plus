@@ -24,43 +24,48 @@ export function CeeMechanism() {
   return (
     <section
       id="dispositif"
-      className="border-b border-border bg-background py-20 sm:py-28"
+      className="border-b border-border bg-background py-12 sm:py-28"
     >
       <div className="container">
         <SectionHead
           index="01"
           label="Le dispositif"
+          descriptionDesktopOnly
           title="Les CEE, en trois acteurs"
           description="Les Certificats d'Économies d'Énergie sont un mécanisme public créé en 2005 et encadré par le Ministère de la Transition Écologique. Comprendre qui paie, et pourquoi, aide à ne pas se tromper de calendrier."
         />
 
-        <div className="mt-14 grid border-y border-foreground/20 lg:grid-cols-3 lg:divide-x lg:divide-foreground/20">
+        <div className="mt-8 sm:mt-14 grid border-y border-foreground/20 lg:grid-cols-3 lg:divide-x lg:divide-foreground/20">
           {STEPS.map((step, i) => (
             <Reveal
               key={step.title}
               delay={i * 0.07}
-              className="border-b border-foreground/20 py-9 last:border-b-0 lg:border-b-0 lg:px-8 lg:first:pl-0 lg:last:pr-0"
+              className="border-b border-foreground/20 py-5 last:border-b-0 sm:py-9 lg:border-b-0 lg:px-8 lg:first:pl-0 lg:last:pr-0"
             >
-              <p className="display text-6xl text-accent">{i + 1}</p>
-              <p className="mt-6 text-sm font-medium text-muted-foreground">
-                {step.tag}
-              </p>
-              <h3 className="mt-2 text-xl font-semibold leading-snug text-foreground">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                {step.body}
-              </p>
+              <div className="grid grid-cols-[2rem_1fr] gap-x-3 sm:block">
+                <p className="display text-3xl text-accent sm:text-6xl">{i + 1}</p>
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground sm:mt-6 sm:text-sm">
+                    {step.tag}
+                  </p>
+                  <h3 className="mt-1 text-lg font-semibold leading-snug text-foreground sm:mt-2 sm:text-xl">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:mt-3 sm:text-[15px]">
+                    {step.body}
+                  </p>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>
 
-        <Reveal className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-14">
+        <Reveal className="mt-6 grid gap-5 sm:mt-10 sm:gap-8 lg:grid-cols-2 lg:gap-14">
           <div>
             <p className="text-sm font-semibold text-foreground">
               Cumul avec MaPrimeRénov&apos;
             </p>
-            <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground sm:mt-2 sm:text-[15px]">
               Selon l&apos;opération et votre éligibilité, la prime CEE peut se
               cumuler avec MaPrimeRénov&apos; : l&apos;ensemble peut couvrir
               tout ou une large part du coût des travaux, sans avance de
@@ -71,7 +76,7 @@ export function CeeMechanism() {
             <p className="text-sm font-semibold text-foreground">
               Le kWh cumac, seule valeur officielle
             </p>
-            <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground sm:mt-2 sm:text-[15px]">
               Le volume officiel de chaque aide s&apos;exprime en kWh cumac. Sa
               valeur en euros varie selon le marché et votre situation : nous
               ne communiquons jamais de montant garanti avant l&apos;étude.

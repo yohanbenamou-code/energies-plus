@@ -18,11 +18,11 @@ export function Footer() {
 
   return (
     <footer className="bg-primary-900 text-white">
-      <div className="container py-16 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+      <div className="container py-10 sm:py-16 lg:py-20">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-12 lg:gap-12">
+          <div className="col-span-2 lg:col-span-5">
             <Logo invert className="h-10" />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/65">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65 sm:mt-6">
               {site.baseline}
             </p>
             <div className="mt-7 space-y-2.5 text-sm text-white/85">
@@ -73,7 +73,7 @@ export function Footer() {
 
           <div className="lg:col-span-3 lg:col-start-7">
             <p className="text-sm font-semibold text-white">Nos solutions</p>
-            <ul className="mt-5 space-y-3 text-sm text-white/65">
+            <ul className="mt-4 space-y-2.5 text-sm text-white/65 sm:mt-5 sm:space-y-3">
               {solutions.map((operation) => (
                 <li key={operation.slug}>
                   <Link
@@ -99,7 +99,7 @@ export function Footer() {
 
           <div className="lg:col-span-3">
             <p className="text-sm font-semibold text-white">Informations</p>
-            <ul className="mt-5 space-y-3 text-sm text-white/65">
+            <ul className="mt-4 space-y-2.5 text-sm text-white/65 sm:mt-5 sm:space-y-3">
               <li>
                 <Link href="/mentions-legales" className="hover:text-white">
                   Mentions légales
@@ -121,7 +121,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/15 pt-6">
+        <div className="mt-8 border-t border-white/15 pt-5 sm:mt-14 sm:pt-6">
           <p className="max-w-4xl text-xs leading-relaxed text-white/50">
             {site.legalMention}
           </p>

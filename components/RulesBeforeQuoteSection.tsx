@@ -20,21 +20,21 @@ export function RulesBeforeQuoteSection() {
   return (
     <section
       id="avant-devis"
-      className="relative overflow-hidden bg-primary-900 py-20 text-white sm:py-28"
+      className="relative overflow-hidden bg-primary-900 py-12 text-white sm:py-28"
     >
       <span
         aria-hidden
         className="plus-mark -bottom-48 -left-40 hidden h-[40rem] text-white/[0.06] [--t:2px] lg:block"
       />
-      <div className="container relative grid gap-14 lg:grid-cols-12 lg:gap-10">
+      <div className="container relative grid gap-8 sm:gap-14 lg:grid-cols-12 lg:gap-10">
         <Reveal className="lg:col-span-6">
           <p className="text-sm font-medium text-accent">
             L&apos;erreur à ne pas commettre
           </p>
-          <h2 className="display mt-4 text-balance text-4xl sm:text-5xl">
+          <h2 className="display mt-3 text-balance text-[1.9rem] sm:mt-4 sm:text-5xl">
             Appelez-nous avant de signer votre devis
           </h2>
-          <div className="mt-6 max-w-lg space-y-4 text-[15px] leading-relaxed text-white/75">
+          <div className="mt-4 max-w-lg space-y-3 text-sm leading-relaxed text-white/75 sm:mt-6 sm:space-y-4 sm:text-[15px]">
             <p>
               Dans le dispositif des Certificats d&apos;Économies d&apos;Énergie,
               la qualification et la sécurisation du dossier doivent intervenir{" "}
@@ -47,7 +47,7 @@ export function RulesBeforeQuoteSection() {
               fréquente, et la plus coûteuse.
             </p>
           </div>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
             <Button asChild variant="accent" size="lg">
               <Link href="#contact">
                 <PhoneCall /> Faire cadrer mon projet
@@ -68,7 +68,7 @@ export function RulesBeforeQuoteSection() {
             {ORDER.map((label, i) => (
               <li
                 key={label}
-                className="flex items-baseline gap-5 border-b border-white/20 py-4"
+                className="flex items-baseline gap-4 border-b border-white/20 py-3 sm:gap-5 sm:py-4"
               >
                 <span className="font-mono text-sm text-accent">
                   {String(i + 1).padStart(2, "0")}
